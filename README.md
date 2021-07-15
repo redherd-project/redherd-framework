@@ -79,7 +79,7 @@ Hereafter, some interesting links referred to the project:
 
 ## Changelog   
 
-Got to [CHANGELOG](CHANGELOG.md) to see all the version changes.   
+Go to [CHANGELOG](CHANGELOG.md) to see all the version changes.   
 
 
 ## License
