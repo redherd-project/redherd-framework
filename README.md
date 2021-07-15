@@ -1,7 +1,7 @@
 <table align="center">
 <tr>
 <td align="center" width="9999">
-<img src="https://redherd.readthedocs.io/en/latest/images/logo.png" align="center" width="250" alt="RedHerd Framework">
+<img src="https://redherd.readthedocs.io/en/dev/design/features/redherd-net.png" align="center" width="600px" alt="RedHerd Framework">
 
 # RedHerd Framework
 
@@ -77,7 +77,7 @@ Hereafter, some interesting links referred to the project:
 
 ## Changelog   
 
-Got to [CHANGELOG.md](CHANGELOG) to see all the version changes.   
+Got to [CHANGELOG](CHANGELOG.md) to see all the version changes.   
 
 
 ## License
