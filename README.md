@@ -29,6 +29,28 @@ Hereafter, some interesting links referred to the project:
 - YouTube [channel](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
 
 
+## Changelog   
+
+Go to [CHANGELOG](CHANGELOG.md) to see all the version changes.   
+
+
+## License
+
+This project is under the **MIT license**.
+
+
+## Contact us
+
+Feel free to contact us at this e-mail address:
+
+<img src="https://redherd.readthedocs.io/en/dev/references/credits/contactus.png"  width="200px;" alt="Contact us">
+
+
+## Disclaimer
+
+The provided contents and tools are for awareness and research purposes only. Our target audience is composed of those interested in learning about Ethical Hacking, Security, Penetration Testing and Red Teaming. We are not responsible for any inappropriate or illegal usage of both proposed material and discussed topics.
+
+
 ## Developers
 
 <table border="0">
@@ -76,24 +98,3 @@ Hereafter, some interesting links referred to the project:
 </tr>
 </table>
 
-
-## Changelog   
-
-Go to [CHANGELOG](CHANGELOG.md) to see all the version changes.   
-
-
-## License
-
-This project is under the **MIT license**.
-
-
-## Contact us
-
-Feel free to contact us at this e-mail address:
-
-<img src="https://redherd.readthedocs.io/en/dev/references/credits/contactus.png"  width="200px;" alt="Contact us">
-
-
-## Disclaimer
-
-The provided contents and tools are for awareness and research purposes only. Our target audience is composed of those interested in learning about Ethical Hacking, Security, Penetration Testing and Red Teaming. We are not responsible for any inappropriate or illegal usage of both proposed material and discussed topics.
