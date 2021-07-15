@@ -1,9 +1,8 @@
-<table align="center">
+<table align="center" border="0">
 <tr>
 <td align="center" width="9999">
 
 # RedHerd Framework
-
 
 <br>
 <img src="https://redherd.readthedocs.io/en/dev/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
@@ -33,7 +32,6 @@ Hereafter, some interesting links referred to the project:
 ## Developers
 
 <table>
-
 <tr width="9999">
 <td align="center">
 <a href="https://github.com/mario-damico">
