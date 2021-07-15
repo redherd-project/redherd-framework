@@ -1,38 +1,41 @@
-<table align="center">
+<table align="center" border="0">
 <tr>
 <td align="center" width="9999">
-<img src="./docs/images/logo5.png" align="center" width="250" alt="RedHerd Framework">
 
 # RedHerd Framework
 
-*Beautiful, (un)ethical, dangerous...*   <span>*Lucius Fox, The Dark Knight*</span>
+<br>
+<img src="https://redherd.readthedocs.io/en/dev/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
+<br><br>
+	
+<div align="left">
+RedHerd is a collaborative and serverless framework for orchestrating a geographically distributed group of assets capable of <del>conducting</del> simulating complex offensive cyberspace operations.
+</div>
 
-<div align="left"><span>RedHerd is a Node-based and serverless Collaborative orchestration framework that aims to provide a unified and simple interface for a multi-platform HERD of assets controlled by skilled or low-skilled operators.</span></div>
-</td>
-</tr>
-<tr>
-<td align="center" width="9999">
-
-# Disclaimer
-
-<div align="left"><span>The provided contents and tools are for awareness and research purposes only. Our target audience is composed of those interested in learning about Ethical Hacking, Security, Penetration Testing and Red Teaming. We are not responsible for any inappropriate or illegal usage of both proposed material and discussed topics.</span></div>
 </td>
 </tr>
 </table>
 
 
-<table align="center">
-<tr>
-<td align="center" width="9999" colspan="3">
+## Getting Started
 
-# Credits
+Take a look at the RedHerd [documentation](https://redherd.readthedocs.io) for instructions on how to getting started with the framework.
 
-</td>
-</tr>
+
+## Links
+
+Hereafter, some interesting links referred to the project:
+
+- YouTube [channel](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
+
+
+## Developers
+
+<table border="0">
 <tr width="9999">
 <td align="center">
-<a href="https://gitlab.com/c4dm10">
-<img src="https://secure.gravatar.com/avatar/b7ee3406b5e557cda8a39d8a22902440?s=180&d=identicon" width="100px;" alt=""/><br />
+<a href="https://github.com/mario-damico">
+<img src="https://avatars.githubusercontent.com/u/87416466?v=4" width="100px;" alt=""/><br />
 <sub><b>Mario D'Amico</b></sub>
 </a>
 <br /><br />
@@ -46,8 +49,8 @@
 </td>
 	
 <td align="center">
-<a href="https://gitlab.com/giovanni1.pecoraro">
-<img src="https://secure.gravatar.com/avatar/aa867b0130ea94a3b093c922efd40005?s=180&d=identicon" width="100px;" alt=""/><br />
+<a href="https://github.com/Peco602">
+<img src="https://avatars.githubusercontent.com/u/13527424?v=4" width="100px;" alt=""/><br />
 <sub><b>Giovanni Pecoraro</b></sub>
 </a>
 <br /><br />
@@ -72,3 +75,25 @@
 </td>
 </tr>
 </table>
+
+
+## Changelog   
+
+Go to [CHANGELOG](CHANGELOG.md) to see all the version changes.   
+
+
+## License
+
+This project is under the **MIT license**.
+
+
+## Contact us
+
+Feel free to contact us at this e-mail address:
+
+<img src="https://redherd.readthedocs.io/en/dev/references/credits/contactus.png"  width="200px;" alt="Contact us">
+
+
+## Disclaimer
+
+The provided contents and tools are for awareness and research purposes only. Our target audience is composed of those interested in learning about Ethical Hacking, Security, Penetration Testing and Red Teaming. We are not responsible for any inappropriate or illegal usage of both proposed material and discussed topics.
