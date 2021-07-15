@@ -1,0 +1,11 @@
+{
+    "name": "debian_motion_cam",
+    "title": "Motion Remote Cam Access",
+    "description": "Motion Remote Cam Access",
+    "binary": "motion",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_video",
+    "version": "1.1",
+    "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
+    "tags": ["pivotable"]
+}

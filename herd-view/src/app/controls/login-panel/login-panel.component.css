@@ -1,0 +1,14 @@
+.mat-elevation-z8 {
+    width: 280px;
+    margin: 5% auto;
+}
+
+.mat-input-element {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mat-list-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

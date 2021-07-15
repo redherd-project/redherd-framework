@@ -1,0 +1,47 @@
+.mat-elevation-z8 {
+    width: 95%;
+    margin: 10px auto;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.mat-select,
+.mat-input-element {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mat-list-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mat-raised-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.mat-checkbox,
+.mat-form-field {
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.mat-checkbox {
+    text-align: left;
+}
+
+.mat-icon {
+    margin: 0 10px;
+}
+
+.terminal-wrapper {
+    background-color: black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}

@@ -1,0 +1,62 @@
+<div *ngIf="module">
+    <mat-list>
+        <mat-list-item>
+            <mat-form-field>
+                <input matInput value="{{module.description}}" placeholder="description" readonly>
+            </mat-form-field>
+        </mat-list-item>
+
+        <span *ngFor="let param of module.params" [ngSwitch]="param.type">
+
+            <mat-list-item *ngSwitchCase="'string'">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                </mat-form-field>
+            </mat-list-item>
+
+            <mat-list-item *ngSwitchCase="'number'">
+                <mat-form-field>
+                    <input matInput type="number" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                </mat-form-field>
+            </mat-list-item>
+
+            <mat-list-item *ngSwitchCase="'password'">
+                <mat-form-field>
+                    <input matInput type="password" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                </mat-form-field>
+            </mat-list-item>
+
+            <mat-list-item *ngSwitchCase="'boolean'">
+                <mat-checkbox *ngSwitchCase="'boolean'" color="primary" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">{{param.label}}</mat-checkbox>
+            </mat-list-item>
+
+            <mat-list-item *ngSwitchCase="'list'">
+                <mat-form-field>
+                    <mat-label>{{param.label}}</mat-label>
+                    <mat-select [(ngModel)]="modelData['params'][param.name]">
+                        <mat-option *ngFor="let value of param.values" [value]="value">
+                            {{value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-list-item>
+
+            <span *ngSwitchDefault></span>
+
+        </span>
+
+        <mat-list-item>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="execute()"><mat-icon aria-label="Execute icon">play_arrow</mat-icon></button>
+            <button mat-icon-button (click)="configure()"><mat-icon aria-label="Configure icon">settings</mat-icon></button>
+        </mat-list-item>
+    </mat-list>
+</div>
+
+<mat-card *ngIf="!module">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</mat-card>
+
+<mat-card *ngIf="module">
+    <ng-terminal #term [dataSource]="output"></ng-terminal>
+</mat-card>

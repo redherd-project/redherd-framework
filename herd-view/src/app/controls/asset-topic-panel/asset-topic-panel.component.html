@@ -1,0 +1,52 @@
+<div class="drag-container">
+    <mat-list>
+        <mat-list-item><mat-icon aria-label="Topics icon">topic</mat-icon><span>Attachable Topics</span></mat-list-item>
+    </mat-list>
+  
+    <div
+      id="available"
+      cdkDropList
+      [cdkDropListData]="available"
+      cdkDropListConnectedTo="attached"
+      class="drag-list"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="detachablePredicate">
+      <div
+        class="drag-box"
+        *ngFor="let item of available"
+        [cdkDragData]="item"
+        cdkDrag>
+        <div>
+            <span>{{item.id}}. {{item.name}}</span>
+        </div>
+        <mat-icon aria-label="Move icon">open_with</mat-icon>
+      </div>
+    </div>
+  </div>
+  
+  <div class="drag-container">
+    <mat-list>
+        <mat-list-item><mat-icon aria-label="Topics icon">topic</mat-icon><span>Attached Topics</span></mat-list-item>
+    </mat-list>
+    
+    <div
+      id="attached"
+      cdkDropList
+      [cdkDropListData]="attached"
+      cdkDropListConnectedTo="available"
+      class="drag-list"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListEnterPredicate]="attachablePredicate">
+      <div
+        class="drag-box"
+        *ngFor="let item of attached"
+        cdkDrag
+        [cdkDragData]="item">
+        <mat-icon aria-label="Move icon">open_with</mat-icon>
+        <div>
+          <span>{{item.id}}. {{item.name}}</span>
+        </div>
+      </div>
+      
+    </div>
+</div> 

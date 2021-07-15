@@ -1,0 +1,29 @@
+<div class="mat-elevation-z8">
+   
+    <div *ngIf="topic">
+        <mat-list>
+            <mat-list-item>
+                <mat-icon aria-label="Topics icon">topics</mat-icon><span class="capitalize">{{topic.name}}</span>
+                <span class="spacer"></span>
+                <button mat-icon-button (click)="back()"><mat-icon aria-label="Close icon">close</mat-icon></button>
+            </mat-list-item>
+        </mat-list>
+
+        <mat-divider></mat-divider>
+
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title><span>Details</span></mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-topic-detail-panel></app-topic-detail-panel>
+        </mat-expansion-panel>
+        
+        <mat-divider></mat-divider>
+
+    </div>
+
+    <mat-card *ngIf="!topic">
+        <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+    </mat-card>
+
+</div>

@@ -1,0 +1,13 @@
+{
+    "name": "debian_john_wordlist",
+    "title": "JohnTheRipper Wordlist",
+    "description": "Crack a file using JohnTheRipper in Wordlist mode",
+    "binary": "john",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_lateral_movement",
+    "version": "1.0",
+    "params": [{"label": "Wordlist", "name": "wordlist", "type": "string"},
+               {"label": "File to be cracked", "name": "passfile", "type": "string"},
+               {"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
+    "tags": ["automatic"]
+}

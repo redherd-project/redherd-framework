@@ -1,0 +1,47 @@
+.mat-elevation-z8 {
+    width: 95%;
+    margin: 10px auto;
+}
+
+.mat-expansion-panel {
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.mat-select,
+.mat-input-element {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mat-list-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mat-raised-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+  
+.mat-form-field {
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+ 
+.mat-icon {
+    margin: 0 10px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.capitalize {
+    text-transform: capitalize;
+ }

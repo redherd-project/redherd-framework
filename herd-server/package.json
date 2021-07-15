@@ -1,0 +1,35 @@
+{
+  "name": "redherd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://gitlab.com/redherddevs/redherd-framework.git"
+  },
+  "author": "c4dm10 & peco602",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "deasync": "^0.1.20",
+    "express": "^4.17.1",
+    "express-basic-auth": "^1.2.0",
+    "express-rate-limit": "^5.1.3",
+    "get-port": "^5.1.1",
+    "http-proxy-middleware": "^1.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "kill-port": "^1.6.0",
+    "node-tcp-proxy": "0.0.15",
+    "rtsp-streaming-server": "^2.0.6",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.4.0",
+    "sqlite-sync": "^0.3.9",
+    "udp-proxy": "^1.2.0"
+  }
+}

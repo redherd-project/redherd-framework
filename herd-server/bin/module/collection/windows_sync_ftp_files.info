@@ -1,0 +1,11 @@
+{
+    "name": "windows_sync_ftp_files",
+    "title": "Sync FTP",
+    "description": "Sync FTP files",
+    "binary": "",
+    "author": "c4dm10 & peco602",
+    "topic": "windows_service",
+    "version": "1.0",
+    "params": [],
+    "tags": ["automatic"]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "debian_interfaces",
+    "title": "Interfaces",
+    "description": "List all network interfaces",
+    "binary": "nmcli",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_misc",
+    "version": "1.0",
+    "params": [],
+    "tags": ["automatic"]
+}

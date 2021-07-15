@@ -1,0 +1,55 @@
+.material-icons.mat-primary {
+    color: #f44336;
+    vertical-align: middle;
+}
+
+.button-icon {
+    vertical-align: middle;
+}
+
+.breadcrumb {
+    background-color: #f44336 !important;
+}
+
+a.path-link {
+    font-weight: bold;
+    color: white;
+}
+
+thead {
+    width: calc( 100% - 1em ) /* scrollbar is average 1em/16px width, remove it from thead width */
+}
+
+tbody {
+    display: block;
+    height: calc( 100vh - 200px );
+    overflow: auto;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+td, th {
+    vertical-align: middle !important;
+}
+
+.td-middle {
+    text-align: center;
+}
+
+.main-container {
+    margin: auto;
+    width: 95%;
+    display: block;
+}
+
+input.form-control {
+    height: inherit;
+}
+
+body {
+    overflow: hidden;
+}

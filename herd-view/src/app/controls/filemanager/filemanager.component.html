@@ -1,0 +1,25 @@
+<div class="mat-elevation-z8" *ngIf="filemanagerUrlSafe">
+
+    <mat-list>
+
+        <mat-list-item>
+            <mat-icon aria-label="File manager icon">folder</mat-icon><span>File Manager</span>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="openInNew();"><mat-icon aria-label="New icon">open_in_new</mat-icon></button>
+            <button mat-icon-button (click)="back();"><mat-icon aria-label="Close icon">close</mat-icon></button>
+        </mat-list-item>
+
+    </mat-list>
+
+    <mat-divider></mat-divider>
+
+    <mat-card *ngIf="filemanagerReady === false">
+        <!--<mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>-->
+        <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+    </mat-card>
+
+    <div class="filemanager-wrapper" *ngIf="filemanagerReady === true">
+        <iframe class="filemanager-container" [src]="filemanagerUrlSafe"></iframe>
+    </div>
+
+</div>

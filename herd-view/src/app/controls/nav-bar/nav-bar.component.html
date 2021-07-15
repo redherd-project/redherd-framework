@@ -1,0 +1,38 @@
+<!--<mat-sidenav-container class="sidenav-container">-->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport *ngIf="isLoggedIn$ | async"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/assets'"><mat-icon aria-label="Assets icon">devices</mat-icon>Assets</a>
+      <a mat-list-item [routerLink]="'/topics'"><mat-icon aria-label="Topics icon">topic</mat-icon>Topics</a>
+      <a mat-list-item [routerLink]="'/processes'"><mat-icon aria-label="Processes icon">account_tree</mat-icon>Processes</a>
+      <a mat-list-item [routerLink]="'/modules'"><mat-icon aria-label="Modules icon">extension</mat-icon>Modules</a>
+      <a mat-list-item [routerLink]="'/types'"><mat-icon aria-label="Types icon">device_unknown</mat-icon>Types</a>
+      <a mat-list-item [routerLink]="'/filemanager'"><mat-icon aria-label="File manager icon">folder</mat-icon>File Manager</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="isLoggedIn$ | async">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>RedHerd Framework</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="onLogout()"><mat-icon aria-label="Logout icon">exit_to_app</mat-icon></button>
+      <!--<span>User</span>-->
+    </mat-toolbar>
+
+    <ng-content></ng-content>
+
+    <img class="footer-logo" src="assets/images/footer_logo.png">
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

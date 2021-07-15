@@ -1,0 +1,11 @@
+{
+    "name": "debian_airgeddon",
+    "title": "Airgeddon WiFi Attack Suite",
+    "description": "Airgeddon WiFi Attack Suite",
+    "binary": "airgeddon",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_delivery",
+    "version": "1.0",
+    "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
+    "tags": ["interactive"]
+}

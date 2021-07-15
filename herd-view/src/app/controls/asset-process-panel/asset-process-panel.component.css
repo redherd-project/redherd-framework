@@ -1,0 +1,44 @@
+.mat-elevation-z8 {
+  width: 95%;
+  margin: 10px auto;
+}
+
+.mat-card,
+.mat-expansion-panel {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.mat-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-input-element {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.mat-form-field {
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.mat-icon {
+  margin: 0 10px;
+}
+
+.full-width-table {
+  width: 100%;
+  text-align: left;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.details {
+  color: inherit;
+}

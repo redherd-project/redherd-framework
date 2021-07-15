@@ -1,0 +1,37 @@
+.mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+}
+
+.mat-card-header {
+    display: block;
+}
+
+.mat-input-element {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mat-raised-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.signin-content {
+    margin: auto;
+    text-align: center;
+    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+}
+
+.full-width-input {
+    width: 100%;
+}
+
+.login-logo {
+    width: 210px;
+    margin: auto;
+}

@@ -1,0 +1,56 @@
+<div class="mat-elevation-z8">
+   
+    <div *ngIf="asset">
+        <mat-list>
+            <mat-list-item>
+                <mat-icon aria-label="Assets icon">devices</mat-icon><span class="capitalize">{{asset.name}}</span>
+                <span class="spacer"></span>
+                <button mat-icon-button (click)="back()"><mat-icon aria-label="Close icon">close</mat-icon></button>
+            </mat-list-item>
+        </mat-list>
+
+        <mat-divider></mat-divider>
+
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title><span>Details</span></mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-asset-detail-panel></app-asset-detail-panel>
+        </mat-expansion-panel>
+        
+        <mat-divider></mat-divider>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title><span>Topics</span></mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-asset-topic-panel></app-asset-topic-panel>
+        </mat-expansion-panel>
+
+        <mat-divider></mat-divider>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title><span>Modules</span></mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-asset-module-panel></app-asset-module-panel>
+        </mat-expansion-panel>
+
+        <mat-divider></mat-divider>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title><span>Processes</span></mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-asset-process-panel></app-asset-process-panel>
+        </mat-expansion-panel>
+
+        <mat-divider></mat-divider>
+
+    </div>
+
+    <mat-card *ngIf="!asset">
+        <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+    </mat-card>
+
+</div>

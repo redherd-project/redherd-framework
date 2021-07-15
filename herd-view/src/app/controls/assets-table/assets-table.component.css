@@ -1,0 +1,61 @@
+.mat-elevation-z8 {
+  width: 95%;
+  margin: 10px auto;
+}
+
+.mat-card,
+.mat-expansion-panel {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.mat-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-input-element {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.mat-form-field {
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.mat-icon {
+  margin: 0 10px;
+}
+
+.mat-cell .mat-icon {
+  margin: auto;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.online {
+  color: green;
+}
+
+.offline {
+  color: red;
+}
+
+.unknown {
+  color: orange;
+}
+
+.terminal,
+.details {
+  color: inherit;
+}
+
+.row-icon {
+  width: 32px;
+  height: 32px;
+}

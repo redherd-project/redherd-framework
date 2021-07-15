@@ -1,0 +1,11 @@
+{
+    "name": "debian_traceroute",
+    "title": "Traceroute",
+    "description": "A traceroute demo module",
+    "binary": "traceroute",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_misc",
+    "version": "1.0",
+    "params": [{"label": "Target", "name": "target", "type": "string"}],
+    "tags": ["automatic"]
+}

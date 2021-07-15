@@ -1,0 +1,11 @@
+{
+    "name": "debian_push_file_to_ftp",
+    "title": "Push a file",
+    "description": "Push a file to the FTP server",
+    "binary": "lftp",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_service",
+    "version": "1.0",
+    "params": [{"label": "File to push", "name": "file", "type": "string"}],
+    "tags": ["automatic"]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "debian_nmap_pingsweep",
+    "title": "Nmap Ping Sweep",
+    "description": "Nmap module to perform host discovery",
+    "binary": "nmap",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_reconnaissance",
+    "version": "1.0",
+    "params": [{"label": "Target range", "name": "target", "type": "string"}],
+    "tags": ["automatic"]
+}

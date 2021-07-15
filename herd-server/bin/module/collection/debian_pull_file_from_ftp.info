@@ -1,0 +1,11 @@
+{
+    "name": "debian_pull_file_from_ftp",
+    "title": "Pull a file",
+    "description": "Pull a file from the FTP server",
+    "binary": "lftp",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_service",
+    "version": "1.0",
+    "params": [{"label": "File to pull", "name": "file", "type": "string"}],
+    "tags": ["automatic"]
+}

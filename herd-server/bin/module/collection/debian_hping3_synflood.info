@@ -1,0 +1,13 @@
+{
+    "name": "debian_hping3_synflood",
+    "title": "Hping3 SYN Flood",
+    "description": "Perform a SYN Flood attack against a target",
+    "binary": "hping3",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_delivery",
+    "version": "1.0",
+    "params": [{"label": "Target", "name": "target", "type": "string"},
+               {"label": "Port", "name": "port", "type": "number"},
+               {"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
+    "tags": ["automatic"]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "debian_sync_asset_files",
+    "title": "Sync Asset",
+    "description": "Sync Asset files",
+    "binary": "lftp",
+    "author": "c4dm10 & peco602",
+    "topic": "debian_service",
+    "version": "1.0",
+    "params": [],
+    "tags": ["automatic"]
+}
