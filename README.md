@@ -89,7 +89,7 @@ This project is under the **MIT license**.
 
 Feel free to contact us at this e-mail address:
 
-<img src="https://redherd.readthedocs.io/en/dev/references/credits/contactus.png"  width="225px;" alt="Contact us">
+<img src="https://redherd.readthedocs.io/en/dev/references/credits/contactus.png"  width="200px;" alt="Contact us">
 
 
 ## Disclaimer
