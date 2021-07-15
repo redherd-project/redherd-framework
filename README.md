@@ -1,7 +1,7 @@
 <table align="center">
 <tr>
 <td align="center" width="9999">
-<img src="https://redherd.readthedocs.io/en/dev/design/features/redherd-net.png" align="center" width="600px" alt="RedHerd Framework">
+<img src="https://redherd.readthedocs.io/en/dev/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
 
 # RedHerd Framework
 
