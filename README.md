@@ -30,7 +30,7 @@ Hereafter, some interesting links referred to the project:
 
 ## Developers
 
-<table align="center">
+<table>
 
 <tr width="9999">
 <td align="center">
