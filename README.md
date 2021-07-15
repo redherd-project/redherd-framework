@@ -31,11 +31,6 @@ Hereafter, some interesting links referred to the project:
 ## Developers
 
 <table align="center">
-<tr>
-<td align="center" width="9999" colspan="3">
-
-</td>
-</tr>
 
 <tr width="9999">
 <td align="center">
