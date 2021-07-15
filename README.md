@@ -31,7 +31,7 @@ Hereafter, some interesting links referred to the project:
 
 ## Developers
 
-<table>
+<table border="0">
 <tr width="9999">
 <td align="center">
 <a href="https://github.com/mario-damico">
