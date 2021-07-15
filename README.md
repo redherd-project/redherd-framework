@@ -5,8 +5,6 @@
 
 # RedHerd Framework
 
-*Beautiful, (un)ethical, dangerous...*   <span>*Lucius Fox, The Dark Knight*</span>
-
 <div align="left">
 RedHerd is a collaborative and serverless framework for orchestrating a geographically distributed group of assets capable of <del>conducting</del> simulating complex Offensive Cyberspace Operations (OCOs).
 </div>
