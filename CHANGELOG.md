@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.0.4] - 2021-07-15
+## [v0.0.1] - 2021-07-15
 ### Added
 - New module execution verb "pivot" used to execute modules that require a redirection to an external application
 - Windows shared files management modules
@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Distribution-Server credentials re-generation at first deploy
 - Removed default user
 
-## [v0.0.3] - 2021-07-06
+## [v0.0.1c] - Unreleased
 ### Added
 - Topics based on Cyber Kill Chain
 
@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation updated
 
 
-## [v0.0.2] - 2021-07-02
+## [v0.0.1b] - Unreleased
 ### Added
 - Hot module update
 - Draft documentation
@@ -54,5 +54,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed some wrong descriptions in the Herd-CLI help
 
 
-## [v0.0.1] - 2021-06-24
-- Initial release
+## [v0.0.1a] - Unreleased
+- First commit
