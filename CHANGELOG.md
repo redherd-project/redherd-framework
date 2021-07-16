@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Distribution-Server default credentials removed
 - Distribution-Server credentials generated at first deploy
 - Herd-View default user removed
+- npm dependencies updated in different package-lock.json files
 
 ## [v0.0.1c] - Unreleased
 ### Added
