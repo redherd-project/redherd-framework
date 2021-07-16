@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.0.1] - 2021-07-15
+## [v0.0.1] - 2021-07-16
 ### Added
 - New module execution verb "pivot" used to execute modules that require a redirection to an external application
 - Windows shared files management modules
@@ -23,8 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Herd-View "Not Found" issue
 
 ### Security 
-- Distribution-Server credentials re-generation at first deploy
-- Removed default user
+- Distribution-Server default credentials removed
+- Distribution-Server credentials generated at first deploy
+- Herd-View default user removed
 
 ## [v0.0.1c] - Unreleased
 ### Added
