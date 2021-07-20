@@ -1,0 +1,11 @@
+{
+    "name": "debian_gophish",
+    "title": "Gophish",
+    "description": "Gophish phishing suite",
+    "binary": "",
+    "author": "peco602",
+    "topic": "debian_delivery",
+    "version": "1.0",
+    "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
+    "tags": ["pivotable"]
+}

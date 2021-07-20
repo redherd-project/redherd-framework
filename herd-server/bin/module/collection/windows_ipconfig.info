@@ -1,0 +1,11 @@
+{
+    "name": "windows_interfaces",
+    "title": "Interfaces",
+    "description": "List all network interfaces",
+    "binary": "ipconfig",
+    "author": "peco602",
+    "topic": "windows_misc",
+    "version": "1.0",
+    "params": [],
+    "tags": ["automatic"]
+}

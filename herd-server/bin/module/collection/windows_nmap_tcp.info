@@ -1,0 +1,12 @@
+{
+    "name": "windows_nmap_tcp",
+    "title": "Nmap TCP Scan",
+    "description": "Nmap module to scan TCP ports",
+    "binary": "nmap",
+    "author": "peco602",
+    "topic": "windows_reconnaissance",
+    "version": "1.0",
+    "params": [{"label": "Target range", "name": "target", "type": "string"},
+               {"label": "Port range", "name": "ports", "type": "string"}],
+    "tags": ["automatic"]
+}

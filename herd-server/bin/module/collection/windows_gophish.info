@@ -1,0 +1,11 @@
+{
+    "name": "windows_gophish",
+    "title": "Gophish",
+    "description": "Gophish phishing suite",
+    "binary": "gophish",
+    "author": "peco602",
+    "topic": "windows_delivery",
+    "version": "1.0",
+    "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
+    "tags": ["pivotable"]
+}

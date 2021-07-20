@@ -135,6 +135,7 @@ function AddUser {
         sudo /usr/sbin/useradd $SUDO_USER_USERNAME -m --shell /bin/bash --password $(echo $SUDO_USER_PASSWORD | openssl passwd -1 -stdin) > /dev/null 2>&1
         /usr/sbin/usermod -aG sudo $SUDO_USER_USERNAME
         echo "$SUDO_USER_USERNAME  ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
+        chown $SUDO_USER_USERNAME:$SUDO_USER_USERNAME $DATA_PATH
 }
 
 function RemoveUser {
