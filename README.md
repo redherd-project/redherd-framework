@@ -5,7 +5,7 @@
 # RedHerd Framework
 
 <br>
-<img src="https://redherd.readthedocs.io/en/dev/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
+<img src="https://redherd.readthedocs.io/en/latest/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
 <br><br>
 	
 <div align="left">
