@@ -17,6 +17,14 @@ class Module
         this.moduleCode = moduleCode;
         this.session = session;
         this.wsServer = wsServer;
+
+        //  Message colors:
+        // ******************************    
+        this.info_color = '\u001b[34m';
+        this.warn_color = '\u001b[33m';
+        this.error_color = '\u001b[31m';
+        this.bold_format = '\u001b[1m';
+        this.reset_format = '\u001b[0m';
     }
 
     //  Task execution function:
@@ -125,6 +133,24 @@ class Module
     {
         // Must be implemented in a derived class
         throw new Error("Not Implemented");
+    }
+
+    buildInfoMessage(text)
+    {
+        let message = this.info_color + this.bold_format + '[?] Info: ' + this.reset_format + this.bold_format + text + this.reset_format;
+        return message;
+    }
+
+    buildWarnMessage(text)
+    {
+        let message = this.warn_color + this.bold_format + '[!] Warn: ' + this.reset_format + this.bold_format + text + this.reset_format;
+        return message;
+    }
+
+    buildErrorMessage(text)
+    {
+        let message = this.error_color + this.bold_format + '[x] Error: ' + this.reset_format + this.bold_format + text + this.reset_format;
+        return message;
     }
 }
 

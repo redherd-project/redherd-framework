@@ -44,7 +44,7 @@ class WindowsTraceroute extends WindowsModule
         }
         else
         {
-            this.reportAndExit("Invalid input provided");
+            this.reportAndExit(this.buildErrorMessage("Invalid input provided"));
         }
     }
 

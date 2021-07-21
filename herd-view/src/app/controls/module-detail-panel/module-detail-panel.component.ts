@@ -24,6 +24,10 @@ export class ModuleDetailPanelComponent implements OnInit {
   moduleInstance: ModuleInstance;
   baseUrl: string;
   output: Subject<string>;
+  info_color: string;
+  error_color: string;
+  bold_format: string;
+  reset_format: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +40,13 @@ export class ModuleDetailPanelComponent implements OnInit {
     this.assetId = +this.route.snapshot.paramMap.get('id');
     this.baseUrl = 'https://' + Config.api_server_address + ':';
     this.output = new Subject<string>();
+
+    //  Message colors:
+    // ******************************    
+    this.info_color = '\u001b[34m';
+    this.error_color = '\u001b[31m';
+    this.bold_format = '\u001b[1m';
+    this.reset_format = '\u001b[0m';
   }
 
   ngOnInit() {
@@ -128,9 +139,9 @@ export class ModuleDetailPanelComponent implements OnInit {
           //console.log(message);
         } else if (message.session == session && message.payload.type == "EXTCODE") {
           if (message.payload.content === '0') {
-            this.output.next('\r\n[ Completed ]\r\n');
+            this.output.next('\r\n' + this.info_color + this.bold_format + '[?] Info: ' + this.reset_format + this.bold_format + 'Operation successful\r\n' + this.reset_format);
           } else {
-            this.output.next('\r\n[ Error ]\r\n');
+            this.output.next('\r\n' + this.error_color + this.bold_format + '[x] Error: ' + this.reset_format + this.bold_format + 'Operation failed\r\n' + this.reset_format);
           }
           //console.log(message);
         }

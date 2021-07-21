@@ -93,7 +93,7 @@ class WindowsGophish extends WindowsModule
                 // ******************************
                 this.do(task, "cmd_res", false, whatIf);
 
-                feedback = "[!] Connect to https://10.10.0.3:" + port + "?t=" + this.token;
+                feedback = this.buildWarnMessage("Connect to https://10.10.0.3:" + port + "?t=" + this.token);
             } 
             else 
             {
@@ -127,12 +127,12 @@ class WindowsGophish extends WindowsModule
                 // ******************************
                 this.do(task, "cmd_res", false, whatIf);
     
-                feedback = "[ Operation Initiated ]";
+                feedback = this.buildInfoMessage("Operation started");
             }
         }
         else
         {
-            feedback = "[ Invalid input provided ]";
+            feedback = this.buildErrorMessage("Invalid input provided");
         }
         this.reportAndExit(feedback);
     }

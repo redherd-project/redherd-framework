@@ -104,12 +104,12 @@ class DebianAirgeddon extends LinuxModule
                 });
                 deasync.loopWhile(() => !response);
 
-                this.reportAndExit("Operation Completed");
+                this.reportAndExit(this.buildInfoMessage("Operation Completed"));
             }
         }
         else
         {
-            this.reportAndExit("Invalid input provided");
+            this.reportAndExit(this.buildErrorMessage("Invalid input provided"));
         }
         return response;
     }

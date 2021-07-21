@@ -90,7 +90,7 @@ class DebianRtspCam extends LinuxModule
                 //ffmpeg -i /dev/video0 -c:v h264 -r 10 -s 720x480 -f rtsp rtsp://127.0.0.1:22500/stream1
                 task = "sudo ffmpeg -i /dev/video0 -c:v h264 -r 10 -s 720x480 -f rtsp rtsp://" + this.envHerdServer + ":" + sport + "/" + this.session;
                 
-                feedback = "[!] Connect to rtsp://10.10.0.3:" + cport + "/" + this.session;
+                feedback = this.buildWarnMessage("Connect to rtsp://10.10.0.3:" + cport + "/" + this.session);
             } 
             else 
             {
@@ -118,7 +118,7 @@ class DebianRtspCam extends LinuxModule
                 });
                 deasync.loopWhile(() => !response);
 
-                feedback = "[ Opertion Completed ]";
+                feedback = this.buildInfoMessage("Opertion Completed");
             }
 
             //  Async execution
@@ -129,7 +129,7 @@ class DebianRtspCam extends LinuxModule
         }
         else
         {
-            feedback = "[ Invalid input provided ]";
+            feedback = this.buildErrorMessage("Invalid input provided");
         }
         this.reportAndExit(feedback);
     }
