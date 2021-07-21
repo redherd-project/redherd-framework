@@ -14,9 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Linux dirb module 
 - Linux Covenant module
 - Linux Gophish module
+- The processKiller job for Windows OS 
 
 ### Changed
 - Module output format
+- The asset isAlive function
 
 ### Fixed
 - Linux shared folder permissions

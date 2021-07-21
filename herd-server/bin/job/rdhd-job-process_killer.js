@@ -2,7 +2,8 @@
 
 const Model = require('../../controllers/rdhd-ctr-model_controller');
 const Validator = require('../lib/rdhd-lib-input_validator');
-const Job = require('./base/rdhd-job-base_job');
+const LinuxJob = require('./base/rdhd-job-base_linux_job');
+const WindowsJob = require('./base/rdhd-job-base_windows_job');
 
 // jobCode: "process_killer"
 class ProcessKillerJob
@@ -13,20 +14,29 @@ class ProcessKillerJob
     {
         if ((moduleName) && (this.validate(moduleName)))
         {
-            let model = new Model();
-            let moduleBinary = model.getModuleByName(moduleName).binary;
+            try
+            {
+                let model = new Model();
+                let moduleBinary = model.getModuleByName(moduleName).binary;
+                let assetType = model.getTypeByAssetId(asset.id).name;
 
-            if (sync)
-            {
-                //  Sync execution
-                // ******************************
-                Job.do(asset, ProcessKillerJob.code, "sudo killall -9 " + moduleBinary, true, false, wsServer);
+                switch(assetType.toUpperCase())
+                {
+                    case LinuxJob.os:
+                        LinuxJob.killAll(asset, ProcessKillerJob.code, moduleBinary, sync, false, wsServer);
+                        break;
+                    case WindowsJob.os:
+                        WindowsJob.killAll(asset, ProcessKillerJob.code, moduleBinary, sync, false, wsServer);
+                        break;
+                    default:
+                        // Unsupported operating system
+                        console.log("Unsupported operating system");
+                        break;
+                }
             }
-            else
+            catch (e)
             {
-                //  Async execution
-                // ******************************
-                Job.do(asset, ProcessKillerJob.code, "sudo killall -9 " + moduleBinary, false, false, wsServer);
+                console.log(e);
             }
         }
     }

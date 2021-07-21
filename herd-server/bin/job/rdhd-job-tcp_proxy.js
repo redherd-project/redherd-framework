@@ -1,6 +1,5 @@
 const TcpProxyFactory = require('../lib/rdhd-lib-tcp_proxy_factory');
 const Validator = require('../lib/rdhd-lib-input_validator');
-const Config = require('../../config');
 
 try
 {

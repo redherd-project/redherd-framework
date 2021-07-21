@@ -1,6 +1,5 @@
 const UdpProxyFactory = require('../lib/rdhd-lib-udp_proxy_factory');
 const Validator = require('../lib/rdhd-lib-input_validator');
-const Config = require('../../config');
 
 try
 {
