@@ -3,7 +3,7 @@
     "title": "Nmap Ping Sweep",
     "description": "Nmap module to perform host discovery",
     "binary": "nmap",
-    "author": "peco602",
+    "author": "b4gh33r4 & peco602",
     "topic": "windows_reconnaissance",
     "version": "1.0",
     "params": [{"label": "Target range", "name": "target", "type": "string"}],

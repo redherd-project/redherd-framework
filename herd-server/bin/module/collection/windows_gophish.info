@@ -3,7 +3,7 @@
     "title": "Gophish",
     "description": "Gophish phishing suite",
     "binary": "gophish",
-    "author": "peco602",
+    "author": "b4gh33r4 & peco602",
     "topic": "windows_delivery",
     "version": "1.0",
     "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],

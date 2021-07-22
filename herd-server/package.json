@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://gitlab.com/redherddevs/redherd-framework.git"
+    "url": "https://github.com/redherd-project/redherd-framework"
   },
-  "author": "c4dm10 & peco602",
+  "author": "b4gh33r4 & peco602",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",

@@ -3,7 +3,7 @@
     "title": "WiFi Interfaces",
     "description": "List all Wi-Fi network interfaces",
     "binary": "airmon-ng",
-    "author": "c4dm10 & peco602",
+    "author": "b4gh33r4 & peco602",
     "topic": "debian_misc",
     "version": "1.0",
     "params": [],

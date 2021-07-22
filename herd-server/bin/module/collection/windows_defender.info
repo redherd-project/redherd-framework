@@ -3,7 +3,7 @@
     "title": "Defender",
     "description": "Enable/Disable Windows Defender real-time protection",
     "binary": "powershell",
-    "author": "peco602",
+    "author": "b4gh33r4 & peco602",
     "topic": "windows_misc",
     "version": "1.0",
     "params": [{"label": "operation", "name": "operation", "type": "list", "values": ["activate", "deactivate"]}],

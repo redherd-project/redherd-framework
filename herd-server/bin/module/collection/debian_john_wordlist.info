@@ -3,7 +3,7 @@
     "title": "JohnTheRipper Wordlist",
     "description": "Crack a file using JohnTheRipper in Wordlist mode",
     "binary": "john",
-    "author": "c4dm10 & peco602",
+    "author": "b4gh33r4 & peco602",
     "topic": "debian_lateral_movement",
     "version": "1.0",
     "params": [{"label": "Wordlist", "name": "wordlist", "type": "string"},

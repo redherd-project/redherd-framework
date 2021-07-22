@@ -3,7 +3,7 @@
     "title": "Hping3 SYN Flood",
     "description": "Perform a SYN Flood attack against a target",
     "binary": "hping3",
-    "author": "c4dm10 & peco602",
+    "author": "b4gh33r4 & peco602",
     "topic": "debian_delivery",
     "version": "1.0",
     "params": [{"label": "Target", "name": "target", "type": "string"},

@@ -96,7 +96,7 @@ class DebianGophish extends LinuxModule
             } 
             else 
             {
-                task = "sudo docker rm gophish --force";
+                task = "sudo docker stop gophish && sudo docker rm gophish";
                 op = "disable";
 
                 //  Destroy the TCP proxy

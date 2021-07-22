@@ -3,7 +3,7 @@
     "title": "Tcpdump Interface",
     "description": "Sniff traffic on a given interface",
     "binary": "tcpdump",
-    "author": "c4dm10 & peco602",
+    "author": "b4gh33r4 & peco602",
     "topic": "debian_reconnaissance",
     "version": "1.0",
     "params": [{"label": "Interface", "name": "interface", "type": "string"},

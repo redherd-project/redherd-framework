@@ -104,7 +104,7 @@ class DebianAirgeddon extends LinuxModule
                 });
                 deasync.loopWhile(() => !response);
 
-                this.reportAndExit(this.buildInfoMessage("Operation Completed"));
+                this.reportAndExit(this.buildInfoMessage("Operation started"));
             }
         }
         else

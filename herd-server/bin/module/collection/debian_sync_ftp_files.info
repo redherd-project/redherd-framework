@@ -3,7 +3,7 @@
     "title": "Sync FTP",
     "description": "Sync FTP files",
     "binary": "lftp",
-    "author": "c4dm10 & peco602",
+    "author": "b4gh33r4 & peco602",
     "topic": "debian_service",
     "version": "1.0",
     "params": [],
