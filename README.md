@@ -56,7 +56,7 @@ The provided contents and tools are for awareness and research purposes only. Ou
 <table border="0">
 <tr width="9999">
 <td align="center">
-<a href="https://github.com/mario-damico">
+<a href="https://github.com/b4gh33r4">
 <img src="https://avatars.githubusercontent.com/u/87416466?v=4" width="100px;" alt=""/><br />
 <sub><b>Mario D'Amico</b></sub>
 </a>
