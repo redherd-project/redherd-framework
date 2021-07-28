@@ -1,7 +1,6 @@
 'use strict';
 
 const LinuxModule = require('../base/rdhd-mod-base_linux_module');
-//const Validator = require('../../lib/rdhd-lib-input_validator');
 
 // moduleCode: debian_dirb
 class DebianDirb extends LinuxModule
@@ -9,8 +8,9 @@ class DebianDirb extends LinuxModule
     // ************************************************************
     //  Dirb module
     // ************************************************************
-    // target      :   single IP (a.b.c.d) or FQDN to scan 
-    // wordlist    :   small, common, big
+    // url          :   http(s):// + single IP (a.b.c.d) or FQDN to scan
+    // port         :   port exposing the webserver
+    // wordlist     :   small, common, big
     // ************************************************************
 
     constructor(asset, context, session, wsServer, token)
@@ -18,8 +18,9 @@ class DebianDirb extends LinuxModule
         super(asset, "debian_dirb", session, wsServer, token);
 
         //  POST parameters
-        // ******************************
-        this.target = context.target;
+        // ************************************************************
+        this.url = context.url;
+        this.port = context.port;
         this.wordlist = context.wordlist;
     }
 
@@ -28,7 +29,7 @@ class DebianDirb extends LinuxModule
         let task = "sudo apt update; sudo apt install dirb -y";
 
         //  Async execution
-        // ******************************
+        // ************************************************************
         this.do(task, "cmd_res", false, whatIf);
     }
 
@@ -36,10 +37,10 @@ class DebianDirb extends LinuxModule
     {
         if (this.validate())
         {
-            let task = "sudo dirb " + this.target + " /usr/share/dirb/wordlists/" + this.wordlist + ".txt";
+            let task = "sudo dirb " + this.url + ":" + this.port + " /usr/share/dirb/wordlists/" + this.wordlist + ".txt";
 
             //  Async execution
-            // ******************************
+            // ************************************************************
             this.do(task, "cmd_res", false, whatIf);
         }
         else
@@ -50,7 +51,7 @@ class DebianDirb extends LinuxModule
 
     validate()
     {
-        if (this.target && this.wordlist)
+        if ((this.url) && Validator.validateURL(this.url) && (this.port) && Validator.validateTcpUdpPort(this.port) && (this.wordlist))
         {
             return true;
         }

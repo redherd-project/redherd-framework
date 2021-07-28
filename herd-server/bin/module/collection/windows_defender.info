@@ -1,6 +1,6 @@
 {
     "name": "windows_defender",
-    "title": "Defender",
+    "title": "Windows Defender",
     "description": "Enable/Disable Windows Defender real-time protection",
     "binary": "powershell",
     "author": "b4gh33r4 & peco602",

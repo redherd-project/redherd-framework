@@ -1,0 +1,12 @@
+{
+    "name": "debian_wpscan",
+    "title": "WPScan",
+    "description": "Check WordPress vulnerabilities",
+    "binary": "wpscan",
+    "author": "peco602 & giulio",
+    "topic": "debian_reconnaissance",
+    "version": "1.0",
+    "params": [{"label": "URL", "name": "url", "type": "string"},
+               {"label": "Port", "name": "port", "type": "string"}],
+    "tags": ["automatic"]
+}

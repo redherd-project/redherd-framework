@@ -1,0 +1,39 @@
+{
+  "name": "windows_powerview_forest",
+  "title": "PowerView Forest Enumeration",
+  "description": "Active Directory forest enumeration via PowerView script",
+  "binary": "powershell",
+  "author": "b4gh33r4 & peco602",
+  "topic": "windows_reconnaissance",
+  "version": "1.0",
+  "params": [
+    {
+      "label": "Object",
+      "name": "object",
+      "type": "list",
+      "values": [
+        "Info",
+        "Domains",
+        "Trusts"
+      ]
+    },
+    {
+      "label": "Username",
+      "name": "username",
+      "type": "string"
+    },
+    {
+      "label": "Password",
+      "name": "password",
+      "type": "string"
+    },
+    {
+      "label": "Forest (optional)",
+      "name": "target",
+      "type": "string"
+    }
+  ],
+  "tags": [
+    "automatic"
+  ]
+}

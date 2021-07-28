@@ -9,19 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Windows traceroute module
 - Windows Ping Sweep, TCP and UDP nmap modules
 - Windows Defender module
-- Windows Metasploit module
+- Windows and Debian Metasploit modules
 - Windows Gophish module
-- Linux dirb module 
-- Linux Covenant module
-- Linux Gophish module
+- Windows PowerView modules
+- Debian dirb module 
+- Debian Covenant module
+- Debian Gophish module
+- Debian wpscan module
+- Debian hydra module (SSH, FTP, RDP)
+- Debian netcat listener module
 - The processKiller job for Windows OS 
+- URL validation function
 
 ### Changed
 - Module output format
 - The asset isAlive function
+- Asset modules table
+
+### Removed
+- Local demo asset
 
 ### Fixed
-- Linux shared folder permissions
+- Debian shared folder permissions
+- Windows file transfer modules
+- Interactive modules UI
 
 
 ## [v0.0.1] - 2021-07-16

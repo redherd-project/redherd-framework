@@ -1,0 +1,43 @@
+{
+  "name": "windows_powerview_domain",
+  "title": "PowerView Domain Enumeration",
+  "description": "Active Directory domain enumeration via PowerView script",
+  "binary": "powershell",
+  "author": "b4gh33r4 & peco602",
+  "topic": "windows_reconnaissance",
+  "version": "1.0",
+  "params": [
+    {
+      "label": "Object",
+      "name": "object",
+      "type": "list",
+      "values": [
+        "Info",
+        "SID",
+        "Trusts",
+        "Domain Controllers",
+        "Organizational Units",
+        "File Servers",
+        "Shares"
+      ]
+    },
+    {
+      "label": "Username",
+      "name": "username",
+      "type": "string"
+    },
+    {
+      "label": "Password",
+      "name": "password",
+      "type": "string"
+    },
+    {
+      "label": "Domain (optional)",
+      "name": "target",
+      "type": "string"
+    }
+  ],
+  "tags": [
+    "automatic"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "windows_powerview_domain_computers",
+  "title": "PowerView Domain Computers Enumeration",
+  "description": "Active Directory domain computers enumeration via PowerView script",
+  "binary": "powershell",
+  "author": "b4gh33r4 & peco602",
+  "topic": "windows_reconnaissance",
+  "version": "1.0",
+  "params": [
+    {
+      "label": "Object",
+      "name": "object",
+      "type": "list",
+      "values": [
+        "Computers",
+        "Operating Systems",
+        "Unconstrained Delegation",
+        "Constrained Delegation"
+      ]
+    },
+    {
+      "label": "Username",
+      "name": "username",
+      "type": "string"
+    },
+    {
+      "label": "Password",
+      "name": "password",
+      "type": "string"
+    },
+    {
+      "label": "Domain (optional)",
+      "name": "target",
+      "type": "string"
+    }
+  ],
+  "tags": [
+    "automatic"
+  ]
+}

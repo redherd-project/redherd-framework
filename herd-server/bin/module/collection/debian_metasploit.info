@@ -1,0 +1,11 @@
+{
+    "name": "debian_metasploit",
+    "title": "Metasploit",
+    "description": "Metasploit Framework",
+    "binary": "msfconsole",
+    "author": "peco602 & giulio",
+    "topic": "debian_command_and_control",
+    "version": "1.0",
+    "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
+    "tags": ["interactive"]
+}

@@ -1,8 +1,6 @@
 'use strict';
 
 const Module = require('./rdhd-mod-base_module');
-//const Validator = require('../../lib/rdhd-lib-input_validator');
-//const Config = require('../../../config');
 
 class WindowsModule extends Module
 {
@@ -42,9 +40,9 @@ class WindowsModule extends Module
         $FTPResponse.Close();Return $Files;}function Ftps-Recurse{param([parameter(Mandatory=$true)][String] $FTPHost,[parameter(Mandatory=$true)][String] $DownloadFolder,\
         [parameter(Mandatory=$true)][String] $Username,[parameter(Mandatory=$true)][String] $Password,[parameter(Mandatory=$true)][String] $FTPDir)\
         $FTPHost="$FTPHost\\$FTPDir";$SrcEntries=Ftps-DirList -FTPHost $FTPHost -Username $FTPUser -Password $FTPPass;\
-        $Srcfolders=$SrcEntries -split "`n" | Select-String "(^[d])([\\w|-]+)(\\s+)(\\d+)(\\s+)(\\d+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\d{2}:\\d{2})(\\s+)([\\w|\\d|\\._-]+)"\
+        $Srcfolders=$SrcEntries -split "`n" | Select-String "(^[d])([\\w|-]+)(\\s+)(\\d+)(\\s+)(\\d+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\d{2}:\\d{2})(\\s+)([\\s|\\w|\\d|\\._-]+)"\
         |ForEach-Object{$_.Matches[0].Groups[18].Value};\
-        $SrcFiles = $SrcEntries -split "`n" | Select-String "(^[-])([\\w|-]+)(\\s+)(\\d+)(\\s+)(\\d+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\d{2}:\\d{2})(\\s+)([\\w|\\d|\\._-]+)"\
+        $SrcFiles = $SrcEntries -split "`n" | Select-String "(^[-])([\\w|-]+)(\\s+)(\\d+)(\\s+)(\\d+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\w+)(\\s+)(\\d+)(\\s+)(\\d{2}:\\d{2})(\\s+)([\\s|\\w|\\d|\\._-]+)"\
         |ForEach-Object{$_.Matches[0].Groups[18].Value};\
         foreach($file in $SrcFiles){Ftps-GetFile -FTPHost $FTPHost -OutputPath $DownloadFolder -File $file -Username $FTPUser -Password $FTPPass;}\
         foreach($folder in $Srcfolders){mkdir "$DownloadFolder$folder" -Force;\

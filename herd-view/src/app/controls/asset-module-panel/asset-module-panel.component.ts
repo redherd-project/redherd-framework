@@ -23,13 +23,13 @@ export class AssetModulePanelComponent implements AfterViewInit, OnInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
+    { name: 'topic', showOnMobile: false },
     { name: 'name', showOnMobile: true },
     { name: 'title', showOnMobile: false },
     { name: 'description', showOnMobile: false },
     { name: 'binary', showOnMobile: false },
-    { name: 'author', showOnMobile: false },
-    { name: 'topic', showOnMobile: false },
-    { name: 'version', showOnMobile: false },
+    // { name: 'author', showOnMobile: false },
+    // { name: 'version', showOnMobile: false },
     { name: 'execute', showOnMobile: true }
   ];
 

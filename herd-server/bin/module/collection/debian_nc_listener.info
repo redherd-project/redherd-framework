@@ -1,0 +1,13 @@
+{
+    "name": "debian_nc_listener",
+    "title": "Netcat Listener",
+    "description": "Spawns a Netcat listener on a port",
+    "binary": "nc",
+    "author": "peco602 & giulio",
+    "topic": "debian_misc",
+    "version": "1.0",
+    "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]},
+               {"label": "Port", "name": "port", "type": "string"},
+               {"label": "Protocol", "name": "protocol", "type": "list", "values": ["tcp", "udp"]}],
+    "tags": ["interactive"]
+}

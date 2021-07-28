@@ -1,0 +1,12 @@
+{
+    "name": "windows_download_file",
+    "title": "Download File",
+    "description": "Downloads a file into the shared folder",
+    "binary": "wget",
+    "author": "b4gh33r4 & peco602",
+    "topic": "windows_misc",
+    "version": "1.0",
+    "params": [{"label": "URL", "name": "url", "type": "string"},
+               {"label": "Filename", "name": "filename", "type": "string"}],
+    "tags": ["automatic"]
+}

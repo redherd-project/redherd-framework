@@ -67,7 +67,7 @@ export class ModuleDetailPanelComponent implements OnInit {
     this.apiData['mode'] = this.module.tags.find(e => e.toLowerCase() == 'interactive') ? "interact" : (this.module.tags.find(e => e.toLowerCase() == 'automatic') ? 'execute' : 'pivot'); 
     this.assetService.runModule(this.assetId, this.module.name, this.apiData).subscribe(res => {
       this.moduleInstance = res;
-      if (this.apiData['mode'] == 'interact' && this.apiData['params']['operation'] == 'start') {
+      if (this.apiData['mode'] == 'interact' && this.apiData['params']['operation'] == 'start' && res.result['ports']) {
         this.router.navigate(['assets/' + this.assetId + '/modules/' + this.module.name + '/' + res.result['ports']['port']]);
       } else {
         this.clearOutput();

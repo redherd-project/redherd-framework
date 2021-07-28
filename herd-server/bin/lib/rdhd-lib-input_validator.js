@@ -156,6 +156,11 @@ class InputValidator
     {
         return InputValidator._validateField(value, /^[^!#;+\]\/"\t][^+\]\/"\t]{0,30}[^ !#;+\]\/"\t]$|^[^ !#;+\]\/"\t]$/);
     }
+
+    static validateURL(value)
+    {
+        return InputValidator._validateField(value, /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)$/);
+    }
 }
 
 module.exports = InputValidator;

@@ -39,7 +39,7 @@ sqlite.run("CREATE TABLE users_roles (id INTEGER NOT NULL PRIMARY KEY AUTOINCREM
 //  Insert data
 // ******************************
 // assets
-sqlite.run("INSERT INTO main.assets (name, ip, description, user, fingerprint, wport, id_type) VALUES ('demo', '127.0.0.1', 'This is a local demo asset', 'pi', 'f1b487e553520284bda1cafcce23c871', 22, 1);", null);
+// sqlite.run("INSERT INTO main.assets (name, ip, description, user, fingerprint, wport, id_type) VALUES ('demo', '127.0.0.1', 'This is a local demo asset', 'pi', 'f1b487e553520284bda1cafcce23c871', 22, 1);", null);
 // topics
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_service', 'Debian service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_misc', 'Debian generic modules', NULL);", null);

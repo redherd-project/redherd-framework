@@ -1,8 +1,6 @@
 'use strict';
 
 const Module = require('./rdhd-mod-base_module');
-//const Validator = require('../../lib/rdhd-lib-input_validator');
-//const Config = require('../../../config');
 
 class LinuxModule extends Module
 {

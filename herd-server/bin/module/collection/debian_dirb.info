@@ -6,7 +6,8 @@
     "author": "peco602 & giulio",
     "topic": "debian_reconnaissance",
     "version": "1.0",
-    "params": [{"label": "Target", "name": "target", "type": "string"},
+    "params": [{"label": "Url", "name": "url", "type": "string"},
+               {"label": "Port", "name": "port", "type": "string"},
                {"label": "Wordlist", "name": "wordlist", "type": "list", "values": ["small", "common", "big"]}],
     "tags": ["automatic"]
 }
