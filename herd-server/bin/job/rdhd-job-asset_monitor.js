@@ -1,8 +1,10 @@
 'use strict';
 
 const Model = require('../../controllers/rdhd-ctr-model_controller');
-const LinuxJob = require('./base/rdhd-job-base_linux_job');
+const DebianJob = require('./base/rdhd-job-base_debian_job');
 const WindowsJob = require('./base/rdhd-job-base_windows_job');
+const AndroidJob = require('./base/rdhd-job-base_android_job');
+const MacosJob = require('./base/rdhd-job-base_macos_job');
 
 // jobCode: "keep_alive"
 class AssetMonitorJob
@@ -18,11 +20,17 @@ class AssetMonitorJob
 
             switch(assetType.toUpperCase())
             {
-                case LinuxJob.os:
-                    LinuxJob.isAlive(asset, AssetMonitorJob.code, sync, false, wsServer);
+                case DebianJob.os:
+                    DebianJob.isAlive(asset, AssetMonitorJob.code, sync, false, wsServer);
                     break;
                 case WindowsJob.os:
                     WindowsJob.isAlive(asset, AssetMonitorJob.code, sync, false, wsServer);
+                    break;
+                case AndroidJob.os:
+                    AndroidJob.isAlive(asset, AssetMonitorJob.code, sync, false, wsServer);
+                    break;
+                case MacosJob.os:
+                    MacosJob.isAlive(asset, AssetMonitorJob.code, sync, false, wsServer);
                     break;
                 default:
                     // Unsupported operating system
