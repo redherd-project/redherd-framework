@@ -2,8 +2,10 @@
 
 const Model = require('../../controllers/rdhd-ctr-model_controller');
 const Validator = require('../lib/rdhd-lib-input_validator');
-const LinuxJob = require('./base/rdhd-job-base_linux_job');
+const DebianJob = require('./base/rdhd-job-base_debian_job');
 const WindowsJob = require('./base/rdhd-job-base_windows_job');
+const AndroidJob = require('./base/rdhd-job-base_android_job');
+const MacosJob = require('./base/rdhd-job-base_macos_job');
 
 // jobCode: "process_killer"
 class ProcessKillerJob
@@ -22,11 +24,17 @@ class ProcessKillerJob
 
                 switch(assetType.toUpperCase())
                 {
-                    case LinuxJob.os:
-                        LinuxJob.killAll(asset, ProcessKillerJob.code, moduleBinary, sync, false, wsServer);
+                    case DebianJob.os:
+                        DebianJob.killAll(asset, ProcessKillerJob.code, moduleBinary, sync, false, wsServer);
                         break;
                     case WindowsJob.os:
                         WindowsJob.killAll(asset, ProcessKillerJob.code, moduleBinary, sync, false, wsServer);
+                        break;
+                    case AndroidJob.os:
+                        AndroidJob.killAll(asset, ProcessKillerJob.code, moduleBinary, sync, false, wsServer);
+                        break;
+                    case MacosJob.os:
+                        MacosJob.killAll(asset, ProcessKillerJob.code, moduleBinary, sync, false, wsServer);
                         break;
                     default:
                         // Unsupported operating system
