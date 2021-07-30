@@ -2,7 +2,7 @@
 
 const UnixJob = require('./rdhd-job-base_unix_job');
 
-class LinuxJob
+class DebianJob
 {
     static get os() { return "DEBIAN"; }
 
@@ -11,6 +11,18 @@ class LinuxJob
         UnixJob.do(asset, code, task, sync, whatIf, wsServer);
     }
     // ******************************
+
+    static killAll(asset, code, binary, sync = false, whatIf = false, wsServer = 'http://127.0.0.1:3001')
+    {
+        UnixJob.killAll(asset, code, binary, sync, whatIf, wsServer);
+    }
+    // ******************************
+
+    static isAlive(asset, code, sync = false, whatIf = false, wsServer = 'http://127.0.0.1:3001')
+    {
+        UnixJob.isAlive(asset, code, sync, whatIf, wsServer);
+    }
+    // ******************************
 }
 
-module.exports = LinuxJob
+module.exports = DebianJob
