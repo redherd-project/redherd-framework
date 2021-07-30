@@ -42,7 +42,7 @@ const config = {
     api_ssl_key_path                : __dirname + "/ssl/key.pem",
     api_ssl_cert_path               : __dirname + "/ssl/cert.pem",
     api_ssl_ca_path                 : __dirname + "/ssl/ca.crt",
-    api_jwt_expiration_time         : "30d",
+    api_jwt_expiration_time         : "6h",
     api_jwt_key_path                : __dirname + "/ssl/key.pem",
     api_jwt_cert_path               : __dirname + "/ssl/cert.pem",
 
