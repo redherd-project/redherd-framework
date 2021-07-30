@@ -14,6 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 
+## [v0.0.2b] - 2021-07-30
+### Added
+
+### Changed
+- The implementation of the isAlive function for Android and MacOs assets
+
+### Removed
+
+### Fixed
+- A **critical** bug affecting the isAlive function for Unix-based assets
+
+
 ## [v0.0.2] - 2021-07-29
 ### Added
 - Windows traceroute module
