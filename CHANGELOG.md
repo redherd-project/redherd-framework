@@ -13,17 +13,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+### Security
 
-## [v0.0.2b] - 2021-07-30
+## [v0.0.2b] - 2021-08-01
 ### Added
 
 ### Changed
 - The implementation of the isAlive function for Android and MacOs assets
+- Reduced jwt expiration timer to 3 hours
 
 ### Removed
 
 ### Fixed
 - A **critical** bug affecting the isAlive function for Unix-based assets
+- 403 error on Herd-View page refresh
+
+### Security
+- Automatic logout in case of jwt expiration
 
 
 ## [v0.0.2] - 2021-07-29
