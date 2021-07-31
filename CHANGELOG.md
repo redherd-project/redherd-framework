@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
-## [v0.0.2b] - 2021-08-01
+## [v0.0.2b] - 2021-07-31
 ### Added
 
 ### Changed
@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatic logout in case of jwt expiration
 
 
-## [v0.0.2] - 2021-07-29
+## [v0.0.2a] - Unreleased
 ### Added
 - Windows traceroute module
 - Windows Ping Sweep, TCP and UDP nmap modules
