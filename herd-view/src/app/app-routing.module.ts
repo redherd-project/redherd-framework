@@ -16,7 +16,7 @@ import { LoginPanelComponent } from './controls/login-panel/login-panel.componen
 import { FilemanagerComponent } from './controls/filemanager/filemanager.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/assets', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/assets', pathMatch: 'full' },
   { path: 'assets', component: AssetsTableComponent, canActivate: [AuthGuard] },
   { path: 'assets/:id', component: AssetPanelComponent, canActivate: [AuthGuard] },
   { path: 'assets/:id/modules/:name', component: ModulePanelComponent, canActivate: [AuthGuard] },
@@ -34,7 +34,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' })
   ],
   exports: [
     RouterModule
