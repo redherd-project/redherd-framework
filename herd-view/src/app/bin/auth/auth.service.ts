@@ -75,6 +75,15 @@ export class AuthService extends RedHerdAuthProvider {
     // If the token is not valid anymore, logout
     this.logout();
 
+    // Notify session expired
+    this.notifier.warn('Session expired', '', {
+      timeOut: 3000,
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true,
+      animate: 'fromRight'
+    });
+
     return false;
   }
 
