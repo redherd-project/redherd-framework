@@ -4,10 +4,9 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Config } from '../../config';
 import { User } from '../model/user';
+import { Token } from '../model/token';
 import { RedHerdAuthProvider } from '../../services/base/redherd-auth-provider';
 import { NotificationsService } from 'angular2-notifications';
-
-import jwt_decode from "jwt-decode";
 
 
 @Injectable({
@@ -16,8 +15,33 @@ import jwt_decode from "jwt-decode";
 export class AuthService extends RedHerdAuthProvider {
   private loggedIn: BehaviorSubject<boolean>;
 
+  private verifyAuth() {
+    let result : boolean;
+    let token : Token = new Token(localStorage.getItem(Config.auth_token_store));
+
+    if (token.isExpired()) {
+      // If the token is expired, logout
+      this.logout();
+
+      // Notify session expired
+      this.notifier.warn('Session expired', '', {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true,
+        animate: 'fromRight'
+      });
+      result = false;
+    } else if (!token.isValid()) {
+      result = false;
+    } else {
+      result = true;
+    }
+    return result;
+  }
+
   get isLoggedIn() {
-    if (this.isTokenValid()) {
+    if (this.verifyAuth()) {
       this.loggedIn.next(true);
     }
     return this.loggedIn.asObservable();
@@ -33,23 +57,15 @@ export class AuthService extends RedHerdAuthProvider {
   }
 
   login(user: User): void {
-    //if (this.context.Token)
-    //{
-    //  this.loggedIn.next(true);
-    //  this.router.navigate(['/']);
-    //}
-    //else
-    //{
-      this.authenticate(user.username, user.password)
-        .subscribe(token => {
-          if (token) {
-            localStorage.setItem(Config.auth_token_store, token);
+    this.authenticate(user.username, user.password)
+      .subscribe(token => {
+        if (token) {
+          localStorage.setItem(Config.auth_token_store, token);
 
-            this.loggedIn.next(true);
-            this.router.navigate(['/']);
-          }
-        });
-    //}
+          this.loggedIn.next(true);
+          this.router.navigate(['/']);
+        }
+      });
   }
 
   logout(): void {
@@ -58,33 +74,4 @@ export class AuthService extends RedHerdAuthProvider {
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
-
-  isTokenValid() {
-    let token = localStorage.getItem(Config.auth_token_store);
-    if (!token) {
-      return false;
-    }
-
-    let decoded_token = jwt_decode(token);
-
-    let now = (new Date()).getTime();
-    if (now <= decoded_token['exp'].valueOf()*1000) {
-      return true;
-    }
-
-    // If the token is not valid anymore, logout
-    this.logout();
-
-    // Notify session expired
-    this.notifier.warn('Session expired', '', {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: true,
-      clickToClose: true,
-      animate: 'fromRight'
-    });
-
-    return false;
-  }
-
 }

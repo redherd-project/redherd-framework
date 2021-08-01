@@ -10,7 +10,7 @@ const urlKey = 't';
 
 class AuthenticationController
 {
-    static authenticate(username, password)
+    static authenticate(username, password, seed = '')
     {
         let result = '';
         try
@@ -20,7 +20,7 @@ class AuthenticationController
 
             if (user && bcrypt.compareSync(password, user.secret))
             {
-                result = JWTProvider.generateToken({ user: username });
+                result = JWTProvider.generateToken({ user: username, seed: seed });
             }
         }
         catch
