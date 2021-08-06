@@ -41,6 +41,7 @@ function ShowHelp {
         echo "     endpoint             Realm used to generate the endpoint initialization one-liner"
         echo "     server               Realm used to manage the herd-server"
         echo "     user                 Realm used to manage RedHerd users"
+        echo "     system               Realm used to manage the system context"
         echo "     help                 This help"
         echo
         echo "ARGS:"
@@ -64,6 +65,9 @@ function ShowHelp {
         echo "     -d |--disable                Disable a specific user"
         echo "     -e |--enable                 Enable a specific user"
         echo
+        echo "usage: $0 system [-i|--init]"
+        echo
+        echo "     -i |--init                   Initialize the framework creating a new instance seed and storing dob"
     fi
 }
 
@@ -355,6 +359,48 @@ function setUserStatusApi {
     fi
 }
 
+### Function deprecated due to database entity rework
+#
+# function initializeSystemContext {
+#     SEED=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | md5sum | cut -f1 -d" ")
+#
+#     echo -e "$YELLOW$BOLD [-] Attempting to initialize system context $RESET"
+#     RESULT=$(sqlite3 $HERDSRV_DB "INSERT INTO main.system (seed, dob, current) VALUES (\"${SEED}\", DateTime('now'), 2)")
+#
+#     if [ -z $RESULT ]; then
+#         CLEANUP=$(sqlite3 $HERDSRV_DB "UPDATE main.system set current=0 WHERE current=1")
+#
+#         if [ -z $CLEANUP ]; then
+#             CURRENT=$(sqlite3 $HERDSRV_DB "UPDATE main.system set current=1 WHERE current=2")
+#
+#             if [ -z $CURRENT ]; then
+#                 echo -e "$GREEN$BOLD [!] Operation successfully completed $RESET"
+#             else
+#                 echo -e "$RED$BOLD [!] Operation failed: unable to activate the current context $RESET"
+#             fi
+#         else
+#             echo -e "$RED$BOLD [!] Operation failed: unable to dispose the old context $RESET"
+#         fi
+#     else
+#         echo -e "$RED$BOLD [!] Operation failed: unable to initialize the new context $RESET"
+#     fi
+# }
+#
+###
+
+function initializeSystemContext {
+    SEED=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | md5sum | cut -f1 -d" ")
+
+    echo -e "$YELLOW$BOLD [-] Attempting to initialize system context $RESET"
+    RESULT=$(sqlite3 $HERDSRV_DB "INSERT INTO main.system (seed, dob) VALUES (\"${SEED}\", DateTime('now'))")
+
+    if [ -z $RESULT ]; then
+        echo -e "$GREEN$BOLD [!] Operation successfully completed $RESET"
+    else
+        echo -e "$RED$BOLD [!] Operation failed $RESET"
+    fi
+}
+
 ###########################################################
 # REALM BUSINESS LOGIC
 
@@ -451,6 +497,29 @@ function executeUserRealm {
     fi
 }
 
+function executeSystemRealm {
+    ### Realm: user
+    if [ "$UID" -eq "0" ]; then
+        key="${1}"
+        case ${key} in
+            -i|--init)
+                initializeSystemContext
+                ;;
+            *)
+                ShowHelp
+                exit 1
+                ;;
+        esac
+
+        if [ "$NOLOGO" != "True" ]; then
+            echo
+        fi
+    else
+        echo -e "$YELLOW$BOLD [-] Superuser privileges required $RESET"
+        exit 1
+    fi
+}
+
 ###########################################################
 # MAIN
 
@@ -470,6 +539,11 @@ while [[ $# -gt 0 ]]; do
     user)
         shift
         executeUserRealm $@
+        exit 0
+        ;;
+    system)
+        shift
+        executeSystemRealm $@
         exit 0
         ;;
     help)

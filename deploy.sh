@@ -575,3 +575,10 @@ docker run --name $DOCKER_DSTRSRV_NAME \
 rm -f $HERDCLI_INSTALLATION_PATH/herd-cli
 ln -s $HERDCLI_PATH $HERDCLI_INSTALLATION_PATH/herd-cli
 ###########################################################
+
+###########################################################
+# SYSTEM CONTEXT INITIALIZATION
+echo -e "$GREEN$BOLD [*] Framework context initialization $RESET"
+
+$HERDCLI_INSTALLATION_PATH/herd-cli system --init
+###########################################################

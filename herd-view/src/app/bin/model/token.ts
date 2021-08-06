@@ -42,10 +42,19 @@ export class Token {
     return result;
   }
 
+  public isEmpty() : boolean { 
+    let result : boolean = true;
+
+    if (this._value) {
+      result = false;
+    }
+    return result;
+  }
+
   public isValid() : boolean { 
     let result : boolean = false;
 
-    if (this._value && !this.isExpired()) {
+    if (!this.isEmpty() && !this.isExpired()) {
       result = true;
     }
     return result;

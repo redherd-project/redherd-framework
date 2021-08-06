@@ -4,7 +4,8 @@ export enum RedHerdRootEndpoint {
     processes = 'processes',
     topics = 'topics',
     types = 'types',
-    login = 'login'
+    login = 'login',
+    system = 'system'
 }
 
 export enum RedHerdEntity {
@@ -22,7 +23,8 @@ export enum RedHerdEntity {
     ports = 'ports',
     result = 'result',
     service = 'service',
-    token = 'token'
+    token = 'token',
+    system = 'system'
 }
 
 export interface RedHerdObject {

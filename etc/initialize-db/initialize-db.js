@@ -35,12 +35,15 @@ sqlite.run("CREATE TABLE types (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UN
 sqlite.run("CREATE TABLE users (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, uname TEXT NOT NULL UNIQUE, secret TEXT, enabled INTEGER DEFAULT 0);", null);
 // users_roles
 sqlite.run("CREATE TABLE users_roles (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, id_user	INTEGER NOT NULL, id_role INTEGER NOT NULL);", null);
+// system
+//sqlite.run("CREATE TABLE system (seed TEXT NOT NULL PRIMARY KEY UNIQUE, dob	TEXT, current INTEGER NOT NULL DEFAULT 0);", null);
+sqlite.run("CREATE TABLE system (seed TEXT NOT NULL PRIMARY KEY UNIQUE, dob	TEXT NOT NULL DEFAULT current_timestamp);", null);
 
 //  Insert data
 // ******************************
 // assets
 // sqlite.run("INSERT INTO main.assets (name, ip, description, user, fingerprint, wport, id_type) VALUES ('demo', '127.0.0.1', 'This is a local demo asset', 'pi', 'f1b487e553520284bda1cafcce23c871', 22, 1);", null);
-// topics
+// topics (debian)
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_service', 'Debian service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_misc', 'Debian generic modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_reconnaissance', 'Debian modules to gather target information', NULL);", null);
@@ -50,7 +53,7 @@ sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_in
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_lateral_movement', 'Debian modules to move laterally to other systems', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_command_and_control', 'Debian modules to establish a command and control channel on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_execution', 'Debian modules to produce an effect on a target', NULL);", null);
-
+// topics (android)
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_service', 'Android service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_misc', 'Android generic modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_reconnaissance', 'Android modules to gather target information', NULL);", null);
@@ -60,7 +63,7 @@ sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_i
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_lateral_movement', 'Android modules to move laterally to other systems', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_command_and_control', 'Android modules to establish a command and control channel on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_execution', 'Android modules to produce an effect on a target', NULL);", null);
-
+// topics (windows)
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_service', 'Windows service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_misc', 'Windows generic modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_reconnaissance', 'Windows modules to gather target information', NULL);", null);
@@ -70,7 +73,7 @@ sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_i
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_lateral_movement', 'Windows modules to move laterally to other systems', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_command_and_control', 'Windows modules to establish a command and control channel on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_execution', 'Windows modules to produce an effect on a target', NULL);", null);
-
+// topics (macos)
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_service', 'MacOS service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_misc', 'MacOS generic modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_reconnaissance', 'MacOS modules to gather target information', NULL);", null);
@@ -80,7 +83,6 @@ sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_ins
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_lateral_movement', 'MacOS modules to move laterally to other systems', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_command_and_control', 'MacOS modules to establish a command and control channel on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_execution', 'MacOS modules to produce an effect on a target', NULL);", null);
-
 // types
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('debian', 'Debian based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('android', 'Android based asset type');", null);

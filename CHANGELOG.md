@@ -6,16 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.0.3] - Unreleased
 ### Added
+- The new System entity into the database. It represents the context of the current framework iteration (seed, dob)
+- The new system API endpoint which allows to obtain the system context
+- The herd-server code to manage the new System entity
+- The herd-view code to manage and retrieve the system context
+- The new system Herd-CLI realm, which is responsible for initialize the framework context creating a new seed and inserting dob value
 
 ### Changed
+- The herd-server code responsible for the user authentication in order to integrate the validation of the framework seed
+- The deploy script in order to initialize the framework context
 
 ### Removed
 
 ### Fixed
+- A bug causing the spawn of services for unexisting assets
 
 ### Security
 
-## [v0.0.2b] - 2021-08-01
+## [v0.0.2b] - 2021-07-31
 ### Added
 
 ### Changed
@@ -32,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatic logout in case of jwt expiration
 
 
-## [v0.0.2] - 2021-07-29
+## [v0.0.2a] - Unreleased
 ### Added
 - Windows traceroute module
 - Windows Ping Sweep, TCP and UDP nmap modules
