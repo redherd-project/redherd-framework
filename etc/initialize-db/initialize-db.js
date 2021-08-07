@@ -47,42 +47,42 @@ sqlite.run("CREATE TABLE system (seed TEXT NOT NULL PRIMARY KEY UNIQUE, dob	TEXT
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_service', 'Debian service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_misc', 'Debian generic modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_reconnaissance', 'Debian modules to gather target information', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_weaponization', 'Debian modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_weaponization', 'Debian modules to develop a payload', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_delivery', 'Debian modules to deliver a payload to a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_installation', 'Debian modules to install a malicious software on a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_lateral_movement', 'Debian modules to move laterally to other systems', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_exploitation', 'Debian modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_installation', 'Debian modules to a malicious software on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_command_and_control', 'Debian modules to establish a command and control channel on a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_execution', 'Debian modules to produce an effect on a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('debian_actions', 'Debian modules to produce an effect on a target', NULL);", null);
 // topics (android)
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_service', 'Android service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_misc', 'Android generic modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_reconnaissance', 'Android modules to gather target information', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_weaponization', 'Android modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_weaponization', 'Android modules to develop a payload', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_delivery', 'Android modules to deliver a payload to a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_installation', 'Android modules to install a malicious software on a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_lateral_movement', 'Android modules to move laterally to other systems', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_exploitation', 'Android modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_installation', 'Android modules to a malicious software on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_command_and_control', 'Android modules to establish a command and control channel on a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_execution', 'Android modules to produce an effect on a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('android_actions', 'Android modules to produce an effect on a target', NULL);", null);
 // topics (windows)
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_service', 'Windows service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_misc', 'Windows generic modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_reconnaissance', 'Windows modules to gather target information', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_weaponization', 'Windows modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_weaponization', 'Windows modules to develop a payload', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_delivery', 'Windows modules to deliver a payload to a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_installation', 'Windows modules to install a malicious software on a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_lateral_movement', 'Windows modules to move laterally to other systems', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_exploitation', 'Windows modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_installation', 'Windows modules to a malicious software on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_command_and_control', 'Windows modules to establish a command and control channel on a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_execution', 'Windows modules to produce an effect on a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('windows_actions', 'Windows modules to produce an effect on a target', NULL);", null);
 // topics (macos)
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_service', 'MacOS service modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_misc', 'MacOS generic modules', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_reconnaissance', 'MacOS modules to gather target information', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_weaponization', 'MacOS modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_weaponization', 'MacOS modules to develop a payload', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_delivery', 'MacOS modules to deliver a payload to a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_installation', 'MacOS modules to install a malicious software on a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_lateral_movement', 'MacOS modules to move laterally to other systems', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_exploitation', 'MacOS modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_installation', 'MacOS modules to a malicious software on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_command_and_control', 'MacOS modules to establish a command and control channel on a target', NULL);", null);
-sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_execution', 'MacOS modules to produce an effect on a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_actions', 'MacOS modules to produce an effect on a target', NULL);", null);
 // types
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('debian', 'Debian based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('android', 'Android based asset type');", null);

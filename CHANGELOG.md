@@ -11,10 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The herd-server code to manage the new System entity
 - The herd-view code to manage and retrieve the system context
 - The new system Herd-CLI realm, which is responsible for initialize the framework context creating a new seed and inserting dob value
+- Debian theHarvester module
+- Debian SET module
 
 ### Changed
 - The herd-server code responsible for the user authentication in order to integrate the validation of the framework seed
 - The deploy script in order to initialize the framework context
+- Cyber Kill Chain topic list
 
 ### Removed
 
@@ -22,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A bug causing the spawn of services for unexisting assets
 
 ### Security
+
 
 ## [v0.0.2b] - 2021-07-31
 ### Added

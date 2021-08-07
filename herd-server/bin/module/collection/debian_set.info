@@ -1,10 +1,10 @@
 {
-    "name": "debian_airgeddon",
-    "title": "Airgeddon WiFi Attack Suite",
-    "description": "Airgeddon WiFi Attack Suite",
-    "binary": "airgeddon",
+    "name": "debian_set",
+    "title": "The Social-Engineer Toolkit",
+    "description": "Social engineering attack suite",
+    "binary": "set",
     "author": "b4gh33r4 & peco602",
-    "topic": "debian_exploitation",
+    "topic": "debian_delivery",
     "version": "1.0",
     "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
     "tags": ["interactive"]

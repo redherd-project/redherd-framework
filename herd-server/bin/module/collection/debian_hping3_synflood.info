@@ -4,7 +4,7 @@
     "description": "Perform a SYN Flood attack against a target",
     "binary": "hping3",
     "author": "b4gh33r4 & peco602",
-    "topic": "debian_delivery",
+    "topic": "debian_exploitation",
     "version": "1.0",
     "params": [{"label": "Target", "name": "target", "type": "string"},
                {"label": "Port", "name": "port", "type": "number"},

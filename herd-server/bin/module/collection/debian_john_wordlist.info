@@ -4,7 +4,7 @@
     "description": "Crack a file using JohnTheRipper in Wordlist mode",
     "binary": "john",
     "author": "b4gh33r4 & peco602",
-    "topic": "debian_lateral_movement",
+    "topic": "debian_exploitation",
     "version": "1.0",
     "params": [{"label": "Wordlist", "name": "wordlist", "type": "string"},
                {"label": "File to be cracked", "name": "passfile", "type": "string"},
