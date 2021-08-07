@@ -3,7 +3,7 @@
 const LinuxModule = require('../base/rdhd-mod-base_linux_module');
 
 // moduleCode: debian_theharvester
-class DebianTHeHarvester extends LinuxModule
+class DebianTheHarvester extends LinuxModule
 {
     // ************************************************************
     //  theHarvester module
@@ -13,7 +13,7 @@ class DebianTHeHarvester extends LinuxModule
 
     constructor(asset, context, session, wsServer, token)
     {
-        super(asset, "debian_nikto", session, wsServer, token);
+        super(asset, "debian_theharvester", session, wsServer, token);
 
         //  POST parameters
         // ******************************
@@ -60,4 +60,4 @@ class DebianTHeHarvester extends LinuxModule
     }
 }
 
-module.exports = DebianTHeHarvester
+module.exports = DebianTheHarvester
