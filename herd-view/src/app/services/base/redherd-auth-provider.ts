@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { JSendResponse, JSendResponseInspector } from '../../bin/model/jsend';
 import { RedHerdApiContext } from './redherd-api';
 import { RedHerdRootEndpoint, RedHerdEntity } from '../../bin/model/base/redherd-common';
+import { JwtToken } from '../../bin/model/token';
 import { NotificationsService } from 'angular2-notifications';
 
 export class RedHerdAuthProvider {
@@ -15,7 +16,7 @@ export class RedHerdAuthProvider {
   }
 
   /** POST: user auth */
-  public authenticate(username: string, password: string): Observable<string> {
+  public authenticate(username: string, password: string): Observable<JwtToken> {
     const url = `${this.context.Url}`;
     const options = this.context.HttpOptions;
     const request = { username: username, password: password };
@@ -27,7 +28,7 @@ export class RedHerdAuthProvider {
           if (!inspected.data) {
             inspected.notify();
           }
-          return inspected.data; 
+          return new JwtToken(inspected.data);
         }),
         catchError(err => { return throwError(err); })
       );

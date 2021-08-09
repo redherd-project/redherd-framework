@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Config } from '../../config';
 import { User } from '../model/user';
-import { Token } from '../model/token';
+import { JwtToken } from '../model/token';
 import { RedHerdAuthProvider } from '../../services/base/redherd-auth-provider';
 import { SystemService } from '../../services/system.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -16,61 +16,6 @@ import { NotificationsService } from 'angular2-notifications';
 export class AuthService extends RedHerdAuthProvider {
   private loggedIn: BehaviorSubject<boolean>;
   private notificationOptions;
-
-  private verifyAuthenticationToken() {
-    let result: boolean;
-
-    // Switched to sessionStorage API in order to mitigate the effect of the
-    // browser dirty cache after multiple framework deploy
-    //let token: Token = new Token(localStorage.getItem(Config.auth_token_store));
-    let token: Token = new Token(sessionStorage.getItem(Config.auth_token_store));
-
-    try
-    {
-      if (token.isEmpty()) {
-        // No token stored
-        result = false;
-      }
-      else if (token.isExpired()) {
-        // The session is expired, logout
-        this.logout();
-
-        // Notify the expired session
-        this.notifier.warn('Session expired', '', this.notificationOptions);
-        result = false;
-      }
-      else {
-        // There is a token stored, check if its seed matches the framework one
-        this.systemService.getSystem()
-          .subscribe(system => {
-            if (system.seed.toUpperCase() != token.seed.toUpperCase()) {
-              // The seeds do not match, logout
-              this.logout();
-
-              // Notify the invalid seed
-              this.notifier.warn('Invalid seed detected', '', this.notificationOptions);
-              result = false;
-            }
-            else {
-              // All good
-              result = true;
-            }
-          });
-      }
-    }
-    catch
-    {
-      result = false;
-    }
-    return result;
-  }
-
-  get isLoggedIn() {
-    if (this.verifyAuthenticationToken()) {
-      this.loggedIn.next(true);
-    }
-    return this.loggedIn.asObservable();
-  }
 
   constructor(
     private router: Router,
@@ -90,28 +35,100 @@ export class AuthService extends RedHerdAuthProvider {
     };
   }
 
+  private async authenticationCheck(): Promise<boolean> {
+    let token: JwtToken = new JwtToken(
+      Config.single_instance ? sessionStorage.getItem(Config.auth_token_store) : localStorage.getItem(Config.auth_token_store)
+    );
+
+    try {
+      if (token.isEmpty()) {
+        // No token stored
+        this.loggedIn.next(false);
+      }
+      else if (token.isExpired()) {
+        // The session is expired, logout
+        this.logout();
+        this.loggedIn.next(false);
+
+        // Notify the expired session
+        this.notifier.warn('Session expired', '', this.notificationOptions);
+      }
+      else {
+        // There is a token stored, check if its seed matches the framework one
+        await this.systemService.getSystemPromise()
+          .then(system => {
+            if (system.seed.toUpperCase() != token.seed.toUpperCase()) {
+              // The seeds do not match, logout
+              this.logout();
+              this.loggedIn.next(false);
+
+              // Notify the invalid seed
+              this.notifier.warn('Invalid seed detected', '', this.notificationOptions);
+            }
+            else {
+              // All good
+              this.loggedIn.next(true);
+            }
+          });
+      }
+    }
+    catch (err) {
+      console.log(err);
+    }
+    return this.loggedIn.getValue();
+  }
+
+  private doRouting() {
+    this.authenticationCheck()
+      .then(loggedIn => {
+        if (loggedIn) {
+          if (this.router.url.includes(Config.unauthenticated_landing_path)) {
+            this.router.navigate([Config.authenticated_landing_path]);
+          }
+          else {
+            this.router.navigate([this.router.url]);
+          }
+        }
+        else {
+          this.router.navigate([Config.unauthenticated_landing_path]);
+        }
+      });
+  }
+
+  get isLoggedIn() {
+    // Trigger route evaluation based on the current authentication status
+    this.doRouting();
+
+    // Return the authentication status as observable object
+    return this.loggedIn.asObservable();
+  }
+
   login(user: User): void {
     this.authenticate(user.username, user.password)
       .subscribe(token => {
         if (token) {
-          // Switched to sessionStorage API in order to mitigate the effect of the
-          // browser dirty cache after multiple framework deploy
-          //localStorage.setItem(Config.auth_token_store, token);
-          sessionStorage.setItem(Config.auth_token_store, token);
+          if (Config.single_instance) {
+            sessionStorage.setItem(Config.auth_token_store, token.value);
+          }
+          else {
+            localStorage.setItem(Config.auth_token_store, token.value);
+          }
 
-          this.loggedIn.next(true);
-          this.router.navigate(['/']);
+          // Trigger route evaluation after authentication status changed
+          this.doRouting();
         }
       });
   }
 
   logout(): void {
-    // Switched to sessionStorage API in order to mitigate the effect of the
-    // browser dirty cache after multiple framework deploy
-    //localStorage.removeItem(Config.auth_token_store);
-    sessionStorage.removeItem(Config.auth_token_store);
+    if (Config.single_instance) {
+      sessionStorage.removeItem(Config.auth_token_store);
+    }
+    else {
+      localStorage.removeItem(Config.auth_token_store);
+    }
 
-    this.loggedIn.next(false);
-    this.router.navigate(['/login']);
+    // Trigger route evaluation after authentication status changed
+    this.doRouting();
   }
 }

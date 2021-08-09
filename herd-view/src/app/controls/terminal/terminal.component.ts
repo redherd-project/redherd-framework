@@ -66,7 +66,7 @@ export class TerminalComponent implements AfterViewInit, OnInit, OnDestroy {
     this.terminalService.start(this.asset)
       .subscribe(res => {
         if (res) {
-          this.terminalUrl = this.baseUrl + res['ports']['port'] + '?t=' + this.terminalService.Token;
+          this.terminalUrl = this.baseUrl + res['ports']['port'] + '?t=' + this.terminalService.Token.value;
           this.terminalUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.terminalUrl);
         }
       

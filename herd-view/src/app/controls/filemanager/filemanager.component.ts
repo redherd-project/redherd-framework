@@ -19,7 +19,7 @@ export class FilemanagerComponent implements OnInit {
     private filemanagerService: FilemanagerService,
     private location: Location) 
   {
-    this.filemanagerUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.filemanagerUrl + '?t=' + this.filemanagerService.Token);
+    this.filemanagerUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.filemanagerUrl + '?t=' + this.filemanagerService.Token.value);
   }
 
   ngOnInit(): void {
@@ -31,6 +31,6 @@ export class FilemanagerComponent implements OnInit {
   }
 
   openInNew(): void {
-    window.open(this.filemanagerUrl + '?t=' + this.filemanagerService.Token, "_blank");
+    window.open(this.filemanagerUrl + '?t=' + this.filemanagerService.Token.value, "_blank");
   }
 }

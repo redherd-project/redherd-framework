@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { JSendResponse, JSendResponseInspector } from '../../bin/model/jsend';
 import { RedHerdApiContext } from './redherd-api';
 import { RedHerdRootEndpoint, RedHerdEntity } from '../../bin/model/base/redherd-common';
 import { ServiceRequest, ServiceRequestEnvelope, ServiceResponse, ServiceOperation, ServiceType } from '../../bin/model/service';
 import { Asset } from '../../bin/model/asset';
+import { JwtToken } from '../../bin/model/token';
 import { NotificationsService } from 'angular2-notifications';
 
 export class RedHerdServiceProvider {
@@ -21,7 +22,7 @@ export class RedHerdServiceProvider {
     this.serviceType = type;
   }
 
-  public get Token(): string {
+  public get Token(): JwtToken {
     return this.context.Token;
   }
   
@@ -38,7 +39,7 @@ export class RedHerdServiceProvider {
   protected provide<T>(asset: Asset | number, operation: ServiceOperation, params?: T): Observable<ServiceResponse> {
     const id = typeof asset === 'number' ? asset : asset.id;
     //const url = `${this.context.Url}/${id}/service`;
-    const url = this.context.Token ? `${this.context.Url}/${id}/service?t=${this.context.Token}` : `${this.context.Url}/${id}/service`;
+    const url = !this.context.Token.isEmpty() ? `${this.context.Url}/${id}/service?t=${this.context.Token.value}` : `${this.context.Url}/${id}/service`;
     const options = this.context.HttpOptions;
     const service : ServiceRequest<T> = { type: this.serviceType, params: params };
     const request : ServiceRequestEnvelope<T> = { operation: operation, service: service };

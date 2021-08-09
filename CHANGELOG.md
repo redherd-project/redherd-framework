@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - A bug causing the spawn of services for unexisting assets
+- A bug affecting the herd-view causing a race condition while retrieving the system context and impacting on the user login
 
 ### Security
 

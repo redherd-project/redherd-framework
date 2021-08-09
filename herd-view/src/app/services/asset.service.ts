@@ -68,7 +68,7 @@ export class AssetService extends RedHerdApi {
   /** GET: retrieve asset topics from server */
   public getTopics(id: number): Observable<Topic[]> {
     //const url = `${this.context.Url}/${id}/${RedHerdRootEndpoint.topics}`;
-    const url = this.context.Token ? `${this.context.Url}/${id}/${RedHerdRootEndpoint.topics}?t=${this.context.Token}` : `${this.context.Url}/${id}/${RedHerdRootEndpoint.topics}`;
+    const url = !this.context.Token.isEmpty() ? `${this.context.Url}/${id}/${RedHerdRootEndpoint.topics}?t=${this.context.Token.value}` : `${this.context.Url}/${id}/${RedHerdRootEndpoint.topics}`;
     const options = this.context.HttpOptions;
 
     return this.http.get<JSendResponse>(url, options)
@@ -87,7 +87,7 @@ export class AssetService extends RedHerdApi {
   /** GET: retrieve asset modules from server */
   public getModules(id: number): Observable<Module[]> {
     //const url = `${this.context.Url}/${id}/${RedHerdRootEndpoint.modules}`;
-    const url = this.context.Token ? `${this.context.Url}/${id}/${RedHerdRootEndpoint.modules}?t=${this.context.Token}` : `${this.context.Url}/${id}/${RedHerdRootEndpoint.modules}`;
+    const url = !this.context.Token.isEmpty() ? `${this.context.Url}/${id}/${RedHerdRootEndpoint.modules}?t=${this.context.Token.value}` : `${this.context.Url}/${id}/${RedHerdRootEndpoint.modules}`;
     const options = this.context.HttpOptions;
 
     return this.http.get<JSendResponse>(url, options)
@@ -106,7 +106,7 @@ export class AssetService extends RedHerdApi {
   /** GET: retrieve asset processes from server */
   public getProcesses(id: number): Observable<Process[]> {
     //const url = `${this.context.Url}/${id}/${RedHerdRootEndpoint.processes}`;
-    const url = this.context.Token ? `${this.context.Url}/${id}/${RedHerdRootEndpoint.processes}?t=${this.context.Token}` : `${this.context.Url}/${id}/${RedHerdRootEndpoint.processes}`;
+    const url = !this.context.Token.isEmpty() ? `${this.context.Url}/${id}/${RedHerdRootEndpoint.processes}?t=${this.context.Token.value}` : `${this.context.Url}/${id}/${RedHerdRootEndpoint.processes}`;
     const options = this.context.HttpOptions;
 
     return this.http.get<JSendResponse>(url, options)
@@ -127,7 +127,7 @@ export class AssetService extends RedHerdApi {
     const assetId = typeof asset === 'number' ? asset : asset.id;
     const topicId = typeof topic === 'number' ? topic : topic.id;
     //const url = `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}`;
-    const url = this.context.Token ? `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}?t=${this.context.Token}` : `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}`;
+    const url = !this.context.Token.isEmpty() ? `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}?t=${this.context.Token.value}` : `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}`;
     const options = this.context.HttpOptions;
 
     // Preliminary PUT data normalization
@@ -151,7 +151,7 @@ export class AssetService extends RedHerdApi {
     const assetId = typeof asset === 'number' ? asset : asset.id;
     const topicId = typeof topic === 'number' ? topic : topic.id;
     //const url = `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}/${topicId}`;
-    const url = this.context.Token ? `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}/${topicId}?t=${this.context.Token}` : `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}/${topicId}`;
+    const url = !this.context.Token.isEmpty() ? `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}/${topicId}?t=${this.context.Token.value}` : `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.topics}/${topicId}`;
     const options = this.context.HttpOptions;
 
     return this.http.delete<JSendResponse>(url, options)
@@ -170,7 +170,7 @@ export class AssetService extends RedHerdApi {
     /** POST: run module (execute/interact/configure) */
     public runModule(assetId: number, moduleName: string, object: any): Observable<ModuleInstance> {
       //const url = `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.modules}/${moduleName}/run`;
-      const url = this.context.Token ? `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.modules}/${moduleName}/run?t=${this.context.Token}` : `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.modules}/${moduleName}/run`;
+      const url = !this.context.Token.isEmpty() ? `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.modules}/${moduleName}/run?t=${this.context.Token.value}` : `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.modules}/${moduleName}/run`;
       const options = this.context.HttpOptions;
   
       return this.http.post<JSendResponse>(url, object, options)

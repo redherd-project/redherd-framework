@@ -1,6 +1,13 @@
+import { RedHerdObject } from './base/redherd-common';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 
-export class Token {
+export interface Token extends RedHerdObject {
+  expiration : number;
+  seed : string;
+  user : string;
+}
+
+export class JwtToken implements Token {
   private _value : string;
   private _expiration : number;
   private _seed : string;

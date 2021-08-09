@@ -36,7 +36,7 @@ export class ModuleWrapperComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.contentUrl = this.baseUrl + this.port + '?t=' + this.assetService.Token;
+    this.contentUrl = this.baseUrl + this.port + '?t=' + this.assetService.Token.value;
     this.contentUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.contentUrl);
     setTimeout(() =>  this.contentReady = true, 2000);
   }

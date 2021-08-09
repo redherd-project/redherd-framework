@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
 import { RedHerdApi } from './base/redherd-api';
 import { RedHerdEntity, RedHerdRootEndpoint } from '../bin/model/base/redherd-common';
 import { System } from '../bin/model/system';
@@ -23,5 +22,10 @@ export class SystemService extends RedHerdApi {
   public getSystem(): Observable<System> {
     //return this.get(RedHerdEntity.system, '').pipe(shareReplay<System>());
     return this.get(RedHerdEntity.system, '');
+  }
+
+  /** GET: retrieve system context from server as Promise*/
+  public async getSystemPromise(): Promise<System> {
+    return await this.getSystem().toPromise();
   }
 }
