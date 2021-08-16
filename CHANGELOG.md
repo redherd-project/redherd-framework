@@ -18,12 +18,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The herd-server code responsible for the user authentication in order to integrate the validation of the framework seed
 - The deploy script in order to initialize the framework context
 - Cyber Kill Chain topic list
+- SSH keep-alive timeout to 5 seconds
 
 ### Removed
 
 ### Fixed
 - A bug causing the spawn of services for unexisting assets
 - A bug affecting the herd-view causing a race condition while retrieving the system context and impacting on the user login
+- Docker time synchronization with host machine
+- Docker deamon start in Docker-based modules
 
 ### Security
 

@@ -36,6 +36,7 @@ class DebianCovenant extends LinuxModule
                     sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable\" -y; \
                     sudo apt update; \
                     sudo apt -y install docker-ce docker-ce-cli containerd.io; \
+                    service docker start; \
                     sudo rm -rf Covenant; \
                     git clone --recurse-submodules https://github.com/cobbr/Covenant; \
                     cd Covenant/Covenant; \
