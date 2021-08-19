@@ -22,6 +22,7 @@ RUN mv ./etc/* /usr/bin/ && \
 
 # SSH configuration
 RUN echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config && \
+    echo "    ConnectTimeout 5" >> /etc/ssh/ssh_config && \
     echo "    LogLevel ERROR" >> /etc/ssh/ssh_config && \
     echo "    UserKnownHostsFile=/dev/null" >> /etc/ssh/ssh_config && \
     sed -i 's/HashKnownHosts\ yes/HashKnownHosts\ no/g' /etc/ssh/ssh_config 

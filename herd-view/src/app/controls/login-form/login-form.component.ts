@@ -27,9 +27,7 @@ export class LoginFormComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-    if (this.authService.isLoggedIn) {
-      this.router.navigate(['/']);
-    }
+    this.authService.isLoggedIn.subscribe();
   }
 
   isFieldInvalid(field: string) {

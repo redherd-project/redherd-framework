@@ -6,15 +6,17 @@ const Type = require('./rdhd-ctr-type_controller');
 const Topic = require('./rdhd-ctr-topic_controller');
 const Process = require('./rdhd-ctr-process_controller');
 const Module = require('./rdhd-ctr-module_controller');
+const System = require('./rdhd-ctr-system_controller');
 const Broker = require('../models/rdhd-mdl-sqlite_connection_broker');
 
 const aMapper = require('../models/rdhd-mdl-asset_mapper');
-const tMapper = require('../models/rdhd-mdl-topic_mapper');
-const pMapper = require('../models/rdhd-mdl-process_mapper');
-const atMapper = require('../models/rdhd-mdl-assets_topics_mapper');
-const mMapper = require('../models/rdhd-mdl-module_mapper');
 const uMapper = require('../models/rdhd-mdl-user_mapper');
 const tyMapper = require('../models/rdhd-mdl-type_mapper');
+const tMapper = require('../models/rdhd-mdl-topic_mapper');
+const pMapper = require('../models/rdhd-mdl-process_mapper');
+const mMapper = require('../models/rdhd-mdl-module_mapper');
+const sMapper = require('../models/rdhd-mdl-system_mapper');
+const atMapper = require('../models/rdhd-mdl-assets_topics_mapper');
 
 const Config = require('../config');
 const Validator = require('../bin/lib/rdhd-lib-input_validator');
@@ -66,6 +68,11 @@ class ModelController
     get types()
     {
         return this.getTypes();
+    }
+
+    get system()
+    {
+        return this.getSystem();
     }
 
     getAssets()
@@ -618,6 +625,23 @@ class ModelController
             result = type.present()
         }
         return result;
+    }
+
+    getSystem()
+    {
+        let result = {};
+        let dbSystem = (new sMapper(this._broker)).findCurrent();
+
+        if (dbSystem)
+        {
+            result = new System(this._broker, dbSystem);
+        }
+        return result;
+    }
+
+    presentSystem()
+    {
+        return this.system.present();
     }
 
     addAsset(asset)

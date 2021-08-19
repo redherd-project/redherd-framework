@@ -4,7 +4,7 @@
     "description": "WifiPhisher Attack Suite",
     "binary": "wifiphisher",
     "author": "b4gh33r4 & peco602",
-    "topic": "debian_delivery",
+    "topic": "debian_exploitation",
     "version": "1.0",
     "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
     "tags": ["interactive"]

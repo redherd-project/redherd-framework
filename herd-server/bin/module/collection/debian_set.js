@@ -2,20 +2,21 @@
 
 const LinuxModule = require('../base/rdhd-mod-base_linux_module');
 
-// moduleCode: debian_airgeddon
-class DebianMetasploit extends LinuxModule
+// moduleCode: debian_set
+class DebianSet extends LinuxModule
 {
     // ************************************************************
-    //  Metasploit module
+    //  Airgeddon module
     // ************************************************************
-    // https://www.kali.org/docs/tools/starting-metasploit-framework-in-kali/
+    // https://github.com/wifiphisher/wifiphisher
+    // https://en.kali.tools/?p=90
     //
     // operation       :   [start/stop]
     // ************************************************************
 
     constructor(asset, context, session, wsServer, token)
     {
-        super(asset, "debian_metasploit", session, wsServer, token);
+        super(asset, "debian_airgeddon", session, wsServer, token);
 
         //  POST parameters
         // ******************************
@@ -30,14 +31,12 @@ class DebianMetasploit extends LinuxModule
     configure(whatIf = false)
     {
         let task = "sudo apt update; \
-                    sudo apt install -y build-essential zlib1g zlib1g-dev libpq-dev libpcap-dev libsqlite3-dev ruby ruby-dev && \
-                    cd /opt && \
-		            sudo git clone https://github.com/rapid7/metasploit-framework.git && \
-		            sudo chown -R `whoami` /opt/metasploit-framework && \
-                    cd metasploit-framework && \
-                    sudo gem install bundler && \
-                    sudo bundle install && \
-                    sudo cp -s /opt/metasploit-framework/msfconsole /usr/bin/msfconsole";
+                    sudo apt install python3 python3-pip -y && \
+                    sudo rm -rf setoolkit && \
+                    git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/ && \
+                    cd setoolkit && \
+                    sudo pip3 install -r requirements.txt && \
+                    sudo python3 setup.py"
 
         //  Async execution
         // ******************************
@@ -58,7 +57,7 @@ class DebianMetasploit extends LinuxModule
 
             if (this.operation.toUpperCase() == "START")
             {
-                let task = "msfconsole";
+                let task = "cd setoolkit && sudo python3 ./seupdate && sudo ./setoolkit";
                 op = "enable";
 
                 axios.post(this.url,
@@ -111,7 +110,7 @@ class DebianMetasploit extends LinuxModule
         }
         else
         {
-            this.reportAndExit("Invalid input provided");
+            this.reportAndExit(this.buildErrorMessage("Invalid input provided"));
         }
         return response;
     }
@@ -127,4 +126,4 @@ class DebianMetasploit extends LinuxModule
     }
 }
 
-module.exports = DebianMetasploit
+module.exports = DebianSet

@@ -4,7 +4,7 @@
     "description": "Brute force FTP/RDP/SSH credentials",
     "binary": "hydra",
     "author": "peco602 & giulio",
-    "topic": "debian_lateral_movement",
+    "topic": "debian_exploitation",
     "version": "1.0",
     "params": [{"label": "Target", "name": "target", "type": "string"},
                {"label": "Port", "name": "port", "type": "string"},

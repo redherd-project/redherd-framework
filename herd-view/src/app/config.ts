@@ -22,6 +22,12 @@ export const Config = {
   assets_refresh_interval         : 10000,
   asset_image_placeholder         : 'assets/images/asset.png',
 
+  single_instance                 : false,
+
+  root_landing_path               : '/',
+  unauthenticated_landing_path    : '/login',
+  authenticated_landing_path      : '/assets',
+
   // ************************************************************
   //  Socket-io configuration section
   // ************************************************************

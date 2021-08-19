@@ -254,6 +254,7 @@ docker volume create --name $OVPN_DATA
 
 echo -e "$GREEN$BOLD [*] Docker OPENVPN server config generation $RESET"
 docker run -v $OVPN_DATA:/etc/openvpn \
+        -v /etc/localtime:/etc/localtime:ro \
         --log-driver=none \
         --rm \
         $DOCKER_OVPNSRV_NAME:latest ovpn_genconfig \
@@ -264,6 +265,7 @@ docker run -v $OVPN_DATA:/etc/openvpn \
         
 echo -e "$GREEN$BOLD [*] Docker OPENVPN server CA initialization $RESET"
 docker run -v $OVPN_DATA:/etc/openvpn \
+        -v /etc/localtime:/etc/localtime:ro \
         --log-driver=none \
         --rm \
         -it \
@@ -274,6 +276,7 @@ docker run --name $DOCKER_OVPNSRV_NAME \
         --network $DOCKER_NET \
         --ip $DOCKER_OVPNSRV_ADDRESS \
         -v $OVPN_DATA:/etc/openvpn \
+        -v /etc/localtime:/etc/localtime:ro \
         -p 1194:1194/udp \
         -d \
         --cap-add=NET_ADMIN \
@@ -356,6 +359,7 @@ do
 
         echo -e "$GREEN$BOLD [*] Generating OVPN config for $USERNAME $RESET"
         docker run -v $OVPN_DATA:/etc/openvpn \
+                -v /etc/localtime:/etc/localtime:ro \
                 --log-driver=none \
                 --rm \
                 -it \
@@ -366,6 +370,7 @@ do
         mkdir -p $CLIENT_CONFIG_PATH
 
         docker run -v $OVPN_DATA:/etc/openvpn \
+                -v /etc/localtime:/etc/localtime:ro \
                 --log-driver=none \
                 --rm $DOCKER_OVPNSRV_NAME:latest \
                 ovpn_getclient $USERNAME > $CLIENT_CONFIG_PATH/config.ovpn
@@ -421,6 +426,7 @@ if [ "$INIT_DB" == "TRUE" ]; then
         docker run --rm \
                 --name "database_initializer" \
                 -v $ETC_PATH/initialize-db:/home/node/app \
+                -v /etc/localtime:/etc/localtime:ro \
                 node:latest \
                 /bin/bash -c "/home/node/app/run.sh"
         mv $ETC_PATH/initialize-db/redherd.sqlite3 $DOCKER_HERDSRV_PATH/models/data
@@ -430,6 +436,7 @@ echo -e "$GREEN$BOLD [*] Compiling node-file-manager $RESET"
 docker run --rm \
 	 --name "node-file-manager_compiler" \
         -v $ETC_PATH/node-file-manager:/home/node/app \
+        -v /etc/localtime:/etc/localtime:ro \
         node:latest \
         /bin/bash -c "/home/node/app/run.sh"
 mv $ETC_PATH/node-file-manager/node-file-manager $DOCKER_HERDSRV_PATH/etc
@@ -444,6 +451,7 @@ docker run --name $DOCKER_HERDSRV_NAME \
         -v $ASSETS_SHARE_PATH:/home/node/share \
         -v $DOCKER_HERDSRV_MODULES_PATH:/home/node/app/bin/module/collection \
         -v $DOCKER_HERDSRV_DB_PATH:/home/node/app/models/data \
+        -v /etc/localtime:/etc/localtime:ro \
         --env NODE_EXTRA_CA_CERTS=/home/node/app/ssl/ca.crt \
         -d \
         --cap-add=NET_ADMIN \
@@ -495,6 +503,7 @@ sudo docker run --name $DOCKER_FTPSRV_NAME \
         -v $ASSETS_SHARE_PATH:/home/ftpusers/$FTP_USER_NAME \
         -v $DOCKER_FTPSRV_PATH/ssl/pure-ftpd-dhparams.pem:/etc/ssl/private/pure-ftpd-dhparams.pem \
         -v $DOCKER_FTPSRV_PATH/ssl/pure-ftpd.pem:/etc/ssl/private/pure-ftpd.pem \
+        -v /etc/localtime:/etc/localtime:ro \
         --network $DOCKER_NET \
         --ip $DOCKER_FTPSRV_ADDRESS \
         --env "ADDED_FLAGS=--tls=3" \
@@ -531,6 +540,7 @@ sudo docker run --name $DOCKER_HERDVIEW_NAME \
         -v $DOCKER_HERDVIEW_PATH/conf/herdview.conf:/etc/nginx/conf.d/default.conf \
         -v $DOCKER_HERDVIEW_PATH/ssl/cert.pem:/etc/nginx/cert.pem \
         -v $DOCKER_HERDVIEW_PATH/ssl/key.pem:/etc/nginx/key.pem \
+        -v /etc/localtime:/etc/localtime:ro \
         -d \
         $DOCKER_HERDVIEW_NAME:latest
 ###########################################################
@@ -564,6 +574,7 @@ docker run --name $DOCKER_DSTRSRV_NAME \
         -v $DOCKER_DSTRSRV_PATH/ssl/key.pem:/etc/nginx/key.pem \
         -v $DOCKER_DSTRSRV_PATH/auth:/etc/nginx/auth\
         -v $OVPN_CONFIG_PATH:/var/www/html \
+        -v /etc/localtime:/etc/localtime:ro \
         -d \
         $DOCKER_DSTRSRV_NAME:latest
 ###########################################################
@@ -574,4 +585,11 @@ docker run --name $DOCKER_DSTRSRV_NAME \
 #sed -i 's|REDHERD_PATH=.*|REDHERD_PATH="'$(pwd)'"|g' $HERDCLI_PATH
 rm -f $HERDCLI_INSTALLATION_PATH/herd-cli
 ln -s $HERDCLI_PATH $HERDCLI_INSTALLATION_PATH/herd-cli
+###########################################################
+
+###########################################################
+# SYSTEM CONTEXT INITIALIZATION
+echo -e "$GREEN$BOLD [*] Framework context initialization $RESET"
+
+$HERDCLI_INSTALLATION_PATH/herd-cli system --init
 ###########################################################

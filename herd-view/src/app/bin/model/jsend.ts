@@ -86,8 +86,6 @@ export class JSendResponseInspector {
                 result.message = 'Operation failed';
                 break;
             }
-            console.log(result);
-
             return result;
         }
         catch (err) {

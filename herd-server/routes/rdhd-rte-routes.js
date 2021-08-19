@@ -101,6 +101,9 @@ module.exports = (app) => {
             .get(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.getUserApi(req.params.param)); })
             .put(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.updateUserApi(req.params.param, req.body)); })
             .delete(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.removeUserApi(req.params.param)); });
+
+        app.route(Config.api_endpoint + '/system')
+            .get(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.getSystemApi()); });
     }
     catch (e)   
     {

@@ -42,33 +42,40 @@ function runAssetWebProxy(assetId, data)
         {
             let asset = model.getAssetById(assetId);
 
-            switch (data.operation.toUpperCase())
+            if (!Utils.isEmpty(asset))
             {
-                case 'ENABLE':
-                    if (data.service.params)
-                    {
-                        if (Validator.validateTcpUdpPort(data.service.params.rport))
+                switch (data.operation.toUpperCase())
+                {
+                    case 'ENABLE':
+                        if (data.service.params)
                         {
-                            let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
-                            result = JSend.success({ service: { enabled: true, ports: { port: webProxyController.spawn(asset.id, asset.ip, data.service.params.rport, pRange) } } });
+                            if (Validator.validateTcpUdpPort(data.service.params.rport))
+                            {
+                                let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
+                                result = JSend.success({ service: { enabled: true, ports: { port: webProxyController.spawn(asset.id, asset.ip, data.service.params.rport, pRange) } } });
+                            }
+                            else
+                            {
+                                result = JSend.fail({ reason: "Invalid rPort provided" });
+                            }
                         }
                         else
                         {
-                            result = JSend.fail({ reason: "Invalid rPort provided" });
+                            result = JSend.fail({ reason: "No params provided" });
                         }
-                    }
-                    else
-                    {
-                        result = JSend.fail({ reason: "No params provided" });
-                    }
-                    break;
-                case 'DISABLE':
-                    webProxyController.destroyById(asset.id);
-                    result = JSend.success({ service: { enabled : false } });
-                    break;
-                default:
-                    result = JSend.fail({ reason: "Invalid operation provided" });
-                    break;
+                        break;
+                    case 'DISABLE':
+                        webProxyController.destroyById(asset.id);
+                        result = JSend.success({ service: { enabled : false } });
+                        break;
+                    default:
+                        result = JSend.fail({ reason: "Invalid operation provided" });
+                        break;
+                }
+            }
+            else
+            {
+                result = JSend.fail({ reason: "Unexisting asset provided" });
             }
         }
         else if (!isValidAssetId)
@@ -103,33 +110,40 @@ function runAssetTcpProxy(assetId, data)
         {
             let asset = model.getAssetById(assetId);
 
-            switch (data.operation.toUpperCase())
+            if (!Utils.isEmpty(asset))
             {
-                case 'ENABLE':
-                    if (data.service.params)
-                    {
-                        if (Validator.validateTcpUdpPort(data.service.params.rport))
+                switch (data.operation.toUpperCase())
+                {
+                    case 'ENABLE':
+                        if (data.service.params)
                         {
-                            let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
-                            result = JSend.success({ service: { enabled: true, ports: { port: tcpProxyController.spawn(asset.id, asset.ip, data.service.params.rport, pRange) } } });
+                            if (Validator.validateTcpUdpPort(data.service.params.rport))
+                            {
+                                let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
+                                result = JSend.success({ service: { enabled: true, ports: { port: tcpProxyController.spawn(asset.id, asset.ip, data.service.params.rport, pRange) } } });
+                            }
+                            else
+                            {
+                                result = JSend.fail({ reason: "Invalid rPort provided" });
+                            }
                         }
                         else
                         {
-                            result = JSend.fail({ reason: "Invalid rPort provided" });
+                            result = JSend.fail({ reason: "No params provided" });
                         }
-                    }
-                    else
-                    {
-                        result = JSend.fail({ reason: "No params provided" });
-                    }
-                    break;
-                case 'DISABLE':
-                    tcpProxyController.destroyById(asset.id);
-                    result = JSend.success({ service: { enabled : false } });
-                    break;
-                default:
-                    result = JSend.fail({ reason: "Invalid operation provided" });
-                    break;
+                        break;
+                    case 'DISABLE':
+                        tcpProxyController.destroyById(asset.id);
+                        result = JSend.success({ service: { enabled : false } });
+                        break;
+                    default:
+                        result = JSend.fail({ reason: "Invalid operation provided" });
+                        break;
+                }
+            }
+            else
+            {
+                result = JSend.fail({ reason: "Unexisting asset provided" });
             }
         }
         else if (!isValidAssetId)
@@ -164,33 +178,40 @@ function runAssetUdpProxy(assetId, data)
         {
             let asset = model.getAssetById(assetId);
 
-            switch (data.operation.toUpperCase())
+            if (!Utils.isEmpty(asset))
             {
-                case 'ENABLE':
-                    if (data.service.params)
-                    {
-                        if (Validator.validateTcpUdpPort(data.service.params.rport))
+                switch (data.operation.toUpperCase())
+                {
+                    case 'ENABLE':
+                        if (data.service.params)
                         {
-                            let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
-                            result = JSend.success({ service: { enabled: true, ports: { port: udpProxyController.spawn(asset.id, asset.ip, data.service.params.rport, pRange) } } });
+                            if (Validator.validateTcpUdpPort(data.service.params.rport))
+                            {
+                                let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
+                                result = JSend.success({ service: { enabled: true, ports: { port: udpProxyController.spawn(asset.id, asset.ip, data.service.params.rport, pRange) } } });
+                            }
+                            else
+                            {
+                                result = JSend.fail({ reason: "Invalid rPort provided" });
+                            }
                         }
                         else
                         {
-                            result = JSend.fail({ reason: "Invalid rPort provided" });
+                            result = JSend.fail({ reason: "No params provided" });
                         }
-                    }
-                    else
-                    {
-                        result = JSend.fail({ reason: "No params provided" });
-                    }
-                    break;
-                case 'DISABLE':
-                    udpProxyController.destroyById(asset.id);
-                    result = JSend.success({ service: { enabled : false } });
-                    break;
-                default:
-                    result = JSend.fail({ reason: "Invalid operation provided" });
-                    break;
+                        break;
+                    case 'DISABLE':
+                        udpProxyController.destroyById(asset.id);
+                        result = JSend.success({ service: { enabled : false } });
+                        break;
+                    default:
+                        result = JSend.fail({ reason: "Invalid operation provided" });
+                        break;
+                }
+            }
+            else
+            {
+                result = JSend.fail({ reason: "Unexisting asset provided" });
             }
         }
         else if (!isValidAssetId)
@@ -225,20 +246,27 @@ function runAssetRtspRedirector(assetId, data)
         {
             let asset = model.getAssetById(assetId);
 
-            switch (data.operation.toUpperCase())
+            if (!Utils.isEmpty(asset))
             {
-                case 'ENABLE':
-                    let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
-                    let ports = rtspRedirectorController.spawn(asset.id, pRange);
-                    result = JSend.success({ service: { enabled : true, ports: { cport : ports.cport, sport : ports.sport } } });
-                    break;
-                case 'DISABLE':
-                    rtspRedirectorController.destroyById(asset.id);
-                    result = JSend.success({ service: { enabled : false } });
-                    break;
-                default:
-                    result = JSend.fail({ reason: "Invalid operation provided" });
-                    break;
+                switch (data.operation.toUpperCase())
+                {
+                    case 'ENABLE':
+                        let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
+                        let ports = rtspRedirectorController.spawn(asset.id, pRange);
+                        result = JSend.success({ service: { enabled : true, ports: { cport : ports.cport, sport : ports.sport } } });
+                        break;
+                    case 'DISABLE':
+                        rtspRedirectorController.destroyById(asset.id);
+                        result = JSend.success({ service: { enabled : false } });
+                        break;
+                    default:
+                        result = JSend.fail({ reason: "Invalid operation provided" });
+                        break;
+                }
+            }
+            else
+            {
+                result = JSend.fail({ reason: "Unexisting asset provided" });
             }
         }
         else if (!isValidAssetId)
@@ -274,20 +302,27 @@ function runAssetTerminal(assetId, data)
         {
             let asset = model.getAssetById(assetId);
 
-            switch (data.operation.toUpperCase())
+            if (!Utils.isEmpty(asset))
             {
-                case 'ENABLE':
-                    let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
-                    let command = (data.service.params) ? data.service.params.command : "";
-                    result = JSend.success({ service: { enabled : true,  ports: { port: terminalController.spawn(asset.user, asset.ip, asset.id, asset.wport, command, terminalServerOverSsl, pRange) } } });
-                    break;
-                case 'DISABLE':
-                    terminalController.destroyById(asset.id);
-                    result = JSend.success({ service: { enabled : false } });
-                    break;
-                default:
-                    result = JSend.fail({ reason: "Invalid operation provided" });
-                    break;
+                switch (data.operation.toUpperCase())
+                {
+                    case 'ENABLE':
+                        let pRange = Utils.getPortRangeObject(Config.services_port_range.first, Config.services_port_range.last);
+                        let command = (data.service.params) ? data.service.params.command : "";
+                        result = JSend.success({ service: { enabled : true,  ports: { port: terminalController.spawn(asset.user, asset.ip, asset.id, asset.wport, command, terminalServerOverSsl, pRange) } } });
+                        break;
+                    case 'DISABLE':
+                        terminalController.destroyById(asset.id);
+                        result = JSend.success({ service: { enabled : false } });
+                        break;
+                    default:
+                        result = JSend.fail({ reason: "Invalid operation provided" });
+                        break;
+                }
+            }
+            else
+            {
+                result = JSend.fail({ reason: "Unexisting asset provided" });
             }
         }
         else if (!isValidAssetId)
@@ -1105,6 +1140,42 @@ exports.getTopicsApi = function getTopicsApi()
     return result;
 }
 
+exports.getTopicApi = function getTopicApi(param)
+{
+    let result;
+    try
+    {
+        let isValidTopicId = Validator.validateId(param);
+        let isValidTopicName = Validator.validateName(param);
+
+        if (isValidTopicId)
+        {
+            result = JSend.success({ topic: model.presentTopicById(param) });
+        }
+        else if (isValidTopicName)
+        {
+            result = JSend.success({ topic: model.presentTopicByName(param) });
+        }
+        else if (!isValidTopicId)
+        {
+            result = JSend.fail({ reason: "Invalid topicId provided" });
+        }
+        else
+        {
+            result = JSend.fail({ reason: "Invalid topicName provided" });
+        }
+    }
+    catch (e)
+    {
+        if (Config.debug_mode)
+        {
+            console.log(e);
+        }
+        result = JSend.error(e.message);
+    }
+    return result;
+}
+
 exports.addTopicApi = function addTopicApi(topic)
 {
     let result;
@@ -1135,42 +1206,6 @@ exports.addTopicApi = function addTopicApi(topic)
         else
         {
             result = JSend.fail({ reason: "Invalid topicDescription provided" });
-        }
-    }
-    catch (e)
-    {
-        if (Config.debug_mode)
-        {
-            console.log(e);
-        }
-        result = JSend.error(e.message);
-    }
-    return result;
-}
-
-exports.getTopicApi = function getTopicApi(param)
-{
-    let result;
-    try
-    {
-        let isValidTopicId = Validator.validateId(param);
-        let isValidTopicName = Validator.validateName(param);
-
-        if (isValidTopicId)
-        {
-            result = JSend.success({ topic: model.presentTopicById(param) });
-        }
-        else if (isValidTopicName)
-        {
-            result = JSend.success({ topic: model.presentTopicByName(param) });
-        }
-        else if (!isValidTopicId)
-        {
-            result = JSend.fail({ reason: "Invalid topicId provided" });
-        }
-        else
-        {
-            result = JSend.fail({ reason: "Invalid topicName provided" });
         }
     }
     catch (e)
@@ -1739,6 +1774,24 @@ exports.removeUserApi = function removeUserApi(userId)
         {
             result = JSend.fail({ reason: "Invalid userId provided" });
         }
+    }
+    catch (e)
+    {
+        if (Config.debug_mode)
+        {
+            console.log(e);
+        }
+        result = JSend.error(e.message);
+    }
+    return result;
+}
+
+exports.getSystemApi = function getSystemApi()
+{
+    let result;
+    try
+    {
+        result = JSend.success({ system: model.presentSystem() });
     }
     catch (e)
     {

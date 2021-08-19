@@ -1,7 +1,7 @@
 'use strict';
 
-const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 const Config = require('../../config');
 
 class JWTProvider
@@ -50,7 +50,22 @@ class JWTProvider
         }
         catch
         {
+            // TODO: find a better solution
             result = '';
+        }
+        return result;
+    }
+
+    static decodeToken(token)
+    {
+        let result;
+        try
+        {
+            result = jwt.decode(token);
+        }
+        catch
+        {
+            result = {};
         }
         return result;
     }

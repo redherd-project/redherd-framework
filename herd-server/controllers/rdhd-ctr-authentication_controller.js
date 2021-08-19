@@ -20,11 +20,13 @@ class AuthenticationController
 
             if (user && bcrypt.compareSync(password, user.secret))
             {
-                result = JWTProvider.generateToken({ user: username });
+                let seed = model.getSystem().seed;
+                result = JWTProvider.generateToken({ user: username, seed: seed });
             }
         }
         catch
         {
+            // TODO: find a better solution
             result = '';
         }
         return result;
@@ -35,7 +37,18 @@ class AuthenticationController
         let result = false;
         try
         {
-            result = JWTProvider.verifyToken(token);
+            if (JWTProvider.verifyToken(token))
+            {
+                let seed = model.getSystem().seed;
+                if (JWTProvider.decodeToken(token).seed == seed)
+                {
+                    result = true;
+                }
+            }
+            else
+            {
+                result = false;    
+            }
         }
         catch (e)
         {

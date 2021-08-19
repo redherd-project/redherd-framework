@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CaDownloaderComponent } from './ca-downloader.component';
 
@@ -6,7 +6,7 @@ describe('CaDownloaderComponent', () => {
   let component: CaDownloaderComponent;
   let fixture: ComponentFixture<CaDownloaderComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CaDownloaderComponent ]
     })

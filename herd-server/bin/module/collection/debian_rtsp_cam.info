@@ -4,7 +4,7 @@
     "description": "RTSP Remote Cam Access",
     "binary": "ffmpeg",
     "author": "b4gh33r4 & peco602",
-    "topic": "debian_video",
+    "topic": "debian_actions",
     "version": "1.0",
     "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
     "tags": ["pivotable"]
