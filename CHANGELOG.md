@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v0.0.3] - Unreleased
+## [v0.0.3] - 2021-08-19
 ### Added
 - The new System entity into the database. It represents the context of the current framework iteration (seed, dob)
 - The new system API endpoint which allows to obtain the system context
@@ -20,25 +20,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cyber Kill Chain topic list
 - SSH keep-alive timeout to 5 seconds
 
-### Removed
-
 ### Fixed
 - A bug causing the spawn of services for unexisting assets
 - A bug affecting the herd-view causing a race condition while retrieving the system context and impacting on the user login
 - Docker time synchronization with host machine
 - Docker deamon start in Docker-based modules
 
-### Security
-
 
 ## [v0.0.2b] - 2021-07-31
-### Added
-
 ### Changed
 - The implementation of the isAlive function for Android and MacOs assets
 - Reduced jwt expiration timer to 3 hours
-
-### Removed
 
 ### Fixed
 - A **critical** bug affecting the isAlive function for Unix-based assets
