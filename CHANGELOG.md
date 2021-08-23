@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.4] - Unreleased
+### Added
+
+### Changed
+
+### Removed
+- cifs-utils package installation during debian asset setup
+
+### Fixed
+- A bug allowing the generation of users with empty username
+
+### Security
+
 ## [v0.0.3] - 2021-08-19
 ### Added
 - The new System entity into the database. It represents the context of the current framework iteration (seed, dob)
