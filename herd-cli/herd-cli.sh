@@ -308,6 +308,11 @@ function getUserIdApi {
 }
 
 function addUserApi {
+    if [ -z ${1} ]; then
+        echo -e "$RED$BOLD [!] Invalid username provided $RESET"
+        exit 1
+    fi
+
     read -sp 'New User Password: ' SECRET
     echo; clear
 
