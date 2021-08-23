@@ -89,7 +89,7 @@ function CheckAlreadyInstalled {
 
 function InstallDependencies {
         apt update
-        apt install curl psmisc openssh-server openvpn jq ca-certificates cifs-utils iptables ufw lftp -y
+        apt install curl psmisc openssh-server openvpn jq ca-certificates iptables ufw lftp -y
 }
 
 function InstallScript {
