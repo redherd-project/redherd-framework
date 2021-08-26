@@ -319,7 +319,7 @@ sudo docker run -d --rm --cap-add=NET_ADMIN \
 -e USERNAME="$USERNAME" \
 -e PASSWORD="$PASSWORD" \
 --network host \
--v $(pwd)/redherd-certificates:/usr/local/share/ca-certificates \
+-v \$(pwd)/redherd-certificates:/usr/local/share/ca-certificates \
 --name redherd-client redherd/client
 EOM
         echo "${DOCKER}"
