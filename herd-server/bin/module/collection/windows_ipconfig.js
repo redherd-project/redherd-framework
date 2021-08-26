@@ -2,12 +2,12 @@
 
 const WindowsModule = require('../base/rdhd-mod-base_windows_module');
 
-// moduleCode: windows_interfaces
+// moduleCode: windows_ipconfig
 class WindowsInterfaces extends WindowsModule
 {
     constructor(asset, context, session, wsServer, token)
     {
-        super(asset, "windows_interfaces", session, wsServer, token);
+        super(asset, "windows_ipconfig", session, wsServer, token);
     }
 
     run(whatIf = false)

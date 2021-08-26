@@ -14,11 +14,7 @@ export class FilemanagerComponent implements OnInit {
   filemanagerUrlSafe: SafeResourceUrl;
   filemanagerReady: boolean = false;
   
-  constructor(    
-    private sanitizer: DomSanitizer,
-    private filemanagerService: FilemanagerService,
-    private location: Location) 
-  {
+  constructor(private sanitizer: DomSanitizer, private filemanagerService: FilemanagerService, private location: Location) {
     this.filemanagerUrlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.filemanagerUrl + '?t=' + this.filemanagerService.Token.value);
   }
 
@@ -26,11 +22,11 @@ export class FilemanagerComponent implements OnInit {
     setTimeout(() =>  this.filemanagerReady = true, 3000);
   }
 
-  back(): void {
+  public back(): void {
     this.location.back();
   }
 
-  openInNew(): void {
+  public openInNew(): void {
     window.open(this.filemanagerUrl + '?t=' + this.filemanagerService.Token.value, "_blank");
   }
 }

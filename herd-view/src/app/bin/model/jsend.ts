@@ -65,26 +65,26 @@ export class JSendResponseInspector {
         let result: JSendNotifiable<T> = new JSendNotifiable<T>(notifier);
         try {
             switch (res.status) {
-            case JSendStatus.success:
-                result.status = NotificationType.Success;
-                result.data = res.data ? res.data[entity] as T : null;
-                result.message = 'Operation success';
-                break;
-            case JSendStatus.fail:
-                result.status = NotificationType.Error;
-                result.data = null;
-                result.message = res.data['reason'];
-                break;
-            case JSendStatus.error:
-                result.status = NotificationType.Error;
-                result.data = null;
-                result.message = res.message;
-                break;
-            default:
-                result.status = NotificationType.Warn;
-                result.data = null;
-                result.message = 'Operation failed';
-                break;
+                case JSendStatus.success:
+                    result.status = NotificationType.Success;
+                    result.data = res.data ? res.data[entity] as T : null;
+                    result.message = 'Operation success';
+                    break;
+                case JSendStatus.fail:
+                    result.status = NotificationType.Error;
+                    result.data = null;
+                    result.message = res.data['reason'];
+                    break;
+                case JSendStatus.error:
+                    result.status = NotificationType.Error;
+                    result.data = null;
+                    result.message = res.message;
+                    break;
+                default:
+                    result.status = NotificationType.Warn;
+                    result.data = null;
+                    result.message = 'Operation failed';
+                    break;
             }
             return result;
         }

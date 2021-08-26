@@ -1,29 +1,86 @@
-<div class="mat-elevation-z8">
-   
-    <div *ngIf="module">
-        <mat-list>
-            <mat-list-item>
-                <mat-icon aria-label="Modules icon">extension</mat-icon><span class="capitalize">{{module.title}}</span>
-                <span class="spacer"></span>
-                <button mat-icon-button (click)="back()"><mat-icon aria-label="Close icon">close</mat-icon></button>
-            </mat-list-item>
-        </mat-list>
+<div *ngIf="module">
 
-        <mat-divider></mat-divider>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Details</span></mat-panel-title>
+        </mat-expansion-panel-header>
 
-        <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title><span>Details</span></mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-module-detail-panel></app-module-detail-panel>
-        </mat-expansion-panel>
+            <!-- Module Details -->
 
-        <mat-divider></mat-divider>
+            <mat-list>
+                <mat-list-item>
+                    <mat-form-field>
+                        <input matInput value="{{module.description}}" placeholder="description" readonly>
+                    </mat-form-field>
+                </mat-list-item>
 
-    </div>
+                <span>
+                    <span *ngFor="let param of module.params" [ngSwitch]="param.type">
 
-    <mat-card *ngIf="!module">
-        <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
-    </mat-card>
+                        <mat-list-item *ngSwitchCase="'string'">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                            </mat-form-field>
+                        </mat-list-item>
+
+                        <mat-list-item *ngSwitchCase="'number'">
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                            </mat-form-field>
+                        </mat-list-item>
+
+                        <mat-list-item *ngSwitchCase="'password'">
+                            <mat-form-field>
+                                <input matInput type="password" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                            </mat-form-field>
+                        </mat-list-item>
+
+                        <mat-list-item *ngSwitchCase="'boolean'">
+                            <mat-checkbox *ngSwitchCase="'boolean'" color="primary" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">{{param.label}}</mat-checkbox>
+                        </mat-list-item>
+
+                        <mat-list-item *ngSwitchCase="'list'">
+                            <mat-form-field>
+                                <mat-label>{{param.label}}</mat-label>
+                                <mat-select [(ngModel)]="modelData['params'][param.name]">
+                                    <mat-option *ngFor="let value of param.values" [value]="value">
+                                        {{value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-list-item>
+
+                        <span *ngSwitchDefault></span>
+
+                    </span>
+                </span>
+
+                <mat-list-item>
+                    <button mat-icon-button matTooltip="Back" (click)="back()"><mat-icon aria-label="Back icon">arrow_back</mat-icon></button>
+                    <span class="spacer"></span>
+                    <button mat-icon-button matTooltip="Run" (click)="execute()"><mat-icon aria-label="Execute icon">play_arrow</mat-icon></button>
+                    <button mat-icon-button matTooltip="Configure" (click)="configure()"><mat-icon aria-label="Configure icon">settings</mat-icon></button>
+                </mat-list-item>
+            </mat-list>
+
+            <!-- Module Details -->
+
+    </mat-expansion-panel>
+
+    <mat-divider *ngIf="session"></mat-divider>
+
+    <mat-expansion-panel *ngIf="session && (modelData['mode'] != 'interact')" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Output</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-module-output-panel session="{{session}}"></app-module-output-panel>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="session && (modelData['mode'] == 'interact') && port" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Output</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-module-wrapper assetId="{{assetId}}" moduleName="{{module.name}}" port="{{port}}"></app-module-wrapper>
+    </mat-expansion-panel>
 
 </div>

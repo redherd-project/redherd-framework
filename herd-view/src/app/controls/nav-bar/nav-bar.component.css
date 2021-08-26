@@ -2,14 +2,10 @@
   height: 100%;
 }
 
-.sidenav {
-  width: 200px;
-}
-
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 .spacer {
@@ -21,11 +17,35 @@
 }
 
 .footer-logo {
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  width: 10%;
-  height: auto;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 380px;
   opacity: 0.5;
-  z-index: -1;
+  z-index: -2;
+}
+
+.bottom-content{
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+}
+
+.toggle-toolbar{
+  background-color: rgb(48, 48, 48);
+  width: 72px;
+}
+
+::ng-deep .mat-toolbar-single-row {
+  height: 48px;
+}
+
+::ng-deep .mat-drawer-content.mat-sidenav-content {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::ng-deep .mat-drawer-content.mat-sidenav-content::-webkit-scrollbar {
+  width: 0 !important 
 }

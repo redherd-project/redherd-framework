@@ -1,5 +1,5 @@
 {
-    "name": "windows_interfaces",
+    "name": "windows_ipconfig",
     "title": "Interfaces",
     "description": "List all network interfaces",
     "binary": "ipconfig",

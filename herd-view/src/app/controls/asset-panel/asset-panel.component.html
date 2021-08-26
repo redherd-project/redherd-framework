@@ -1,56 +1,65 @@
-<div class="mat-elevation-z8">
-   
-    <div *ngIf="asset">
-        <mat-list>
-            <mat-list-item>
-                <mat-icon aria-label="Assets icon">devices</mat-icon><span class="capitalize">{{asset.name}}</span>
-                <span class="spacer"></span>
-                <button mat-icon-button (click)="back()"><mat-icon aria-label="Close icon">close</mat-icon></button>
-            </mat-list-item>
-        </mat-list>
+<div *ngIf="asset && !moduleView">
 
-        <mat-divider></mat-divider>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Details</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <table class="full-width-table details-panel-table">
+            <tr>
+                <td *ngIf="!terminal && (displayMode != 'mobile')" class="terminal-cell">
+                    <div class="terminal-cell-placeholder">
+                        <mat-list>
+                            <mat-list-item>
+                                <span class="spacer"></span>
+                                <button class="disabled" mat-icon-button matTooltip="Open Terminal" (click)="terminalShowHide()"><mat-icon aria-label="Terminal icon">computer</mat-icon></button>
+                            </mat-list-item>
+                        </mat-list>
+                        <img class="terminal-cell-placeholder-image" src="assets/images/terminal_placeholder.png">
+                    </div>
+                </td>
+                <td *ngIf="terminal && (displayMode != 'mobile')" class="terminal-cell">
+                    <app-terminal class="terminal-cell-content" assetId="{{assetId}}"></app-terminal>
+                </td>
+                <td class="details-cell">
+                    <app-asset-detail-panel [ngClass]="(displayMode != 'mobile') ? 'details-cell-content' : ''" assetId="{{assetId}}"></app-asset-detail-panel>
+                </td>
+            </tr>
+        </table>
+    </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title><span>Details</span></mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-asset-detail-panel></app-asset-detail-panel>
-        </mat-expansion-panel>
-        
-        <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title><span>Topics</span></mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-asset-topic-panel></app-asset-topic-panel>
-        </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Topics</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-asset-topic-panel assetId="{{assetId}}"></app-asset-topic-panel>
+    </mat-expansion-panel>
 
-        <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title><span>Modules</span></mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-asset-module-panel></app-asset-module-panel>
-        </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Modules</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-asset-module-panel (moduleViewEnabled)="switchToModule($event)" assetId="{{assetId}}"></app-asset-module-panel>
+    </mat-expansion-panel>
 
-        <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title><span>Processes</span></mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-asset-process-panel></app-asset-process-panel>
-        </mat-expansion-panel>
-
-        <mat-divider></mat-divider>
-
-    </div>
-
-    <mat-card *ngIf="!asset">
-        <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
-    </mat-card>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Processes</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-asset-process-panel (resumeProcessRequested)="resume($event)" assetId="{{assetId}}"></app-asset-process-panel>
+    </mat-expansion-panel>
 
 </div>
+
+<div *ngIf="moduleView">
+    <app-module-panel (moduleInteractionEnded)="moduleView = null" assetId={{moduleView.assetId}} moduleName={{moduleView.module}} session={{moduleView.session}}></app-module-panel>
+</div>
+
+<mat-card *ngIf="!asset && !moduleView">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+</mat-card>

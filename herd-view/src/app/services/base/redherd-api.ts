@@ -5,7 +5,7 @@ import { RedHerdWebContext } from './redherd-web';
 import { RedHerdObject, RedHerdEntity, RedHerdRootEndpoint } from '../../bin/model/base/redherd-common';
 import { JwtToken } from '../../bin/model/token';
 import { JSendResponse, JSendResponseInspector } from '../../bin/model/jsend';
-import { Config } from '../../config';
+import { Config } from 'src/app/config';
 import { NotificationsService } from 'angular2-notifications';
 
 

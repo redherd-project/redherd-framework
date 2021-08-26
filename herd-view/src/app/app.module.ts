@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
@@ -25,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs'; 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ImgFallbackModule } from 'ngx-img-fallback';
@@ -32,15 +34,8 @@ import { NavBarComponent } from './controls/nav-bar/nav-bar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { socketioConfig, dbConfig } from './config'
 import { TerminalComponent } from './controls/terminal/terminal.component';
-import { TopicsTableComponent } from './controls/topics-table/topics-table.component';
-import { TopicPanelComponent } from './controls/topic-panel/topic-panel.component';
-import { TopicDetailPanelComponent } from './controls/topic-detail-panel/topic-detail-panel.component';
-import { TypesTableComponent } from './controls/types-table/types-table.component';
-import { TypePanelComponent } from './controls/type-panel/type-panel.component';
-import { TypeDetailPanelComponent } from './controls/type-detail-panel/type-detail-panel.component';
 import { ModulesTableComponent } from './controls/modules-table/modules-table.component';
 import { ModulePanelComponent } from './controls/module-panel/module-panel.component';
-import { ModuleDetailPanelComponent } from './controls/module-detail-panel/module-detail-panel.component';
 import { ProcessesTableComponent } from './controls/processes-table/processes-table.component';
 import { AssetsTableComponent } from './controls/assets-table/assets-table.component';
 import { AssetPanelComponent } from './controls/asset-panel/asset-panel.component';
@@ -53,6 +48,8 @@ import { ModuleWrapperComponent } from './controls/module-wrapper/module-wrapper
 import { LoginFormComponent } from './controls/login-form/login-form.component';
 import { LoginPanelComponent } from './controls/login-panel/login-panel.component';
 import { CaDownloaderComponent } from './controls/ca-downloader/ca-downloader.component';
+import { AssetsBoardComponent } from './controls/assets-board/assets-board.component';
+import { ModuleOutputPanelComponent } from './controls/module-output-panel/module-output-panel.component';
 
 
 @NgModule({
@@ -60,15 +57,8 @@ import { CaDownloaderComponent } from './controls/ca-downloader/ca-downloader.co
     AppComponent,
     NavBarComponent,
     TerminalComponent,
-    TopicsTableComponent,
-    TopicPanelComponent,
-    TopicDetailPanelComponent,
-    TypesTableComponent,
-    TypePanelComponent,
-    TypeDetailPanelComponent,
     ModulesTableComponent,
     ModulePanelComponent,
-    ModuleDetailPanelComponent,
     ProcessesTableComponent,
     AssetsTableComponent,
     AssetPanelComponent,    
@@ -80,7 +70,9 @@ import { CaDownloaderComponent } from './controls/ca-downloader/ca-downloader.co
     ModuleWrapperComponent,
     LoginFormComponent,
     LoginPanelComponent,
-    CaDownloaderComponent
+    CaDownloaderComponent,
+    AssetsBoardComponent,
+    ModuleOutputPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -100,9 +92,11 @@ import { CaDownloaderComponent } from './controls/ca-downloader/ca-downloader.co
     MatInputModule,
     MatCardModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSelectModule,
     MatGridListModule,
     MatExpansionModule,
+    MatTabsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
@@ -117,4 +111,4 @@ import { CaDownloaderComponent } from './controls/ca-downloader/ca-downloader.co
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

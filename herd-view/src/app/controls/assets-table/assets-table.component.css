@@ -1,8 +1,3 @@
-.mat-elevation-z8 {
-  width: 95%;
-  margin: 10px auto;
-}
-
 .mat-card,
 .mat-expansion-panel {
   box-shadow: none;
@@ -38,18 +33,6 @@
   width: 100%;
 }
 
-.online {
-  color: green;
-}
-
-.offline {
-  color: red;
-}
-
-.unknown {
-  color: orange;
-}
-
 .terminal,
 .details {
   color: inherit;
@@ -58,4 +41,33 @@
 .row-icon {
   width: 32px;
   height: 32px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.center {
+  width: 33%;
+  text-align: center;
+}
+
+.left {
+  width: 33%;
+  text-align: left;
+}
+
+.right {
+  width: 33%;
+  text-align: right;
+}
+
+::ng-deep .mat-tab-label {
+  margin: 0;
+  padding: 0;
+}
+
+::ng-deep .mat-tab-label-content {
+  width: 100%;
+  display: contents;
 }

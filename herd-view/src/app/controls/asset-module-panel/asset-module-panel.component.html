@@ -1,7 +1,7 @@
 <mat-list>
   <mat-list-item>
     <span class="spacer"></span>
-    <button mat-icon-button (click)="refresh()"><mat-icon aria-label="Refresh icon">autorenew</mat-icon></button>
+    <button mat-icon-button matTooltip="Refresh" (click)="refresh()"><mat-icon aria-label="Refresh icon">autorenew</mat-icon></button>
   </mat-list-item>
 </mat-list>
 
@@ -43,25 +43,9 @@
     <td mat-cell *matCellDef="let row">{{row.binary}}</td>
   </ng-container>
 
-  <!-- Author Column -->
-  <!--
-  <ng-container matColumnDef="author">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Author</th>
-    <td mat-cell *matCellDef="let row">{{row.author}}</td>
-  </ng-container>
-  -->
-
-  <!-- Version Column -->
-  <!--
-  <ng-container matColumnDef="version">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Version</th>
-    <td mat-cell *matCellDef="let row">{{row.version}}</td>
-  </ng-container>
-  -->
-
   <ng-container matColumnDef="execute">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let row"><a class="execute" routerLink="/assets/{{assetId}}/modules/{{row.name}}"><mat-icon aria-label="Execute icon">play_arrow</mat-icon></a></td>
+    <td mat-cell *matCellDef="let row"><a class="execute" matTooltip="Details" matTooltipPosition="right"><button mat-icon-button (click)="viewModule(row.name)"><mat-icon aria-label="Details icon">menu_open</mat-icon></button></a></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
@@ -69,14 +53,13 @@
 </table>
 
 <mat-card *ngIf="dataReady === false">
-  <!--<mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>-->
-  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
 </mat-card>
 
 <mat-paginator #paginator
     [length]="dataSource?.data.length"
     [pageIndex]="0"
-    [pageSize]="10"
+    [pageSize]="5"
     [pageSizeOptions]="[10, 15, 20, 25]"
     showFirstLastButtons>
 </mat-paginator>

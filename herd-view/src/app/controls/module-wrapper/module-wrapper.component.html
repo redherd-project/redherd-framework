@@ -1,25 +1,13 @@
-<div class="mat-elevation-z8" *ngIf="contentUrlSafe">
-
-    <mat-list>
-
-        <mat-list-item>
-            <mat-icon aria-label="Content icon">open_in_browser</mat-icon><span>Interaction Panel</span>
-            <span class="spacer"></span>
-            <button mat-icon-button (click)="openInNew();"><mat-icon aria-label="New icon">open_in_new</mat-icon></button>
-            <button mat-icon-button (click)="back();"><mat-icon aria-label="Close icon">close</mat-icon></button>
-        </mat-list-item>
-
-    </mat-list>
-
-    <mat-divider></mat-divider>
-
-    <mat-card *ngIf="contentReady === false">
-        <!--<mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>-->
-        <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+<div *ngIf="contentUrlSafe">
+    <mat-card *ngIf="contentReady === false" class="progress-card">
+        <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
     </mat-card>
 
-    <div class="content-wrapper" *ngIf="contentReady === true">
-        <iframe class="content-container" [src]="contentUrlSafe"></iframe>
-    </div>
-
+    <mat-card *ngIf="contentReady === true">
+        <div class="terminal-wrapper">
+            <div class="content-wrapper">
+                <iframe class="content-container" [src]="contentUrlSafe"></iframe>
+            </div>
+        </div>
+    </mat-card>
 </div>

@@ -2,3 +2,31 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-elevation-z8 {
+    /*width: 98%;*/
+    /*margin: 10px auto;*/
+    width: 100%;
+    margin: 0;
+    background-color: rgb(66, 66, 66);
+}
+
+.mat-divider-red {
+    border-top-color: rgb(244, 67, 54);
+}
+    
+.mat-divider-blue {
+    border-top-color: rgb(0, 122, 204);
+}
+
+.online {
+    color: rgb(139, 195, 74);
+}
+
+.offline {
+    color: rgb(244, 67, 54);
+}
+
+.unknown {
+    color: orange;
+}

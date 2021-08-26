@@ -1,8 +1,3 @@
-.mat-elevation-z8 {
-  width: 95%;
-  margin: 10px auto;
-}
-
 .mat-card,
 .mat-expansion-panel {
   box-shadow: none;
@@ -13,6 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.mat-list-base {
+  padding-top: 0;
+  padding-right: 5px;
 }
 
 .mat-input-element {

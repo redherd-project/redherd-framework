@@ -1,10 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Observable, interval } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { interval } from 'rxjs';
+import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { Config } from '../../config';
+import { Config } from 'src/app/config';
 import { Asset } from '../../bin/model/asset';
 import { AssetService } from '../../services/asset.service';
 import { SocketioService } from '../../services/socket-io.service';
@@ -15,8 +17,8 @@ import { Lv2Message } from '../../bin/proto/lv2-message';
   templateUrl: './assets-table.component.html',
   styleUrls: ['./assets-table.component.css']
 })
-export class AssetsTableComponent implements AfterViewInit, OnInit {
-  private currentDisplay: string;
+export class AssetsTableComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+  private messages$: Observable<Lv2Message>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -26,28 +28,26 @@ export class AssetsTableComponent implements AfterViewInit, OnInit {
   dataReady: boolean;
   serverUrl: string;
   imgPlaceholder: string;
-  
+
+  @Output() openAssetTab = new EventEmitter();
+
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
-      //{ name: 'id', showOnMobile: false },
     { name: 'icon', showOnMobile: false },
     { name: 'name', showOnMobile: true },
     { name: 'ip', showOnMobile: false },
     { name: 'status', showOnMobile: true },
-    //{ name: 'fingerprint', showOnMobile: false },
     { name: 'user', showOnMobile: false },
-    //{ name: 'type', showOnMobile: false },
     { name: 'description', showOnMobile: false },
-    { name: 'details', showOnMobile: true },
-    { name: 'terminal', showOnMobile: false }
+    { name: 'details', showOnMobile: true }
   ];
 
-  constructor(private assetService: AssetService,
-              private socketioService: SocketioService,
-              private dbService: NgxIndexedDBService) {
+  constructor(private assetService: AssetService, private socketioService: SocketioService, private dbService: NgxIndexedDBService) {
+    super();
+
     this.assetsStatus = {};
     this.dataReady = false;
-    this.serverUrl = 'https://' + Config.api_server_address + ':' + Config.api_server_port;
+    this.serverUrl = Config.api_server_proto + '://' + Config.api_server_address + ':' + Config.api_server_port;
     this.imgPlaceholder = Config.asset_image_placeholder;
   }
 
@@ -60,8 +60,8 @@ export class AssetsTableComponent implements AfterViewInit, OnInit {
       this.storeAssetsIntoDatabase();
     });
 
+    this.messages$ = this.socketioService.getMessages().pipe(shareReplay(1));
     this.getStatus();
-    this.getDisplayMode();
   }
 
   ngAfterViewInit() {
@@ -70,23 +70,17 @@ export class AssetsTableComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(_) {
-    this.getDisplayMode();
-  }
-
   private getData(): void {
     this.assetService.getAssets()
       .subscribe(assets => {
-        // Filters only joined assets
+        // Show only joined assets
         this.dataSource.data = assets.filter(e => !!e.joined === true);
       });
   }
 
   private getStatus(): void {
-    this.socketioService
-    .getMessages()
-    .subscribe((message: Lv2Message) => {
+    this.messages$
+      .subscribe((message: Lv2Message) => {
         let messageSrc : number = 0;
         let messageType : string = '';
         let status : string = '';
@@ -102,8 +96,7 @@ export class AssetsTableComponent implements AfterViewInit, OnInit {
 
             this.assetsStatus[messageSrc] = { status: status, icon: icon };
         }
-        //console.log(message);
-    }); 
+      }); 
   }
 
   private retrieveAssetsFromDatabase(): void {
@@ -165,18 +158,14 @@ export class AssetsTableComponent implements AfterViewInit, OnInit {
     }
   }
 
-  private getDisplayMode(): void {
-    this.currentDisplay = window.innerWidth >= 768 ? 'desktop' : 'mobile';
+  public openAssetDetails(index: number, name: string): void {
+    this.openAssetTab.emit({ id: index, name: name });
   }
 
-  public  getDisplayedColumns(): string[] {
-    const isMobile = this.currentDisplay === 'mobile';
-
-    const columns = this.displayedColumns
-      .filter(cd => !isMobile || cd.showOnMobile)
-      .map(cd => cd.name);
-
-    return columns;
+  public getDisplayedColumns(): string[] {
+    return this.displayedColumns
+                  .filter(cd => (this.displayMode !== DisplayMode.mobile) || cd.showOnMobile)
+                  .map(cd => cd.name);
   }
 
   public applyFilter(event: Event): void {

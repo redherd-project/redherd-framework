@@ -4,7 +4,7 @@
     <mat-list-item><mat-icon aria-label="Modules icon">extension</mat-icon><span>Modules</span></mat-list-item>
   </mat-list>
 
-  <mat-divider></mat-divider>
+  <mat-divider class="mat-divider-red"></mat-divider>
 
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -67,14 +67,13 @@
   </table>
 
   <mat-card *ngIf="dataReady === false">
-    <!--<mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>-->
-    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </mat-card>
 
   <mat-paginator #paginator
       [length]="dataSource?.data.length"
       [pageIndex]="0"
-      [pageSize]="5"
+      [pageSize]="10"
       [pageSizeOptions]="[5, 10, 15, 20]"
       showFirstLastButtons>
   </mat-paginator>

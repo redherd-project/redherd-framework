@@ -6,16 +6,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.0.4] - Unreleased
 ### Added
+- The backend implementation of multi-asset module execution
+- The new modules/run API endpoint which allows to launch a module on multiple assets at the same time
+- The tabs workspace partial persistence using indexedDB client-side
 
 ### Changed
+- The Herd-View theme from light to dark
+- The FileManager theme from light to dark
+- The overall Herd-View user experience implementing multi tabs workspace and reworking all the interaction mechanics
+- The processKiller job for Windows OS implementing a WMIC-based command
+- The processKiller job for Unix OS implementing a PsKill-based command
 
 ### Removed
 - cifs-utils package installation during debian asset setup
 
 ### Fixed
-- A bug allowing the generation of users with empty username
+- A Herd-CLI bug allowing the generation of users with empty username
+- Herd-View code with first cleanup and rationalization pass
+- The windows_ipconfig module metadata
+- Some minor Herd-View bugs
+- Some minor Herd-Server bugs
 
 ### Security
+
 
 ## [v0.0.3] - 2021-08-19
 ### Added

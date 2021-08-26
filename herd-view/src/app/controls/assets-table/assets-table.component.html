@@ -1,10 +1,4 @@
-<div class="mat-elevation-z8">
-
-  <mat-list>
-    <mat-list-item><mat-icon aria-label="Assets icon">devices</mat-icon><span>Assets</span></mat-list-item>
-  </mat-list>
-
-  <mat-divider></mat-divider>
+<div>
 
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -87,12 +81,7 @@
 
     <ng-container matColumnDef="details">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row"><a class="details" routerLink="/assets/{{row.id}}"><mat-icon aria-label="Details icon">menu_open</mat-icon></a></td>
-    </ng-container>
-
-    <ng-container matColumnDef="terminal">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row"><a class="terminal" routerLink="/terminal/{{row.id}}"><mat-icon aria-label="Terminal icon">computer</mat-icon></a></td>
+      <td mat-cell *matCellDef="let row"><a class="details" matTooltip="Details" matTooltipPosition="right"><button mat-icon-button (click)="openAssetDetails(row.id, row.name)" [disabled]="(!assetsStatus[row.id] || assetsStatus[row.id]['status'] != 'online')"><mat-icon aria-label="Details icon">menu_open</mat-icon></button></a></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
@@ -100,16 +89,15 @@
   </table>
 
   <mat-card *ngIf="dataReady === false">
-    <!--<mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>-->
-    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </mat-card>
 
   <mat-paginator #paginator
       [length]="dataSource?.data.length"
       [pageIndex]="0"
-      [pageSize]="5"
+      [pageSize]="10"
       [pageSizeOptions]="[5, 10, 15, 20]"
       showFirstLastButtons>
   </mat-paginator>
-
+  
 </div>

@@ -7,7 +7,7 @@ class InputValidator
         let result = false;
         try
         {
-            if (regex.test(value))
+            if (value && regex.test(value))
             {
                 result = true;
             }

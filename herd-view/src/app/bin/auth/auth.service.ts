@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { Config } from '../../config';
+import { Config } from 'src/app/config';
 import { User } from '../model/user';
 import { JwtToken } from '../model/token';
 import { RedHerdAuthProvider } from '../../services/base/redherd-auth-provider';

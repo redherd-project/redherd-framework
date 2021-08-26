@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit, ViewChild, EventEmitter, Input, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
 import { Module } from '../../bin/model/module';
 import { AssetService } from '../../services/asset.service';
 
@@ -11,15 +11,16 @@ import { AssetService } from '../../services/asset.service';
   templateUrl: './asset-module-panel.component.html',
   styleUrls: ['./asset-module-panel.component.css']
 })
-export class AssetModulePanelComponent implements AfterViewInit, OnInit {
-  private currentDisplay: string;
+export class AssetModulePanelComponent extends DisplayedComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<Module>;
   dataSource: MatTableDataSource<Module>;
   dataReady: boolean = false;
-  assetId: number;
+
+  @Input() assetId: number;
+  @Output() moduleViewEnabled = new EventEmitter<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
@@ -28,20 +29,15 @@ export class AssetModulePanelComponent implements AfterViewInit, OnInit {
     { name: 'title', showOnMobile: false },
     { name: 'description', showOnMobile: false },
     { name: 'binary', showOnMobile: false },
-    // { name: 'author', showOnMobile: false },
-    // { name: 'version', showOnMobile: false },
     { name: 'execute', showOnMobile: true }
   ];
 
-  constructor(
-    private route: ActivatedRoute,
-    private assetService: AssetService) {
-      this.assetId = +this.route.snapshot.paramMap.get('id');
-    }
+  constructor(private assetService: AssetService) {
+    super();
+  }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
-    this.getDisplayMode();
     this.getData();
   }
 
@@ -51,35 +47,26 @@ export class AssetModulePanelComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(_) {
-    this.getDisplayMode();
-  }
-
   private getData(): void {
-    this.assetService.getModules(this.assetId)
+    this.assetService.getModules(+this.assetId)
       .subscribe(modules => {
         this.dataSource.data = modules;
         this.dataReady = true;
       });
   }
 
-  private getDisplayMode(): void {
-    this.currentDisplay = window.innerWidth >= 768 ? 'desktop' : 'mobile';
-  }
-
-  public getDisplayedColumns(): string[] {
-    const isMobile = this.currentDisplay === 'mobile';
-
-    const columns = this.displayedColumns
-    .filter(cd => !isMobile || cd.showOnMobile)
-    .map(cd => cd.name);
-
-    return columns;
+  public viewModule(moduleName): void {
+    this.moduleViewEnabled.emit({ assetId: +this.assetId, module: moduleName });
   }
 
   public refresh(): void {
     this.getData();
+  }
+
+  public getDisplayedColumns(): string[] {
+    return this.displayedColumns
+                  .filter(cd => (this.displayMode !== DisplayMode.mobile) || cd.showOnMobile)
+                  .map(cd => cd.name);
   }
 
   public applyFilter(event: Event): void {

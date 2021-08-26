@@ -2,6 +2,11 @@
 
 const Job = require('./rdhd-job-base_job');
 
+const UnixKillMode = {
+	PKILL: "PKILL",
+	KILLALL: "KILLALL"
+}
+
 class UnixJob
 {
     static get os() { return "UNIX"; }
@@ -12,10 +17,19 @@ class UnixJob
     }
     // ******************************
 
-    static killAll(asset, code, binary, sync = false, whatIf = false, wsServer = 'http://127.0.0.1:3001')
+    static killAll(asset, code, binary, sync = false, whatIf = false, wsServer = 'http://127.0.0.1:3001', killMode = UnixKillMode.PKILL)
     {
-        let task = "sudo killall -9 " + binary;
-
+        let task = "";
+        switch (killMode.toUpperCase())
+        {
+            case UnixKillMode.KILLALL:
+                task = "sudo killall -9 " + binary;
+                break;
+            case UnixKillMode.PKILL:
+            default:
+                task = "sudo pkill -9 " + binary;
+                break;
+        }
         UnixJob.do(asset, code, task, sync, whatIf, wsServer);
     }
     // ******************************
