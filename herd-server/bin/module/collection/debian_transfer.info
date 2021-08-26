@@ -1,7 +1,7 @@
 {
-    "name": "debian_spawnto",
-    "title": "SpawnTo",
-    "description": "Spawn asset to another RedHerd instance",
+    "name": "debian_transfer",
+    "title": "Transfer",
+    "description": "Transfer asset to another RedHerd infrastructure",
     "binary": "",
     "author": "b4gh33r4 & peco602",
     "topic": "debian_service",
