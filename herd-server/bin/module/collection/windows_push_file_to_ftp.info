@@ -2,7 +2,7 @@
     "name": "windows_push_file_to_ftp",
     "title": "Push a file",
     "description": "Push a file to the FTP server",
-    "binary": "powershell",
+    "binary": "",
     "author": "b4gh33r4 & peco602",
     "topic": "windows_service",
     "version": "1.0",

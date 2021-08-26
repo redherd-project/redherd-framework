@@ -2,7 +2,7 @@
     "name": "debian_gophish",
     "title": "Gophish",
     "description": "Gophish phishing suite",
-    "binary": "docker",
+    "binary": "",
     "author": "b4gh33r4 & peco602",
     "topic": "debian_delivery",
     "version": "1.0",

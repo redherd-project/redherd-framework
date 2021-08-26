@@ -2,7 +2,7 @@
     "name": "debian_covenant",
     "title": "Covenant Framework",
     "description": "Covenant Framework",
-    "binary": "docker",
+    "binary": "",
     "author": "b4gh33r4 & peco602",
     "topic": "debian_command_and_control",
     "version": "1.0",

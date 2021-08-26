@@ -2,7 +2,7 @@
     "name": "windows_sync_ftp_files",
     "title": "Sync FTP",
     "description": "Sync FTP files",
-    "binary": "powershell",
+    "binary": "",
     "author": "b4gh33r4 & peco602",
     "topic": "windows_service",
     "version": "1.0",

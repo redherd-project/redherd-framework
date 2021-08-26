@@ -2,7 +2,7 @@
     "name": "debian_theharvester",
     "title": "theHarvester",
     "description": "Passive information gathering about a domain or a company",
-    "binary": "python3",
+    "binary": "theHarvester.py",
     "author": "b4gh33r4 & peco602",
     "topic": "debian_reconnaissance",
     "version": "1.0",
