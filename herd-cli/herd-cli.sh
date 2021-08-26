@@ -49,7 +49,7 @@ function ShowHelp {
         echo "usage: $0 endpoint (-s|--server) VPNSRV_PUBLIC_HOSTAME (-o|--operating-system) OS_TYPE (-m|--mode) MODE (-i|--index) INDEX"
         echo
         echo "     -s |--server                 Public FQDN or ip used for vpn connection"
-        echo "     -o |--operating-system       Target Operating System (windows|macos|debian|android)"
+        echo "     -o |--operating-system       Target Operating System (windows|macos|debian|android|docker)"
         echo "     -m |--mode                   Execution mode (install|remove|client)"
         echo "     -i |--index                  Index of the requested credentials (1-65536)"
         echo "     -n |--no-logo                Do not show banner"
@@ -287,6 +287,47 @@ EOM
     fi
 }
 
+function getDockerOneliner {
+    ### Docker
+    if [ "$MODE" != "client" ]; then
+
+        if [ "$MODE" == "install" ]; then
+read -r -d '' DOCKER << EOM
+sudo docker run -d --rm --cap-add=NET_ADMIN \
+--device /dev/net/tun \
+-e DSTRSRV_PUBLIC_ADDRESS="$PUBLIC_ADDRESS" \
+-e USERNAME="$USERNAME" \
+-e PASSWORD="$PASSWORD" \
+--privileged=true \
+--network host \
+--name redherd-asset redherd/asset
+EOM
+        else
+read -r -d '' DOCKER << EOM
+sudo docker stop redherd-asset
+EOM
+        fi
+
+        echo "${DOCKER}"
+    
+    else
+    
+read -r -d '' DOCKER << EOM
+sudo docker run -d --rm --cap-add=NET_ADMIN \
+--device /dev/net/tun \
+-e DSTRSRV_PUBLIC_ADDRESS="$PUBLIC_ADDRESS" \
+-e USERNAME="$USERNAME" \
+-e PASSWORD="$PASSWORD" \
+--network host \
+-v $(pwd)/redherd-certificates:/usr/local/share/ca-certificates \
+--name redherd-client redherd/client
+EOM
+        echo "${DOCKER}"
+        
+    fi
+}
+
+
 function restartHerdServer {
     RELOAD=$(docker restart $HERDSRV_NAME)
 
@@ -431,6 +472,9 @@ function executeEndpointRealm {
             ;;
         macos)
             getMacosOneliner
+            ;;
+        docker)
+            getDockerOneliner
             ;;
         *)
             ShowHelp
