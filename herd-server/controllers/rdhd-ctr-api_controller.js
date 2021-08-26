@@ -1031,7 +1031,7 @@ exports.runModuleApi = function runModuleApi(assetId, moduleName, moduleData, to
             }
             else
             {
-                result.push(JSend.fail({ reason: "Asset not found" }));
+                result = JSend.fail({ reason: "Asset not found" });
             }
         }
         else if (!isValidAssetId)
