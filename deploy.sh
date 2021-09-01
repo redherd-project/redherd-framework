@@ -593,3 +593,10 @@ echo -e "$GREEN$BOLD [*] Framework context initialization $RESET"
 
 $HERDCLI_INSTALLATION_PATH/herd-cli system --init
 ###########################################################
+
+###########################################################
+# MODULES FOLDER ALIAS CREATION
+echo -e "$GREEN$BOLD [*] Modules folder alias creation $RESET"
+
+alias herd-modules="cd $(pwd)/herd-server/bin/module/collection/"
+###########################################################

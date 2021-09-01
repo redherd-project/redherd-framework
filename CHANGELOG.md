@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The backend implementation of multi-asset module execution
 - The new modules/run API endpoint which allows to launch a module on multiple assets at the same time
 - The tabs workspace partial persistence using indexedDB client-side
+- The "herd-modules" alias to modules collection folder
+- The Herd-CLI function to disable assets
+- Asset transfer modules
+- Docker asset
+- Docker client
 
 ### Changed
 - The Herd-View theme from light to dark
@@ -16,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The overall Herd-View user experience implementing multi tabs workspace and reworking all the interaction mechanics
 - The processKiller job for Windows OS implementing a WMIC-based command
 - The processKiller job for Unix OS implementing a PsKill-based command
+- Module binaries for new process killer logic
 
 ### Removed
 - cifs-utils package installation during debian asset setup

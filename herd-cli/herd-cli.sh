@@ -41,6 +41,7 @@ function ShowHelp {
         echo "     endpoint             Realm used to generate the endpoint initialization one-liner"
         echo "     server               Realm used to manage the herd-server"
         echo "     user                 Realm used to manage RedHerd users"
+        echo "     asset                Realm used to manage RedHerd assets"
         echo "     system               Realm used to manage the system context"
         echo "     help                 This help"
         echo
@@ -64,6 +65,10 @@ function ShowHelp {
         echo "     -r |--remove                 Delete a specific user"
         echo "     -d |--disable                Disable a specific user"
         echo "     -e |--enable                 Enable a specific user"
+        echo
+        echo "usage: $0 asset [-d|--disable] NAME"
+        echo
+        echo "     -d |--disable                Disable a specific asset"
         echo
         echo "usage: $0 system [-i|--init]"
         echo
@@ -405,6 +410,35 @@ function setUserStatusApi {
     fi
 }
 
+
+function getAssetIdApi {
+    ASSETID=$(sqlite3 $HERDSRV_DB "SELECT id FROM main.assets WHERE name=\"${1}\"")
+
+    if [ -z $ASSETID ]; then
+        echo "-1"
+    else
+        echo "$ASSETID"
+    fi
+}
+
+function setAssetStatusApi {
+    ASSETID=$(getAssetIdApi ${1})
+
+    if [ "$ASSETID" -eq "-1" ]; then
+        echo -e "$RED$BOLD [!] Unable to retrieve the requested asset $RESET"
+        exit 1
+    fi
+
+    echo -e "$YELLOW$BOLD [-] Attempting to modify the asset status $RESET"
+    RESULT=$(sqlite3 $HERDSRV_DB "UPDATE main.assets SET joined=\"${2}\" WHERE id=\"$ASSETID\"")
+
+    if [ -z $RESULT ]; then
+        echo -e "$GREEN$BOLD [!] Operation successfully completed $RESET"
+    else
+        echo -e "$RED$BOLD [!] Operation failed $RESET"
+    fi
+}
+
 ### Function deprecated due to database entity rework
 #
 # function initializeSystemContext {
@@ -546,6 +580,29 @@ function executeUserRealm {
     fi
 }
 
+function executeAssetRealm {
+    ### Realm: asset
+    if [ "$UID" -eq "0" ]; then
+        key="${1}"
+        case ${key} in
+            -d|--disable)
+                setAssetStatusApi ${2} 0
+                ;;
+            *)
+                ShowHelp
+                exit 1
+                ;;
+        esac
+        
+        if [ "$NOLOGO" != "True" ]; then
+            echo
+        fi
+    else
+        echo -e "$YELLOW$BOLD [-] Superuser privileges required $RESET"
+        exit 1
+    fi
+}
+
 function executeSystemRealm {
     ### Realm: user
     if [ "$UID" -eq "0" ]; then
@@ -588,6 +645,11 @@ while [[ $# -gt 0 ]]; do
     user)
         shift
         executeUserRealm $@
+        exit 0
+        ;;
+    asset)
+        shift
+        executeAssetRealm $@
         exit 0
         ;;
     system)
