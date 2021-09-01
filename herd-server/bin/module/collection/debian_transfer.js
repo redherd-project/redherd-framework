@@ -2,18 +2,20 @@
 
 const LinuxModule = require('../base/rdhd-mod-base_linux_module');
 
-// moduleCode: debian_spawnto
-class DebianSpawnTo extends LinuxModule
+// moduleCode: debian_transfer
+class DebianTransfer extends LinuxModule
 {
     // ************************************************************
-    //  Ping module
+    //  Transfer module
     // ************************************************************
-    // target   :   IP address or FQDN to ping
+    // public_ip   :   IP address or FQDN of the new distribution server
+    // username    :   Username
+    // password    :   Password
     // ************************************************************
 
     constructor(asset, context, session, wsServer, token)
     {
-        super(asset, "debian_spawnto", session, wsServer, token);
+        super(asset, "debian_transfer", session, wsServer, token);
 
         //  POST parameters
         // ******************************
@@ -40,7 +42,7 @@ class DebianSpawnTo extends LinuxModule
                             export USERNAME=" + this.username + " && \
                             echo \"PASSWORD=" + this.password + "\" >> /etc/environment && \
                             export PASSWORD=" + this.password + " && \
-                            rm -f $INSTALLATION_PATH/config.ovpn /tmp/redherd.lock && killall openvpn sshd; \
+                            rm -f $INSTALLATION_PATH/config.ovpn /tmp/redherd.lock && supervisorctl update && supervisorctl reload; \
                         else \
                             nohup sudo bash -c '" + this.envDataDir + "/../redherd.sh remove && curl -k -u " + this.username + ":" + this.password + " https://" + this.public_ip + ":8443/" + this.fingerprint + "/debian_asset_setup.sh > /tmp/script.sh && chmod +x /tmp/script.sh && /tmp/script.sh install && rm -rf /tmp/script.sh'; \
                         fi";
@@ -58,10 +60,16 @@ class DebianSpawnTo extends LinuxModule
 
     validate()
     {
-        return true;
+        if ((this.public_ip) && Validator.validateHost(this.public_ip) &&
+            (this.username) && Validator.validateUser(this.username) &&
+            (this.password))
+        {
+            return true;
+        }
+        return false;
     }
 }
 
-module.exports = DebianSpawnTo
+module.exports = DebianTransfer
 
 

@@ -1,10 +1,10 @@
 {
-    "name": "debian_transfer",
+    "name": "macos_transfer",
     "title": "Transfer",
     "description": "Transfer asset to another RedHerd infrastructure",
     "binary": "",
     "author": "b4gh33r4 & peco602",
-    "topic": "debian_service",
+    "topic": "macos_service",
     "version": "1.0",
     "params": [
             {"label": "Public IP", "name": "public_ip", "type": "string"},
