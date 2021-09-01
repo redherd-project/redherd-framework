@@ -34,7 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Some minor Herd-Server bugs
 
 ### Security
-
+- Fixed Herd-Server libraries vulnerabilities
+- Fixed Herd-View libraries vulnerabilities
 
 ## [v0.0.3] - 2021-08-19
 ### Added
