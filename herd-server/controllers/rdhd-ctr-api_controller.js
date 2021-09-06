@@ -1067,75 +1067,84 @@ exports.runModuleMultiAssetApi = function runModuleMultiAssetApi(moduleName, mod
             if (moduleData.assets && (moduleData.assets.length > 0))
             {
                 result = [];
-                for (let i in moduleData.assets)
+                let assets = Utils.changeNumericDuplicateSign(moduleData.assets);
+
+                for (let i in assets)
                 {
                     try
                     {
-                        let isValidAssetId = Validator.validateId(moduleData.assets[i]);
-
-                        if (isValidAssetId)
+                        if (Math.sign(assets[i]) > 0)
                         {
-                            const Module = require(Config.modules_directory + moduleName);
+                            let isValidAssetId = Validator.validateId(assets[i]);
 
-                            let session = Crypto.createHash("md5").update(Math.random().toString()).digest("hex");
-                            let asset = model.getAssetById(moduleData.assets[i]);
-                            
-                            if (!Utils.isEmpty(asset))
+                            if (isValidAssetId)
                             {
-                                let m = new Module(asset.present(), moduleData.params, session, msgServer, token);
+                                const Module = require(Config.modules_directory + moduleName);
 
-                                let assetTopics = asset.topics;
-                                let moduleTopic = model.getModuleByName(moduleName).topic;
-                    
-                                if (assetTopics.some(e => e.name === moduleTopic))
+                                let session = Crypto.createHash("md5").update(Math.random().toString()).digest("hex");
+                                let asset = model.getAssetById(assets[i]);
+                                
+                                if (!Utils.isEmpty(asset))
                                 {
-                                    switch (moduleData.mode.toUpperCase())
+                                    let m = new Module(asset.present(), moduleData.params, session, msgServer, token);
+
+                                    let assetTopics = asset.topics;
+                                    let moduleTopic = model.getModuleByName(moduleName).topic;
+                        
+                                    if (assetTopics.some(e => e.name === moduleTopic))
                                     {
-                                        case "EXECUTE":
-                                            if (Utils.isFunction(m, "run"))
-                                            {
-                                                m.run();
-                                                result.push(JSend.success({ instance: { session: session, result: null } }));
-                                            }
-                                            else
-                                            {
-                                                result.push(JSend.fail({ reason: "Not Implemented" }));
-                                            }
-                                            break;
-                                        case "CONFIGURE":
-                                            if (Utils.isFunction(m, "configure"))
-                                            {
-                                                m.configure();
-                                                result.push(JSend.success({ instance: { session: session, result: null } }));
-                                            }
-                                            else
-                                            {
-                                                result.push(JSend.fail({ reason: "Not Implemented" }));
-                                            }
-                                            break;
-                                        default:
-                                            result.push(JSend.fail({ reason: "Incompatible mode provided" }));
-                                            break;
+                                        switch (moduleData.mode.toUpperCase())
+                                        {
+                                            case "EXECUTE":
+                                                if (Utils.isFunction(m, "run"))
+                                                {
+                                                    m.run();
+                                                    result.push(JSend.success({ instance: { session: session, result: null } }));
+                                                }
+                                                else
+                                                {
+                                                    result.push(JSend.fail({ reason: "Not Implemented" }));
+                                                }
+                                                break;
+                                            case "CONFIGURE":
+                                                if (Utils.isFunction(m, "configure"))
+                                                {
+                                                    m.configure();
+                                                    result.push(JSend.success({ instance: { session: session, result: null } }));
+                                                }
+                                                else
+                                                {
+                                                    result.push(JSend.fail({ reason: "Not Implemented" }));
+                                                }
+                                                break;
+                                            default:
+                                                result.push(JSend.fail({ reason: "Incompatible mode provided" }));
+                                                break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        result.push(JSend.fail({ reason: "Module not available" }));
+                                    }
+
+                                    if (result[result.length - 1].status == "success")
+                                    {
+                                        model.addProcess({ module: moduleName, id_asset: asset.id, session: session });
                                     }
                                 }
                                 else
                                 {
-                                    result.push(JSend.fail({ reason: "Module not available" }));
-                                }
-
-                                if (result[result.length - 1].status == "success")
-                                {
-                                    model.addProcess({ module: moduleName, id_asset: asset.id, session: session });
+                                    result.push(JSend.fail({ reason: "Asset not found" }));
                                 }
                             }
                             else
                             {
-                                result.push(JSend.fail({ reason: "Asset not found" }));
+                                result.push(JSend.fail({ reason: "Invalid assetId provided" }));
                             }
                         }
                         else
                         {
-                            result.push(JSend.fail({ reason: "Invalid assetId provided" }));
+                            result.push(JSend.fail({ reason: "Duplicated assetId" }));
                         }
                     }
                     catch (e)
