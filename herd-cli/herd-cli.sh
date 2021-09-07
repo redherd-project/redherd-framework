@@ -66,9 +66,12 @@ function ShowHelp {
         echo "     -d |--disable                Disable a specific user"
         echo "     -e |--enable                 Enable a specific user"
         echo
-        echo "usage: $0 asset [-d|--disable] NAME"
+        echo "usage: $0 asset ([-d|--disable] NAME | [-r|--revoke] CN)"
         echo
         echo "     -d |--disable                Disable a specific asset"
+        echo "     -r |--revoke                 Revoke client ovpn certificate associated to an asset"
+        echo "                                  [!] Tip: the CN  value is the Distribution-Server username"
+        echo "                                           associated to the asset in the endpoint one-liner"
         echo
         echo "usage: $0 system [-i|--init]"
         echo
@@ -79,9 +82,20 @@ function ShowHelp {
 ###########################################################
 # VARIABLES
 REDHERD_PATH="$(dirname $(dirname $(readlink -f $0)))"
+
 HERDSRV_NAME="herdsrv"
 HERDSRV_ADDRESS="10.10.0.3"
 HERDSRV_DB="$REDHERD_PATH/herd-server/models/data/redherd.sqlite3"
+
+OVPNSRV_NAME="ovpnsrv"
+OVPN_DATA="ovpn-data-server"
+
+DSTRSRV_NAME="dstrsrv"
+DSTRSRV_PATH="$REDHERD_PATH/distrib-server"
+DSTRSRV_AUTH_PATH="$REDHERD_PATH/distrib-server/auth"
+DSTRSRV_CONF_PATH="$REDHERD_PATH/distrib-server/conf/distribution.conf"
+OVPN_CONFIG_PATH="$REDHERD_PATH/ovpn-configs"
+PLAIN_FILE_PATH="$REDHERD_PATH/distrib-server/plain"
 
 PUBLIC_ADDRESS="NONE"
 OS_TYPE="NONE"
@@ -89,7 +103,6 @@ MODE="install"
 INDEX=0
 NOLOGO="False"
 
-PLAIN_FILE_PATH="$REDHERD_PATH/distrib-server/plain"
 ###########################################################
 
 
@@ -332,7 +345,6 @@ EOM
     fi
 }
 
-
 function restartHerdServer {
     RELOAD=$(docker restart $HERDSRV_NAME)
 
@@ -410,7 +422,6 @@ function setUserStatusApi {
     fi
 }
 
-
 function getAssetIdApi {
     ASSETID=$(sqlite3 $HERDSRV_DB "SELECT id FROM main.assets WHERE name=\"${1}\"")
 
@@ -439,34 +450,57 @@ function setAssetStatusApi {
     fi
 }
 
-### Function deprecated due to database entity rework
-#
-# function initializeSystemContext {
-#     SEED=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | md5sum | cut -f1 -d" ")
-#
-#     echo -e "$YELLOW$BOLD [-] Attempting to initialize system context $RESET"
-#     RESULT=$(sqlite3 $HERDSRV_DB "INSERT INTO main.system (seed, dob, current) VALUES (\"${SEED}\", DateTime('now'), 2)")
-#
-#     if [ -z $RESULT ]; then
-#         CLEANUP=$(sqlite3 $HERDSRV_DB "UPDATE main.system set current=0 WHERE current=1")
-#
-#         if [ -z $CLEANUP ]; then
-#             CURRENT=$(sqlite3 $HERDSRV_DB "UPDATE main.system set current=1 WHERE current=2")
-#
-#             if [ -z $CURRENT ]; then
-#                 echo -e "$GREEN$BOLD [!] Operation successfully completed $RESET"
-#             else
-#                 echo -e "$RED$BOLD [!] Operation failed: unable to activate the current context $RESET"
-#             fi
-#         else
-#             echo -e "$RED$BOLD [!] Operation failed: unable to dispose the old context $RESET"
-#         fi
-#     else
-#         echo -e "$RED$BOLD [!] Operation failed: unable to initialize the new context $RESET"
-#     fi
-# }
-#
-###
+function revokeClientCertApi {
+    echo -e "$YELLOW$BOLD [-] Attempting to revoke client certificate $RESET"
+
+    RESULT=$(docker run -v $OVPN_DATA:/etc/openvpn \
+        -v /etc/localtime:/etc/localtime:ro \
+        --log-driver=none \
+        --rm $OVPNSRV_NAME:latest \
+        ovpn_revokeclient ${1} 2>&1)
+
+    if [[ -z $(echo -e "$RESULT" | grep "Data Base Updated") ]]; then
+        echo -e "$RED$BOLD [!] Certificate revocation failed $RESET"
+    else
+        RESTART=$(docker restart $OVPNSRV_NAME)
+
+        if [ "$RESTART" == "$OVPNSRV_NAME" ]; then
+            echo -e "$GREEN$BOLD [!] Certificate successfully revoked $RESET"
+
+            revokeDistribUserCredsApi ${1}
+        else
+            echo -e "$RED$BOLD [!] Incomplete certificate revocation: failed to restart $OVPNSRV_NAME $RESET"
+        fi
+    fi
+}
+
+function revokeDistribUserCredsApi {
+    echo -e "$YELLOW$BOLD [-] Attempting to revoke Distribution-Server credentials $RESET"
+
+    RESULT_PLAIN=$(sed -i "/${1}/d" $PLAIN_FILE_PATH 2>&1)
+
+    if [ -z "$RESULT_PLAIN" ]; then
+        HASHED_USERNAME=$(echo -n ${1} | md5sum | cut -f1 -d" ")
+
+        RESULT_CONF=$(sed -i "/$HASHED_USERNAME/d" $DSTRSRV_CONF_PATH 2>&1)
+        RESULT_AUTH=$(rm -rf "$DSTRSRV_AUTH_PATH/$HASHED_USERNAME.htpasswd" 2>&1)
+        RESULT_OVPN=$(rm -rf "$OVPN_CONFIG_PATH/$HASHED_USERNAME" 2>&1)
+
+        if [ -z "$RESULT_CONF" ] && [ -z "$RESULT_AUTH" ] && [ -z "$RESULT_OVPN" ]; then
+            RESTART=$(docker restart $DSTRSRV_NAME)
+
+            if [ "$RESTART" == "$DSTRSRV_NAME" ]; then
+                echo -e "$GREEN$BOLD [!] Credentials successfully revoked $RESET"
+            else
+                echo -e "$RED$BOLD [!] Incomplete credentials revocation: failed to restart $DSTRSRV_NAME $RESET"
+            fi
+        else
+            echo -e "$RED$BOLD [!] Distribution-Server config and file cleanup failed $RESET"
+        fi
+    else
+        echo -e "$RED$BOLD [!] Credentials revocation failed $RESET"
+    fi
+}
 
 function initializeSystemContext {
     SEED=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | md5sum | cut -f1 -d" ")
@@ -567,9 +601,6 @@ function executeUserRealm {
                 exit 1
                 ;;
         esac
-        
-        #echo -e "$YELLOW$BOLD [-] Restarting herd-server container $RESET"
-        #restartHerdServer
 
         if [ "$NOLOGO" != "True" ]; then
             echo
@@ -587,6 +618,9 @@ function executeAssetRealm {
         case ${key} in
             -d|--disable)
                 setAssetStatusApi ${2} 0
+                ;;
+            -r|--revoke)
+                revokeClientCertApi ${2}
                 ;;
             *)
                 ShowHelp
@@ -629,41 +663,45 @@ function executeSystemRealm {
 ###########################################################
 # MAIN
 
-while [[ $# -gt 0 ]]; do
-    key="${1}"
-    case ${key} in
-    endpoint)
-        shift
-        executeEndpointRealm $@
-        exit 0
-        ;;
-    server)
-        shift
-        executeServerRealm $@
-        exit 0
-        ;;
-    user)
-        shift
-        executeUserRealm $@
-        exit 0
-        ;;
-    asset)
-        shift
-        executeAssetRealm $@
-        exit 0
-        ;;
-    system)
-        shift
-        executeSystemRealm $@
-        exit 0
-        ;;
-    help)
-        ShowHelp
-        exit 0
-        ;;
-    *)
-        ShowHelp
-        exit 1
-        ;;
-    esac
-done
+if [[ $# -gt 0 ]]; then
+    while [[ $# -gt 0 ]]; do
+        key="${1}"
+        case ${key} in
+        endpoint)
+            shift
+            executeEndpointRealm $@
+            exit 0
+            ;;
+        server)
+            shift
+            executeServerRealm $@
+            exit 0
+            ;;
+        user)
+            shift
+            executeUserRealm $@
+            exit 0
+            ;;
+        asset)
+            shift
+            executeAssetRealm $@
+            exit 0
+            ;;
+        system)
+            shift
+            executeSystemRealm $@
+            exit 0
+            ;;
+        help)
+            ShowHelp
+            exit 0
+            ;;
+        *)
+            ShowHelp
+            exit 1
+            ;;
+        esac
+    done
+else
+    ShowHelp
+fi
