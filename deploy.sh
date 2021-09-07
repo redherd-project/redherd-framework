@@ -70,11 +70,17 @@ function DestroyInfrastructure {
         docker rm $DOCKER_DSTRSRV_NAME --force
         docker rmi $DOCKER_DSTRSRV_NAME:latest --force
 
-        docker container prune --force
+        docker system prune --force
 
         docker network rm $DOCKER_NET
 
         docker volume rm $OVPN_DATA
+
+        echo -e "$YELLOW$BOLD [*] Uninstalling Herd-CLI $RESET"
+        rm -f $HERDCLI_INSTALLATION_PATH/herd-cli
+
+        echo -e "$YELLOW$BOLD [*] Removing herd-modules alias $RESET"
+        sed -i '/^alias\ herd-modules/d' /etc/bash.bashrc
 }
 
 
@@ -583,8 +589,15 @@ docker run --name $DOCKER_DSTRSRV_NAME \
 # HERD CLI
 
 #sed -i 's|REDHERD_PATH=.*|REDHERD_PATH="'$(pwd)'"|g' $HERDCLI_PATH
-rm -f $HERDCLI_INSTALLATION_PATH/herd-cli
 ln -s $HERDCLI_PATH $HERDCLI_INSTALLATION_PATH/herd-cli
+###########################################################
+
+###########################################################
+# MODULES FOLDER ALIAS CREATION
+echo -e "$GREEN$BOLD [*] Modules folder alias creation $RESET"
+
+echo alias herd-modules=\"cd $(pwd)/herd-server/bin/module/collection/\" >> /etc/bash.bashrc
+source /etc/bash.bashrc
 ###########################################################
 
 ###########################################################
@@ -592,11 +605,4 @@ ln -s $HERDCLI_PATH $HERDCLI_INSTALLATION_PATH/herd-cli
 echo -e "$GREEN$BOLD [*] Framework context initialization $RESET"
 
 $HERDCLI_INSTALLATION_PATH/herd-cli system --init
-###########################################################
-
-###########################################################
-# MODULES FOLDER ALIAS CREATION
-echo -e "$GREEN$BOLD [*] Modules folder alias creation $RESET"
-
-alias herd-modules="cd $(pwd)/herd-server/bin/module/collection/"
 ###########################################################
