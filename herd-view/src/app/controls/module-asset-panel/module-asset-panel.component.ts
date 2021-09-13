@@ -21,6 +21,8 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<Topic>;
   dataSource: MatTableDataSource<Topic>;
+
+  selectedAll: boolean = false;
   dataReady: boolean = false;
 
   @Input() moduleName: string;
@@ -30,7 +32,6 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
     { name: 'attached', showOnMobile: true },
-    { name: 'id', showOnMobile: true },
     { name: 'name', showOnMobile: true },
     { name: 'ip', showOnMobile: false },
     { name: 'user', showOnMobile: false },
@@ -55,6 +56,8 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
   private getData(): void {
     this.assetService.getAssets()
       .subscribe(assets => {
+        this.selectedAll = false;
+
         let displayableAssets = assets.filter(e => !!e.joined === true && e.type.name === this.moduleName.split('_')[0]);
 
         this.attachableAssets = [];
@@ -74,6 +77,7 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
     else {
       this.attachableAssets.forEach(asset => asset['attached'] = false);
     }
+    this.selectedAll = event.checked;
   }
 
   public refresh(): void {

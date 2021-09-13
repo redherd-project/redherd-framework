@@ -17,14 +17,8 @@
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- IsAttached Column -->
     <ng-container matColumnDef="attached">
-      <th mat-header-cell *matHeaderCellDef><mat-checkbox color="primary" (change)="selectAll($event)"></mat-checkbox></th>
+      <th mat-header-cell *matHeaderCellDef><mat-checkbox color="primary" (change)="selectAll($event)" [(ngModel)]="selectedAll"></mat-checkbox></th>
       <td mat-cell *matCellDef="let row"><mat-checkbox color="primary" [(ngModel)]="row.attached"></mat-checkbox></td>
-    </ng-container>
-  
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
     </ng-container>
 
     <!-- Name Column -->
@@ -35,7 +29,7 @@
 
     <!-- Ip Column -->
     <ng-container matColumnDef="ip">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ip</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>IP</th>
         <td mat-cell *matCellDef="let row">{{row.ip}}</td>
     </ng-container>
 

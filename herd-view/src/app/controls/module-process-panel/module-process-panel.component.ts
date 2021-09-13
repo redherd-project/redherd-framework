@@ -6,6 +6,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { Process } from '../../bin/model/process';
 import { ProcessService } from '../../services/process.service';
+import { AssetService } from '../../services/asset.service';
 import { Config } from 'src/app/config';
 
 @Component({
@@ -27,14 +28,14 @@ export class ModuleProcessPanelComponent extends AdaptiveComponent implements Af
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
-    { name: 'id', showOnMobile: true },
     { name: 'module', showOnMobile: true },
     { name: 'session', showOnMobile: false },
+    { name: 'asset', showOnMobile: true },
     { name: 'resume', showOnMobile: true },
     { name: 'remove', showOnMobile: true }
   ];
 
-  constructor(private processService: ProcessService) {
+  constructor(private processService: ProcessService, private assetService: AssetService) {
     super();
   }
 
@@ -56,11 +57,21 @@ export class ModuleProcessPanelComponent extends AdaptiveComponent implements Af
 
   private getData(): void {
     this.processService.getProcesses()
-      .subscribe(processes => {
-        this.processes = processes.filter(p => p.module === this.moduleName);
-        this.dataSource.data = this.processes;
-        this.dataReady = true; 
-      });
+    .subscribe(processes => {
+      this.assetService.getAssets()
+        .subscribe(assets => {
+          let displayable: any[] = [];
+          assets.forEach(asset => {
+            processes.filter(p => p.module === this.moduleName).forEach(process => {
+              if (process.id_asset == asset.id) {
+                displayable.push({ id: process.id, module: process.module, session: process.session, asset: asset.name });
+              }
+            });
+          });
+          this.dataSource.data = displayable;
+          this.dataReady = true;
+        });
+    });
   }
  
   public refresh(): void {

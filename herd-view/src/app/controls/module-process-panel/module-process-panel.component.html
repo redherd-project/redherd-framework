@@ -18,19 +18,19 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Module</th>
       <td mat-cell *matCellDef="let row">{{row.module}}</td>
     </ng-container>
-  
-    <!-- Asset ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset ID</th>
-      <td mat-cell *matCellDef="let row">{{row.id_asset}}</td>
-    </ng-container>
 
     <!-- Session Column -->
     <ng-container matColumnDef="session">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Session</th>
       <td mat-cell *matCellDef="let row">{{row.session}}</td>
     </ng-container>
-  
+
+    <!-- Asset Column -->
+    <ng-container matColumnDef="asset">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset</th>
+      <td mat-cell *matCellDef="let row">{{row.asset}}</td>
+    </ng-container>
+    
     <!-- Resume Column -->
     <ng-container matColumnDef="resume">
       <th mat-header-cell *matHeaderCellDef></th>
