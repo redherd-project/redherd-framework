@@ -1,82 +1,93 @@
 .mat-form-field {
-    display: block;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  
-  .mat-icon {
-    margin: 0 10px;
-  }
-  
-  .mat-cell .mat-icon {
-    margin: auto;
-  }
-  
-  .mat-tab-header-handset {
-    width: 100%
-  }
-  
-  .full-width-table {
-    width: 100%;
-  }
-  
-  .row-icon {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .spacer {
-    flex: 1 1 auto;
-  }
-  
-  .center {
-    width: 33%;
-    text-align: center;
-  }
-  
-  .left {
-    width: 33%;
-    text-align: left;
-  }
-  
-  .right {
-    width: 33%;
-    text-align: right;
-  }
-  
-  .active {
-      color: deepskyblue;
-  }
-  
-  .disabled {
-      color: white;
-  }
-  
-  ::ng-deep .mat-tab-body {
-    margin-top: 48px !important;
-  }
-  
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.mat-icon {
+  margin: 0 10px;
+}
+
+.mat-cell .mat-icon {
+  margin: auto;
+}
+
+.mat-tab-header-handset {
+  width: 100%
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.row-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.center {
+  width: 33%;
+  text-align: center;
+}
+
+.left {
+  width: 33%;
+  text-align: left;
+}
+
+.right {
+  width: 33%;
+  text-align: right;
+}
+
+.active {
+    color: deepskyblue;
+}
+
+.disabled {
+    color: white;
+}
+
+::ng-deep .mat-tab-body {
+  margin-top: 48px !important;
+}
+
+::ng-deep .mat-tab-header {
+  z-index: 10;
+  position: fixed !important;
+  background-color: rgb(66, 66, 66);
+  width: 100%;
+
+  /* Firefox */
+  width: -moz-calc(100% - 73px);
+  /* WebKit */
+  width: -webkit-calc(100% - 73px);
+  /* Opera */
+  width: -o-calc(100% - 73px);
+  /* Standard */
+  width: calc(100% - 73px);
+}
+
+@media (max-width: 960px) { 
   ::ng-deep .mat-tab-header {
     z-index: 10;
-    position: fixed !important;
+    position: fixed  !important;
     background-color: rgb(66, 66, 66);
     width: 100%;
-  
-    /* Firefox */
-    width: -moz-calc(100% - 73px);
-    /* WebKit */
-    width: -webkit-calc(100% - 73px);
-    /* Opera */
-    width: -o-calc(100% - 73px);
-    /* Standard */
-    width: calc(100% - 73px);
   }
-  
-  @media (max-width: 768px) { 
-    ::ng-deep .mat-tab-header {
-      z-index: 10;
-      position: fixed  !important;
-      background-color: rgb(66, 66, 66);
-      width: 100%;
-    }
+}
+
+/*
+@media (max-width: 768px) { 
+  ::ng-deep .mat-tab-header {
+    z-index: 10;
+    position: fixed  !important;
+    background-color: rgb(66, 66, 66);
+    width: 100%;
   }
+}
+*/

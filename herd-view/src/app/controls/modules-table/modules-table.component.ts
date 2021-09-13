@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild, Output, EventEmitter } fro
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { Config } from 'src/app/config';
 import { Module } from '../../bin/model/module';
 import { ModuleService } from '../../services/module.service';
@@ -12,7 +12,7 @@ import { ModuleService } from '../../services/module.service';
   templateUrl: './modules-table.component.html',
   styleUrls: ['./modules-table.component.css']
 })
-export class ModulesTableComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+export class ModulesTableComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -3,7 +3,7 @@ import { interval } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { Process } from '../../bin/model/process';
 import { ProcessService } from '../../services/process.service';
 import { Config } from 'src/app/config';
@@ -13,7 +13,7 @@ import { Config } from 'src/app/config';
   templateUrl: './module-process-panel.component.html',
   styleUrls: ['./module-process-panel.component.css']
 })
-export class ModuleProcessPanelComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+export class ModuleProcessPanelComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
   private processes: Process[];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;

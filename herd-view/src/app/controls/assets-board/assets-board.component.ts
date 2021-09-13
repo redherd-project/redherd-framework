@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { AdaptiveComponent } from '../../bin/gui/display';
 import { Config } from 'src/app/config';
 
 @Component({
@@ -9,7 +9,7 @@ import { Config } from 'src/app/config';
   templateUrl: './assets-board.component.html',
   styleUrls: ['./assets-board.component.css']
 })
-export class AssetsBoardComponent extends DisplayedComponent implements OnInit {
+export class AssetsBoardComponent extends AdaptiveComponent implements OnInit {
   tabs: string[];
   tabsContext: any[];
   selected: FormControl;

@@ -2,8 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild, Input, EventEmitter, Outpu
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
-import { Asset } from '../../bin/model/asset';
+import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { ModuleVerb } from '../../bin/model/module';
 import { Topic } from '../../bin/model/topic';
 import { AssetService } from '../../services/asset.service'
@@ -14,7 +13,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   templateUrl: './module-asset-panel.component.html',
   styleUrls: ['./module-asset-panel.component.css']
 })
-export class ModuleAssetPanelComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+export class ModuleAssetPanelComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
   private attachableAssets: any[] = [];
   private attachedAssetIds: number[] = [];
 

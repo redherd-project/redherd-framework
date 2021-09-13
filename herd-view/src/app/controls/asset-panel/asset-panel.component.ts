@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
-import { DisplayedComponent } from '../../bin/gui/display';
+import { AdaptiveComponent } from '../../bin/gui/display';
 import { Asset } from '../../bin/model/asset';
 import { AssetService } from '../../services/asset.service';
 
@@ -9,7 +9,7 @@ import { AssetService } from '../../services/asset.service';
   templateUrl: './asset-panel.component.html',
   styleUrls: ['./asset-panel.component.css']
 })
-export class AssetPanelComponent extends DisplayedComponent implements OnInit {
+export class AssetPanelComponent extends AdaptiveComponent implements OnInit {
   asset: Asset;
   terminal: boolean;
   moduleView: any;

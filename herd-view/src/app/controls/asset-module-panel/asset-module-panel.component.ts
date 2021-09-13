@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild, EventEmitter, Input, Outpu
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { Module } from '../../bin/model/module';
 import { AssetService } from '../../services/asset.service';
 
@@ -11,7 +11,7 @@ import { AssetService } from '../../services/asset.service';
   templateUrl: './asset-module-panel.component.html',
   styleUrls: ['./asset-module-panel.component.css']
 })
-export class AssetModulePanelComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+export class AssetModulePanelComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

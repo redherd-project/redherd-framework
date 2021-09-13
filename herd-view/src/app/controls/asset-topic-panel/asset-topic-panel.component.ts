@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/cor
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { Asset } from '../../bin/model/asset';
 import { Topic } from '../../bin/model/topic';
 import { AssetService } from '../../services/asset.service'
@@ -14,7 +14,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   templateUrl: './asset-topic-panel.component.html',
   styleUrls: ['./asset-topic-panel.component.css']
 })
-export class AssetTopicPanelComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+export class AssetTopicPanelComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
     private asset: Asset;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;

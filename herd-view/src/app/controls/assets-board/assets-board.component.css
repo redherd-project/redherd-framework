@@ -72,7 +72,7 @@
   width: calc(100% - 73px);
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 960px) { 
   ::ng-deep .mat-tab-header {
     z-index: 10;
     position: fixed  !important;
@@ -80,3 +80,13 @@
     width: 100%;
   }
 }
+
+/*
+@media (max-width: 768px) { 
+  ::ng-deep .mat-tab-header {
+    z-index: 10;
+    position: fixed  !important;
+    background-color: rgb(66, 66, 66);
+    width: 100%;
+  }
+}*/

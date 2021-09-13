@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
-import { DisplayedComponent } from '../../bin/gui/display';
+import { AdaptiveComponent } from '../../bin/gui/display';
 import { Module, ModuleMode, ModuleVerb } from '../../bin/model/module';
 import { ModuleService } from '../../services/module.service';
 
@@ -9,7 +9,7 @@ import { ModuleService } from '../../services/module.service';
   templateUrl: './module-tab.component.html',
   styleUrls: ['./module-tab.component.css']
 })
-export class ModuleTabComponent extends DisplayedComponent implements OnInit {
+export class ModuleTabComponent extends AdaptiveComponent implements OnInit {
   module: Module;
   modelData: {};
   assetView: any;

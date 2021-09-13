@@ -8,10 +8,12 @@ export enum DisplayMode {
 @Component({
     template: ''
 })
-export abstract class DisplayedComponent {
+export abstract class AdaptiveComponent {
+    private maxWidth: number;
     private display: DisplayMode;
 
     constructor() {
+        this.maxWidth = 960;
         this.display = this.getDisplayMode();
     }
   
@@ -25,6 +27,6 @@ export abstract class DisplayedComponent {
     }
   
     protected getDisplayMode(): DisplayMode {
-      return window.innerWidth >= 768 ? DisplayMode.desktop : DisplayMode.mobile;
+      return window.innerWidth >= this.maxWidth ? DisplayMode.desktop : DisplayMode.mobile;
     }
   }

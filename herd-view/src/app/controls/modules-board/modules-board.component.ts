@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
-import { Config, dbConfig } from 'src/app/config';
+import { AdaptiveComponent } from '../../bin/gui/display';
+import { Config } from 'src/app/config';
 
 @Component({
   selector: 'app-modules-board',
   templateUrl: './modules-board.component.html',
   styleUrls: ['./modules-board.component.css']
 })
-export class ModulesBoardComponent extends DisplayedComponent implements OnInit {
+export class ModulesBoardComponent extends AdaptiveComponent implements OnInit {
   serverUrl: string;
   imgPlaceholder: string;
 

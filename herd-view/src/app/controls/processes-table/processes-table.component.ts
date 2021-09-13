@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { Process } from '../../bin/model/process';
 import { ProcessService } from '../../services/process.service';
 import { AssetService } from '../../services/asset.service';
@@ -12,7 +12,7 @@ import { AssetService } from '../../services/asset.service';
   templateUrl: './processes-table.component.html',
   styleUrls: ['./processes-table.component.css']
 })
-export class ProcessesTableComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+export class ProcessesTableComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

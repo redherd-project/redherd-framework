@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild, Input, Output, EventEmitte
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { Process } from '../../bin/model/process';
 import { ProcessService } from '../../services/process.service';
 import { AssetService } from '../../services/asset.service';
@@ -12,7 +12,7 @@ import { AssetService } from '../../services/asset.service';
   templateUrl: './asset-process-panel.component.html',
   styleUrls: ['./asset-process-panel.component.css']
 })
-export class AssetProcessPanelComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+export class AssetProcessPanelComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
   private processes: Process[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

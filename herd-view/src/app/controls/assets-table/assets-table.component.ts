@@ -4,7 +4,7 @@ import { shareReplay } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { AdaptiveComponent, DisplayMode } from '../../bin/gui/display';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Config } from 'src/app/config';
 import { Asset } from '../../bin/model/asset';
@@ -17,7 +17,7 @@ import { Lv2Message } from '../../bin/proto/lv2-message';
   templateUrl: './assets-table.component.html',
   styleUrls: ['./assets-table.component.css']
 })
-export class AssetsTableComponent extends DisplayedComponent implements AfterViewInit, OnInit {
+export class AssetsTableComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
   private messages$: Observable<Lv2Message>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
