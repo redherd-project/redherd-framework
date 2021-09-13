@@ -80,14 +80,3 @@
     width: 100%;
   }
 }
-
-/*
-@media (max-width: 768px) { 
-  ::ng-deep .mat-tab-header {
-    z-index: 10;
-    position: fixed  !important;
-    background-color: rgb(66, 66, 66);
-    width: 100%;
-  }
-}
-*/

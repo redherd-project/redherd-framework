@@ -1,6 +1,6 @@
 <div *ngIf="contentUrlSafe">
     <mat-card *ngIf="contentReady === false" class="progress-card">
-        <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+        <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
     </mat-card>
 
     <mat-card *ngIf="contentReady === true">

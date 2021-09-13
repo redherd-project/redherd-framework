@@ -33,8 +33,10 @@
 }
 
 .row-icon {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .full-width-table {

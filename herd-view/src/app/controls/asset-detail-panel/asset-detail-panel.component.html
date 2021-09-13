@@ -2,12 +2,8 @@
     <mat-list>
 
         <mat-list-item>
-            <a *ngIf="status; else elseBlock" [ngClass]="status == 'online' ? 'online' : 'offline'">
-                <mat-icon aria-label="Status icon">{{icon}}</mat-icon>
-            </a>
-            <ng-template #elseBlock><mat-icon aria-label="Status icon" class="unknown">help_outline</mat-icon></ng-template>
-            <span class="spacer"></span>
             <button mat-icon-button matTooltip="Refresh" (click)="refresh()"><mat-icon aria-label="Refrash icon">autorenew</mat-icon></button>
+            <span class="spacer"></span>
             <button mat-icon-button matTooltip="Save" (click)="save()"><mat-icon aria-label="Save icon">save</mat-icon></button>
         </mat-list-item>
 
@@ -18,9 +14,19 @@
         </mat-list-item>
 
         <mat-list-item>
-            <mat-form-field>
-                <input matInput value="{{asset.ip}}" placeholder="ip" readonly>
-            </mat-form-field>
+            <table class="full-width-table">
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <input matInput value="{{asset.ip}}" placeholder="ip" readonly>
+                        </mat-form-field>
+                    </td>
+                    <td class="right">
+                        <mat-icon *ngIf="status; else elseBlock" [ngClass]="status == 'online' ? 'online' : 'offline'" aria-label="Status icon">{{icon}}</mat-icon>
+                            <ng-template #elseBlock><mat-icon aria-label="Status icon" class="unknown">help_outline</mat-icon></ng-template>
+                    </td>
+                </tr>
+            </table>
         </mat-list-item>
 
         <mat-list-item>
@@ -54,5 +60,5 @@
 </div>
 
 <mat-card *ngIf="!asset">
-    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </mat-card>
