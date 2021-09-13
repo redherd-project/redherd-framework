@@ -1,0 +1,86 @@
+<div *ngIf="module && !assetView">
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Details</span></mat-panel-title>
+        </mat-expansion-panel-header>
+            <!-- Module Details -->
+            <mat-list>
+                <mat-list-item>
+                    <mat-form-field>
+                        <input matInput value="{{module.description}}" placeholder="description" readonly>
+                    </mat-form-field>
+                </mat-list-item>
+
+                <span>
+                    <span *ngFor="let param of module.params" [ngSwitch]="param.type">
+
+                        <mat-list-item *ngSwitchCase="'string'">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                            </mat-form-field>
+                        </mat-list-item>
+
+                        <mat-list-item *ngSwitchCase="'number'">
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                            </mat-form-field>
+                        </mat-list-item>
+
+                        <mat-list-item *ngSwitchCase="'password'">
+                            <mat-form-field>
+                                <input matInput type="password" placeholder="{{param.label}}" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">
+                            </mat-form-field>
+                        </mat-list-item>
+
+                        <mat-list-item *ngSwitchCase="'boolean'">
+                            <mat-checkbox *ngSwitchCase="'boolean'" color="primary" name="{{param.name}}" [(ngModel)]="modelData['params'][param.name]">{{param.label}}</mat-checkbox>
+                        </mat-list-item>
+
+                        <mat-list-item *ngSwitchCase="'list'">
+                            <mat-form-field>
+                                <mat-label>{{param.label}}</mat-label>
+                                <mat-select [(ngModel)]="modelData['params'][param.name]">
+                                    <mat-option *ngFor="let value of param.values" [value]="value">
+                                        {{value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-list-item>
+
+                        <span *ngSwitchDefault></span>
+
+                    </span>
+                </span>
+
+            </mat-list>
+            <!-- Module Details -->
+    </mat-expansion-panel>
+
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Assets</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-module-asset-panel moduleName="{{moduleName}}" (moduleActivationRequested)="activateModule($event)"></app-module-asset-panel>
+    </mat-expansion-panel>
+
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Processes</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-module-process-panel (resumeProcessRequested)="resume($event)" moduleName="{{moduleName}}"></app-module-process-panel>
+    </mat-expansion-panel>
+
+</div>
+
+<div *ngIf="assetView">
+    <app-module-panel (moduleInteractionEnded)="assetView = null" assetId={{assetView.assetId}} moduleName={{assetView.module}} session={{assetView.session}}></app-module-panel>
+</div>
+
+<mat-card *ngIf="!module && !assetView">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+</mat-card>

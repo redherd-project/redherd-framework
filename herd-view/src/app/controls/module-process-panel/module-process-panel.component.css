@@ -10,10 +10,6 @@
   align-items: center;
 }
 
-.mat-list-base {
-  padding-top: 0;
-  padding-right: 5px;
-}
 .mat-input-element {
   padding-left: 10px;
   padding-right: 10px;
@@ -31,11 +27,7 @@
 
 .full-width-table {
   width: 100%;
-}
-
-.row-icon {
-  width: 32px;
-  height: 32px;
+  text-align: left;
 }
 
 .spacer {

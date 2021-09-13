@@ -50,6 +50,10 @@ import { LoginPanelComponent } from './controls/login-panel/login-panel.componen
 import { CaDownloaderComponent } from './controls/ca-downloader/ca-downloader.component';
 import { AssetsBoardComponent } from './controls/assets-board/assets-board.component';
 import { ModuleOutputPanelComponent } from './controls/module-output-panel/module-output-panel.component';
+import { ModulesBoardComponent } from './controls/modules-board/modules-board.component';
+import { ModuleTabComponent } from './controls/module-tab/module-tab.component';
+import { ModuleProcessPanelComponent } from './controls/module-process-panel/module-process-panel.component';
+import { ModuleAssetPanelComponent } from './controls/module-asset-panel/module-asset-panel.component';
 
 
 @NgModule({
@@ -72,7 +76,11 @@ import { ModuleOutputPanelComponent } from './controls/module-output-panel/modul
     LoginPanelComponent,
     CaDownloaderComponent,
     AssetsBoardComponent,
-    ModuleOutputPanelComponent
+    ModuleOutputPanelComponent,
+    ModulesBoardComponent,
+    ModuleTabComponent,
+    ModuleProcessPanelComponent,
+    ModuleAssetPanelComponent
   ],
   imports: [
     BrowserModule,

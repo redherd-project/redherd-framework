@@ -42,6 +42,7 @@ export const Config = {
   assets_status_store             : 'rdhd_assets_status',
   auth_token_store                : 'rdhd_token',
   assets_workspace_context_store  : 'rdhd_assets_workspace_context',
+  modules_workspace_context_store : 'rdhd_modules_workspace_context',
   
   // ************************************************************
   //  File Manager configuration section
@@ -82,6 +83,16 @@ export const dbConfig: DBConfig  = {
       { name: 'assetId', keypath: 'assetId', options: { unique: true } },
       { name: 'assetName', keypath: 'assetName', options: { unique: true } },
       { name: 'terminal', keypath: 'terminal', options: { unique: false } },
+      { name: 'selected', keypath: 'selected', options: { unique: false } }
+    ]
+  },
+  {
+    store: Config.modules_workspace_context_store,
+    storeConfig: { keyPath: 'id', autoIncrement: false },
+    storeSchema: [
+      { name: 'moduleName', keypath: 'moduleName', options: { unique: true } },
+      { name: 'moduleTitle', keypath: 'moduleTitle', options: { unique: true } },
+      { name: 'moduleType', keypath: 'moduleType', options: { unique: false } },
       { name: 'selected', keypath: 'selected', options: { unique: false } }
     ]
   }

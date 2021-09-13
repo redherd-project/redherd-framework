@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { DisplayedComponent, DisplayMode } from '../../bin/gui/display';
+import { Config } from 'src/app/config';
 import { Module } from '../../bin/model/module';
 import { ModuleService } from '../../services/module.service';
 
@@ -18,20 +19,25 @@ export class ModulesTableComponent extends DisplayedComponent implements AfterVi
   @ViewChild(MatTable) table: MatTable<Module>;
   dataSource: MatTableDataSource<Module>;
   dataReady: boolean = false;
+  serverUrl: string;
+  imgPlaceholder: string;
+
+  @Output() openModuleTab = new EventEmitter();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
-    { name: 'name', showOnMobile: true },
-    { name: 'title', showOnMobile: false },
-    { name: 'description', showOnMobile: false },
-    { name: 'binary', showOnMobile: true },
-    { name: 'author', showOnMobile: false },
+    { name: 'icon', showOnMobile: false },
     { name: 'topic', showOnMobile: false },
-    { name: 'version', showOnMobile: false }
+    { name: 'title', showOnMobile: true },
+    { name: 'description', showOnMobile: false },
+    { name: 'details', showOnMobile: true }
   ];
 
   constructor(private moduleService: ModuleService) {
     super();
+
+    this.serverUrl = Config.api_server_proto + '://' + Config.api_server_address + ':' + Config.api_server_port;
+    this.imgPlaceholder = Config.asset_image_placeholder;
   }
 
   ngOnInit() {
@@ -48,9 +54,13 @@ export class ModulesTableComponent extends DisplayedComponent implements AfterVi
   private getData(): void {
     this.moduleService.getModules()
       .subscribe(modules => {
-        this.dataSource.data = modules;
+        this.dataSource.data = modules.filter(m => m.tags.includes('automatic'));
         this.dataReady = true;
       });
+  }
+
+  public openModuleDetails(name: string, title: string): void {
+    this.openModuleTab.emit({ name: name, title: title });
   }
 
   public getDisplayedColumns(): string[] {
