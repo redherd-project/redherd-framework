@@ -2,9 +2,18 @@
 
     <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
-            <mat-panel-title><span>Details</span></mat-panel-title>
+            <mat-panel-title><span>Assets</span></mat-panel-title>
         </mat-expansion-panel-header>
-            <!-- Module Details -->
+        <app-module-asset-panel moduleName="{{moduleName}}" (moduleActivationRequested)="activateModule($event)"></app-module-asset-panel>
+    </mat-expansion-panel>
+
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title><span>Options</span></mat-panel-title>
+        </mat-expansion-panel-header>
+            <!-- Module Options -->
             <mat-list>
                 <mat-list-item>
                     <mat-form-field>
@@ -54,16 +63,7 @@
                 </span>
 
             </mat-list>
-            <!-- Module Details -->
-    </mat-expansion-panel>
-
-    <mat-divider></mat-divider>
-
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-            <mat-panel-title><span>Assets</span></mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-module-asset-panel moduleName="{{moduleName}}" (moduleActivationRequested)="activateModule($event)"></app-module-asset-panel>
+            <!-- Module Options -->
     </mat-expansion-panel>
 
     <mat-divider></mat-divider>
