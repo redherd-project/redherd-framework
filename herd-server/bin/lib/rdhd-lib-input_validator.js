@@ -41,7 +41,7 @@ class InputValidator
 
     static validateName(value)
     {
-        return InputValidator._validateField(value, /^[a-z0-9_\-]*$/i);
+        return InputValidator._validateField(value, /^[a-z0-9][a-z0-9_\-]*$/i);
     }
 
     static validateDescription(value)
