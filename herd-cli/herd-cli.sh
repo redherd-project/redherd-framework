@@ -50,7 +50,7 @@ function ShowHelp {
         echo "usage: $0 endpoint (-s|--server) VPNSRV_PUBLIC_HOSTAME (-o|--operating-system) OS_TYPE (-m|--mode) MODE (-i|--index) INDEX"
         echo
         echo "     -s |--server                 Public FQDN or ip used for vpn connection"
-        echo "     -o |--operating-system       Target Operating System (windows|macos|debian|android|docker)"
+        echo "     -o |--operating-system       Target Operating System (windows|macos|debian|centos|android|docker)"
         echo "     -m |--mode                   Execution mode (install|remove|client)"
         echo "     -i |--index                  Index of the requested credentials (1-65536)"
         echo "     -n |--no-logo                Do not show banner"
@@ -66,12 +66,10 @@ function ShowHelp {
         echo "     -d |--disable                Disable a specific user"
         echo "     -e |--enable                 Enable a specific user"
         echo
-        echo "usage: $0 asset ([-d|--disable] NAME | [-r|--revoke] CN)"
+        echo "usage: $0 asset ([-d|--disable] NAME | [-b|--ban] NAME)"
         echo
         echo "     -d |--disable                Disable a specific asset"
-        echo "     -r |--revoke                 Revoke client ovpn certificate associated to an asset"
-        echo "                                  [!] Tip: the CN  value is the Distribution-Server username"
-        echo "                                           associated to the asset in the endpoint one-liner"
+        echo "     -b |--ban                    Revoke and ban client ovpn certificate associated to an asset"
         echo
         echo "usage: $0 system [-i|--init]"
         echo
@@ -157,7 +155,7 @@ function initiateEndpointRealm {
     
     if [ "$OS_TYPE" == "NONE" ]; then
             echo
-            echo -e "$YELLOW$BOLD [-] Specify the target Operating System (windows|macos|debian|android) $RESET"
+            echo -e "$YELLOW$BOLD [-] Specify the target Operating System (windows|macos|debian|centos|android|docker) $RESET"
             echo
             ShowHelp
             exit 1
@@ -242,6 +240,32 @@ curl -k -u $USERNAME:$PASSWORD https://$PUBLIC_ADDRESS:8443/$ASSET_FINGERPRINT/c
 /usr/sbin/openvpn ./redherd.ovpn"
 EOM
         echo "${DEBIAN}"
+        
+    fi
+}
+
+function getCentOSOneliner {
+    ### CentOS
+    if [ "$MODE" != "client" ]; then
+
+read -r -d '' CENTOS << EOM
+sudo bash -c "curl -k -u $USERNAME:$PASSWORD https://$PUBLIC_ADDRESS:8443/$ASSET_FINGERPRINT/centos_asset_setup.sh > /tmp/script.sh && \
+chmod +x /tmp/script.sh && \
+/tmp/script.sh $MODE && \
+rm -rf /tmp/script.sh" 
+EOM
+        echo "${CENTOS}"
+    
+    else
+    
+read -r -d '' CENTOS << EOM
+sudo bash -c "yum install epel-release -y && \
+yum makecache && \
+yum install curl openvpn -y && \
+curl -k -u $USERNAME:$PASSWORD https://$PUBLIC_ADDRESS:8443/$ASSET_FINGERPRINT/config.ovpn > ./redherd.ovpn && \
+/usr/sbin/openvpn ./redherd.ovpn"
+EOM
+        echo "${CENTOS}"
         
     fi
 }
@@ -535,6 +559,9 @@ function executeEndpointRealm {
         debian)
             getDebianOneliner
             ;;
+        centos)
+            getCentOSOneliner
+            ;;
         android)
             getAndroidOneliner
             ;;
@@ -619,7 +646,7 @@ function executeAssetRealm {
             -d|--disable)
                 setAssetStatusApi ${2} 0
                 ;;
-            -r|--revoke)
+            -b|--ban)
                 revokeClientCertApi ${2}
                 ;;
             *)

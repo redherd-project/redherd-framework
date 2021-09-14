@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The backend implementation of multi-asset module execution
 - The frontend implementation of multi-asset module execution
 - The new modules/run API endpoint which allows to launch a module on multiple assets at the same time
+- The support for assets with RHEL-like operating system (tested on CentOS Linux 8.4 and AlmaLinux 8.4)
 - The tabs workspace partial persistence using indexedDB client-side
 - The "herd-modules" alias to modules collection folder
 - The Herd-CLI function to disable assets

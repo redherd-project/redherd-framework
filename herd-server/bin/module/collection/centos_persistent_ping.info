@@ -1,0 +1,11 @@
+{
+    "name": "centos_persistent_ping",
+    "title": "Persistent Ping",
+    "description": "A ping demo module",
+    "binary": "ping",
+    "author": "b4gh33r4 & peco602",
+    "topic": "centos_misc",
+    "version": "1.0",
+    "params": [{"label": "Target", "name": "target", "type": "string"}],
+    "tags": ["automatic"]
+}

@@ -83,8 +83,18 @@ sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_exp
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_installation', 'MacOS modules to a malicious software on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_command_and_control', 'MacOS modules to establish a command and control channel on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('macos_actions', 'MacOS modules to produce an effect on a target', NULL);", null);
+// topics (centos)
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_service', 'CentOS service modules', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_misc', 'CentOS generic modules', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_reconnaissance', 'CentOS modules to gather target information', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_weaponization', 'CentOS modules to develop a payload', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_delivery', 'CentOS modules to deliver a payload to a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_exploitation', 'CentOS modules to exploit a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_installation', 'CentOS modules to a malicious software on a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_command_and_control', 'CentOS modules to establish a command and control channel on a target', NULL);", null);
+sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_actions', 'CentOS modules to produce an effect on a target', NULL);", null);
 // types
-sqlite.run("INSERT INTO main.types (name, description) VALUES ('debian', 'Debian based asset type');", null);
+sqlite.run("INSERT INTO main.types (name, description) VALUES ('centos', 'CentOS based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('android', 'Android based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('windows', 'Windows based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('macos', 'macOS based asset type');", null);
