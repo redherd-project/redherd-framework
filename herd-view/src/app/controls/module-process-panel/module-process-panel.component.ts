@@ -58,6 +58,8 @@ export class ModuleProcessPanelComponent extends AdaptiveComponent implements Af
   private getData(): void {
     this.processService.getProcesses()
     .subscribe(processes => {
+      this.processes = processes;
+      
       this.assetService.getAssets()
         .subscribe(assets => {
           let displayable: any[] = [];

@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -7,6 +9,8 @@ import { ModuleVerb } from '../../bin/model/module';
 import { Topic } from '../../bin/model/topic';
 import { AssetService } from '../../services/asset.service'
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { SocketioService } from '../../services/socket-io.service';
+import { Lv2Message } from '../../bin/proto/lv2-message';
 
 @Component({
   selector: 'app-module-asset-panel',
@@ -16,6 +20,9 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class ModuleAssetPanelComponent extends AdaptiveComponent implements AfterViewInit, OnInit {
   private attachableAssets: any[] = [];
   private attachedAssetIds: number[] = [];
+
+  private messages$: Observable<Lv2Message>;
+  assetsStatus = {};
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -36,17 +43,21 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
     { name: 'name', showOnMobile: true },
     { name: 'ip', showOnMobile: false },
     { name: 'user', showOnMobile: false },
+    { name: 'status', showOnMobile: true },
     { name: 'launched', showOnMobile: true },
     { name: 'description', showOnMobile: false },
   ];
 
-  constructor(private assetService: AssetService) {
+  constructor(private assetService: AssetService, private socketioService: SocketioService) {
     super();
   }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     this.getData();
+
+    this.messages$ = this.socketioService.getMessages().pipe(shareReplay(1));
+    this.getStatus();
   }
 
   ngAfterViewInit() {
@@ -56,12 +67,11 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
   }
 
   ngOnChanges(changes) {
-    console.log(this.assetResponses);
     this.attachableAssets.forEach(asset => {
       if (!(asset.id in this.assetResponses)) {
         asset.launched = false;
       } else {
-        asset.launched = this.assetResponses[asset.id] != null;
+        asset.launched = (this.assetResponses[asset.id] != null) && (this.assetsStatus[asset.id].status == 'online');
       }
     });
   }
@@ -83,11 +93,31 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
       });
   }
 
+  private getStatus(): void {
+    this.messages$
+      .subscribe((message: Lv2Message) => {
+        let messageSrc : number = 0;
+        let messageType : string = '';
+        let status : string = '';
+        let icon : string = '';
+
+        if (message.dst == 'keep_alive')
+        {
+            messageSrc = +message.src;
+            messageType = message.payload.type.toLowerCase();
+
+            status = messageType == 'stdout' ? 'online' : 'offline';
+            icon = status == 'online' ? 'link' : 'link_off';
+
+            this.assetsStatus[messageSrc] = { status: status, icon: icon };
+        }
+      }); 
+  }
+
   public selectAll(event: MatCheckboxChange): void {
     if (event.checked) {
       this.attachableAssets.forEach(asset => asset['attached'] = true);
-    }
-    else {
+    } else {
       this.attachableAssets.forEach(asset => asset['attached'] = false);
     }
     this.selectedAll = event.checked;
