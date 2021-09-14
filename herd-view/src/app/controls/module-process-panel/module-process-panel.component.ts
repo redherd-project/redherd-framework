@@ -44,9 +44,10 @@ export class ModuleProcessPanelComponent extends AdaptiveComponent implements Af
     
     this.getData();
 
-    interval(Config.assets_refresh_interval).subscribe(_ => {
-      this.getData();
-    });
+    // Temporarily disabled for performance impact evaluation
+    //interval(Config.assets_refresh_interval).subscribe(_ => {
+    //  this.getData();
+    //});
   }
 
   ngAfterViewInit() {

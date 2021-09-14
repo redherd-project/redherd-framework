@@ -32,9 +32,17 @@
   right: 0;
 }
 
-.toggle-toolbar{
-  background-color: rgb(48, 48, 48);
+.toolbar{
+  background-color: transparent;
   width: 72px;
+}
+
+.toggle-toolbar-button{
+  z-index: 15;
+  margin-bottom: 10px;
+  background-color: rgb(66, 66, 66);
+  color: white;
+  position: fixed;
 }
 
 ::ng-deep .mat-toolbar-single-row {

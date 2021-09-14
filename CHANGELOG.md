@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [v0.0.4] - Unreleased
 ### Added
 - The backend implementation of multi-asset module execution
+- The frontend implementation of multi-asset module execution
 - The new modules/run API endpoint which allows to launch a module on multiple assets at the same time
 - The tabs workspace partial persistence using indexedDB client-side
 - The "herd-modules" alias to modules collection folder

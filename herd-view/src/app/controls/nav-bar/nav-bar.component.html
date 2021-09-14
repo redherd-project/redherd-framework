@@ -18,13 +18,8 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-  <mat-toolbar class="toggle-toolbar bottom-content" *ngIf="isLoggedIn$ && isHandset$ | async">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="toggle()"
-        *ngIf="isHandset$ | async">
+    <mat-toolbar *ngIf="isLoggedIn$ | async" class="toolbar bottom-content">
+      <button mat-fab *ngIf="isHandset$ | async" class="toggle-toolbar-button" aria-label="Toggle sidenav" (click)="toggle()">
         <mat-icon matTooltip="Menu" aria-label="Toggle icon">arrow_forward</mat-icon>
       </button>
     </mat-toolbar>

@@ -16,7 +16,9 @@
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="isFieldInvalid('password')">Password required</mat-error>
           </mat-form-field>
-          <button mat-icon-button (click)="onSubmit()"><mat-icon aria-label="Login icon">login</mat-icon></button>
+          <button mat-mini-fab color="primary" class="mat-elevation-z0" aria-label="Sign in" (click)="onSubmit()">
+            <mat-icon matTooltip="Sign in" aria-label="Login icon">arrow_forward</mat-icon>
+          </button>
         </form>
       </mat-card-content>
     </mat-card>
