@@ -13,6 +13,7 @@ export class ModuleTabComponent extends AdaptiveComponent implements OnInit {
   module: Module;
   modelData: {};
   assetView: any;
+  assetResponses: {};
 
   @Input() moduleName: string;
 
@@ -61,7 +62,14 @@ export class ModuleTabComponent extends AdaptiveComponent implements OnInit {
   public activateModule(event): void {
     this.modelData['mode'] = event['mode'];
     this.modelData['assets'] = event['assets'];
-    this.moduleService.runModule(this.module.name, this.modelData).subscribe();
+    this.moduleService.runModule(this.module.name, this.modelData).subscribe(response => {
+      this.assetResponses = [];
+
+      for (let i=0; i<response.length; i++) {
+        //this.assetResponses.push({id: this.modelData['assets'][i], activated: response[i] != null});
+        this.assetResponses[this.modelData['assets'][i]] = response[i];
+      }
+    });
   }
 
   public resume(event): void {

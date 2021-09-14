@@ -26,7 +26,8 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
   dataReady: boolean = false;
 
   @Input() moduleName: string;
-  
+  @Input() assetResponses: any[];
+
   @Output() moduleActivationRequested = new EventEmitter<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -35,6 +36,7 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
     { name: 'name', showOnMobile: true },
     { name: 'ip', showOnMobile: false },
     { name: 'user', showOnMobile: false },
+    { name: 'launched', showOnMobile: true },
     { name: 'description', showOnMobile: false },
   ];
 
@@ -53,6 +55,17 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
     this.table.dataSource = this.dataSource;
   }
 
+  ngOnChanges(changes) {
+    console.log(this.assetResponses);
+    this.attachableAssets.forEach(asset => {
+      if (!(asset.id in this.assetResponses)) {
+        asset.launched = false;
+      } else {
+        asset.launched = this.assetResponses[asset.id] != null;
+      }
+    });
+  }
+
   private getData(): void {
     this.assetService.getAssets()
       .subscribe(assets => {
@@ -62,7 +75,7 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
 
         this.attachableAssets = [];
         displayableAssets.forEach(asset => {
-          this.attachableAssets.push({ id: asset.id, name: asset.name, ip: asset.ip, user: asset.user, description: asset.description, attached: false });
+          this.attachableAssets.push({ id: asset.id, name: asset.name, ip: asset.ip, user: asset.user, description: asset.description, attached: false, launched: false });
         });
 
         this.dataSource.data = this.attachableAssets;
@@ -96,7 +109,11 @@ export class ModuleAssetPanelComponent extends AdaptiveComponent implements Afte
 
   public getAttachedAssetIds(): void {
     this.attachedAssetIds = [];
-    this.attachableAssets.forEach(asset => this.attachedAssetIds.push(asset.id));
+    this.attachableAssets.forEach(asset => {
+      if (asset.attached) {
+        this.attachedAssetIds.push(asset.id);
+      }
+    });
   }
 
   public getDisplayedColumns(): string[] {

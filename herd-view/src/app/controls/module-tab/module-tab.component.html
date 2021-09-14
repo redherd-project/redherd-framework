@@ -4,7 +4,7 @@
         <mat-expansion-panel-header>
             <mat-panel-title><span>Assets</span></mat-panel-title>
         </mat-expansion-panel-header>
-        <app-module-asset-panel moduleName="{{moduleName}}" (moduleActivationRequested)="activateModule($event)"></app-module-asset-panel>
+        <app-module-asset-panel moduleName="{{moduleName}}" [assetResponses]="assetResponses" (moduleActivationRequested)="activateModule($event)"></app-module-asset-panel>
     </mat-expansion-panel>
 
     <mat-divider></mat-divider>
