@@ -51,7 +51,7 @@ Feel free to contact us at this e-mail address:
 The provided contents and tools are for awareness and research purposes only. Our target audience is composed of those interested in learning about Ethical Hacking, Security, Penetration Testing and Red Teaming. We are not responsible for any inappropriate or illegal usage of both proposed material and discussed topics.
 
 
-## Developers
+## Authors
 
 <table border="0">
 <tr width="9999">
@@ -98,3 +98,6 @@ The provided contents and tools are for awareness and research purposes only. Ou
 </tr>
 </table>
 
+## Funding
+
+This project didn't receive any funding.
