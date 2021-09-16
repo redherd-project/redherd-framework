@@ -101,4 +101,4 @@ The provided contents and tools are for awareness and research purposes only. Ou
 
 ## Funding
 
-This project didn't receive any fund.
+This project didn't receive any funding.
