@@ -99,3 +99,6 @@ The provided contents and tools are for awareness and research purposes only. Ou
 </tr>
 </table>
 
+## Funding
+
+This project didn't receive any fund.
