@@ -3,6 +3,7 @@
 <td align="center" width="9999">
 
 # RedHerd Framework
+[![Documentation Status](https://readthedocs.org/projects/redherd/badge/?version=latest)](https://redherd.readthedocs.io/en/latest/?badge=latest)
 
 <br>
 <img src="https://redherd.readthedocs.io/en/latest/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
