@@ -33,7 +33,7 @@ Hereafter, some interesting links referred to the project:
 
 ## Changelog   
 
-Go to [CHANGELOG](CHANGELOG.md) to see all the version changes.   
+Go to [CHANGELOG](CHANGELOG.md) to see all the version changes.
 
 
 ## License
@@ -65,7 +65,7 @@ The provided contents and tools are for awareness and research purposes only. Ou
 <br /><br />
 <a href="" title="Code">💻</a> 
 <a href="" title="Content">🖋</a> 
-<a href="" title="Bug reports">🐛</a>  
+<a href="" title="Bug reports">🐛</a> 
 <a href="" title="Maintenance">🚧</a> 
 <a href="" title="Project Management">📆</a>
 <a href="" title="Design">🎨</a> 
@@ -80,7 +80,7 @@ The provided contents and tools are for awareness and research purposes only. Ou
 <br /><br />
 <a href="" title="Code">💻</a> 
 <a href="" title="Content">🖋</a> 
-<a href="" title="Bug reports">🐛</a>  
+<a href="" title="Bug reports">🐛</a> 
 <a href="" title="Maintenance">🚧</a> 
 <a href="" title="Project Management">📆</a>
 <a href="" title="Design">🎨</a> 
@@ -102,4 +102,4 @@ The provided contents and tools are for awareness and research purposes only. Ou
 
 ## Funding
 
-This project didn't receive any funding.
+This project received neither funding nor sponsorship.

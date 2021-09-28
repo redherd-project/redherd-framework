@@ -94,13 +94,11 @@ sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_in
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_command_and_control', 'CentOS modules to establish a command and control channel on a target', NULL);", null);
 sqlite.run("INSERT INTO main.topics (name, description, repo) VALUES ('centos_actions', 'CentOS modules to produce an effect on a target', NULL);", null);
 // types
+sqlite.run("INSERT INTO main.types (name, description) VALUES ('debian', 'Debian based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('centos', 'CentOS based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('android', 'Android based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('windows', 'Windows based asset type');", null);
 sqlite.run("INSERT INTO main.types (name, description) VALUES ('macos', 'macOS based asset type');", null);
-// users
-// Default user redherd:redherd
-// sqlite.run("INSERT INTO main.users (id, uname, secret, enabled) VALUES (1, 'redherd', '$2b$10$.mMtxwoWlcz1fJDMsl3BMeQb8xYKRS0xrYf/Aa1xd8Hk5MehJfIf2', '1');", null); 
 
 //  Close database
 // ******************************
