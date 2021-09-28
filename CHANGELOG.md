@@ -4,6 +4,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.4] - Unreleased
+### Added
+- The backend implementation of multi-asset module execution
+- The frontend implementation of multi-asset module execution
+- The new modules/run API endpoint which allows to launch a module on multiple assets at the same time
+- The support for assets with RHEL-like operating system (tested on CentOS Linux 8.4 and AlmaLinux 8.4)
+- The tabs workspace partial persistence using indexedDB client-side
+- The "herd-modules" alias to modules collection folder
+- The Herd-CLI function to disable assets
+- The Herd-CLI function to revoke OpenVPN certificates
+- The Asset transfer modules
+- The Docker asset
+- The Docker client
+
+### Changed
+- The Herd-View theme from light to dark
+- The FileManager theme from light to dark
+- The overall Herd-View user experience implementing multi tabs workspace and reworking all the interaction mechanics
+- The processKiller job for Windows OS implementing a WMIC-based command
+- The processKiller job for Unix OS implementing a PsKill-based command
+- The module binaries for new process killer logic
+- The Docker OpenVPN certificate revocation script to work in batch mode
+
+### Removed
+- cifs-utils package installation during debian asset setup
+
+### Fixed
+- A Herd-CLI bug allowing the generation of users with empty username
+- Herd-View code with first cleanup and rationalization pass
+- The windows_ipconfig module metadata
+- A bug preventing the Herd-CLI to show the help in absence of arguments
+- Some minor Herd-View bugs
+- Some minor Herd-Server bugs
+
+### Security
+- Fixed Herd-Server libraries vulnerabilities
+- Fixed Herd-View libraries vulnerabilities
+- Modified the Distribution-Server username generation criteria from pattern-based to random
+
+
 ## [v0.0.3] - 2021-08-19
 ### Added
 - The new System entity into the database. It represents the context of the current framework iteration (seed, dob)

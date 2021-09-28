@@ -1,0 +1,46 @@
+<div class="mat-elevation-z8">
+
+    <mat-tab-group mat-stretch-tabs [selectedIndex]="selected.value" (selectedIndexChange)="changeSelectedTab($event);">
+      <mat-tab *ngFor="let tab of tabs; let index = index">
+  
+        <ng-template mat-tab-label class="tab-label-content">
+          <table class="full-width-table">
+            <tr>
+              <td>
+                <table class="full-width-table">
+                  <tr>
+                    <td class="left">
+                      <mat-icon *ngIf="(index === 0)">extension</mat-icon>
+                      <!-- <button *ngIf="(index > 0 && displayMode !== 'mobile')" [ngClass]="!tabsContext[index].terminal ? 'disabled' : 'active'" mat-icon-button [matTooltip]="tabsContext[index].terminal ? 'Close Terminal' : 'Open Terminal'" (click)="terminalShowHide(index)"><mat-icon aria-label="Terminal icon">computer</mat-icon></button> -->
+                      <img *ngIf="(index > 0 && displayMode !== 'mobile')" class="row-icon" [src]="serverUrl + '/' + tabsContext[index].moduleName.split('_')[0] + '.png'" src-fallback="{{imgPlaceholder}}">                      
+                    </td>
+                    <td class="center">
+                      <span>{{tab}}</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td class="right">
+                <button mat-icon-button matTooltip="Close others" (click)="removeOtherTabs([index], true)">
+                  <mat-icon>backspace</mat-icon>
+                </button>
+                <button *ngIf="!(tabs.length === 1 || index === 0)" mat-icon-button matTooltip="Close" (click)="removeTab(index)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </ng-template>
+
+        <div *ngIf="(index === 0)">
+          <app-modules-table (openModuleTab)="addTab($event)"></app-modules-table>
+        </div>
+
+        <div *ngIf="(index > 0)">
+          <app-module-tab moduleName="{{tabsContext[index].moduleName}}"></app-module-tab>
+        </div>
+  
+      </mat-tab>
+    </mat-tab-group>
+  
+  </div>

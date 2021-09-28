@@ -1,0 +1,84 @@
+<mat-list>
+    <mat-list-item>
+      <button mat-icon-button matTooltip="Refresh" (click)="refresh()"><mat-icon aria-label="Refresh icon">autorenew</mat-icon></button>
+      <span class="spacer"></span>
+      <button mat-icon-button matTooltip="Run" (click)="execute()"><mat-icon aria-label="Execute icon">play_arrow</mat-icon></button>
+      <button mat-icon-button matTooltip="Configure" (click)="configure()"><mat-icon aria-label="Configure icon">settings</mat-icon></button>
+    </mat-list-item>
+  </mat-list>
+  
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+  </mat-form-field>
+  
+  <mat-divider></mat-divider>
+  
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- IsAttached Column -->
+    <ng-container matColumnDef="attached">
+      <th mat-header-cell *matHeaderCellDef><mat-checkbox color="primary" (change)="selectAll($event)" [(ngModel)]="selectedAll"></mat-checkbox></th>
+      <td mat-cell *matCellDef="let row"><mat-checkbox color="primary" [(ngModel)]="row.attached"></mat-checkbox></td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- Ip Column -->
+    <ng-container matColumnDef="ip">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ip</th>
+        <td mat-cell *matCellDef="let row">{{row.ip}}</td>
+    </ng-container>
+
+    <!-- User Column -->
+    <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+        <td mat-cell *matCellDef="let row">{{row.user}}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">
+        <a *ngIf="assetsStatus[row.id]; else elseBlock" [ngClass]="assetsStatus[row.id]['status'] == 'online' ? 'online' : assetsStatus[row.id]['status'] == 'offline' ? 'offline' : 'unknown'">
+          <mat-icon aria-label="Status icon">{{assetsStatus[row.id]['icon']}}</mat-icon>
+        </a>
+        <ng-template #elseBlock><mat-icon aria-label="Status icon" class="unknown">help_outline</mat-icon></ng-template>
+      </td>
+    </ng-container>
+    
+    <!-- Launch Column -->
+    <ng-container matColumnDef="launched">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Launched</th>
+      <td mat-cell *matCellDef="let row">
+        <a *ngIf="row.launched; else elseBlock">
+          <mat-icon aria-label="Launch icon" class="online">done</mat-icon>
+        </a>
+        <ng-template #elseBlock><mat-icon aria-label="Launch icon" class="offline">close</mat-icon></ng-template>
+      </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let row">{{row.description}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+    <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+  </table>
+  
+  <mat-card *ngIf="dataReady === false">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  </mat-card>
+  
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 15, 20]"
+      showFirstLastButtons>
+  </mat-paginator>

@@ -20,6 +20,7 @@ export enum RedHerdEntity {
     type = 'type',
     types = 'types',
     instance = 'instance',
+    instances = 'instances',
     ports = 'ports',
     result = 'result',
     service = 'service',

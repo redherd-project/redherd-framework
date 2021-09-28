@@ -18,7 +18,18 @@ $herd-app-warn:    mat.define-palette(mat.$orange-palette);
 // Create the theme object (a Sass map containing all of the palettes).
 $herd-app-theme: mat.define-light-theme($herd-app-primary, $herd-app-accent, $herd-app-warn);
 
+$herd-app-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $herd-app-primary,
+      accent: $herd-app-accent,
+      warn: $herd-app-warn,
+    ),
+  )
+);
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($herd-app-theme);
+//@include mat.all-component-themes($herd-app-theme);
+@include mat.all-component-themes($herd-app-dark-theme);

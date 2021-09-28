@@ -1,6 +1,16 @@
 .material-icons.mat-primary {
-    color: #f44336;
+    color: rgb(244, 67, 54);
     vertical-align: middle;
+}
+
+.mat-raised-button{
+    color: white;
+    background-color: rgb(48, 48, 48);
+}
+
+.mat-raised-button:hover{
+    color: white;
+    background-color: rgb(66, 66, 66);
 }
 
 .button-icon {
@@ -8,7 +18,7 @@
 }
 
 .breadcrumb {
-    background-color: #f44336 !important;
+    background-color: rgb(244, 67, 54) !important;
 }
 
 a.path-link {
@@ -30,10 +40,15 @@ thead, tbody tr {
     display: table;
     width: 100%;
     table-layout: fixed;
+    color: white;
 }
 
 td, th {
     vertical-align: middle !important;
+}
+
+tbody tr.sortable:hover {
+    background-color: rgb(48, 48, 48);
 }
 
 .td-middle {
@@ -52,4 +67,5 @@ input.form-control {
 
 body {
     overflow: hidden;
+    background-color: rgb(66, 66, 66);
 }

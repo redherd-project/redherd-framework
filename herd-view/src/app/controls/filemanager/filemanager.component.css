@@ -1,14 +1,14 @@
-.mat-elevation-z8 {
-    width: 95%;
-    margin: 10px auto;
-}
-
 .mat-card {
     box-shadow: none;
     border-radius: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.mat-list-base {
+    padding-top: 0;
+    padding-right: 5px;
 }
 
 .mat-icon {
@@ -25,14 +25,14 @@
 }
 
 .filemanager-wrapper {
-    background-color: white;
+    background-color: rgb(66, 66, 66);
     display: block;
     padding-left: 5px;
     padding-right: 5px;
 }
 
 .filemanager-container {
-    background-color: white;
+    background-color: rgb(66, 66, 66);
     width: 100%;
     height: 75vh;
     border: none;

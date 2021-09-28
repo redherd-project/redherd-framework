@@ -1,0 +1,11 @@
+{
+    "name": "debian_guacamole",
+    "title": "Guacamole",
+    "description": "Guacamole Remote Desktop",
+    "binary": "",
+    "author": "b4gh33r4 & peco602",
+    "topic": "debian_misc",
+    "version": "1.0",
+    "params": [{"label": "Operation", "name": "operation", "type": "list", "values": ["start", "stop"]}],
+    "tags": ["pivotable"]
+}

@@ -1,18 +1,21 @@
-.mat-elevation-z8 {
-    width: 95%;
-    margin: 10px auto;
+.mat-icon {
+    margin: 0 10px;
 }
 
-.mat-card {
+.mat-divider-red {
+    border-top-color: rgb(244, 67, 54);
+}
+    
+.mat-divider-blue {
+  border-top-color: blue;
+}
+
+.progress-card {
     box-shadow: none;
     border-radius: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.mat-icon {
-    margin: 0 10px;
 }
 
 .bar-button {
@@ -28,6 +31,13 @@
     display: block;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.terminal-wrapper {
+    background-color: black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
 }
 
 .content-container {

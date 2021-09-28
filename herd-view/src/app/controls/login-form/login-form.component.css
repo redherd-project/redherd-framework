@@ -31,7 +31,14 @@
     width: 100%;
 }
 
+.login-box {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: rgb(244, 67, 54);
+}
+
 .login-logo {
-    width: 210px;
+    width: 190px;
     margin: auto;
 }

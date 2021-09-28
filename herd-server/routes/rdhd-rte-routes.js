@@ -65,6 +65,9 @@ module.exports = (app) => {
         app.route(Config.api_endpoint + '/modules/:name')
             .get(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.getModuleByNameApi(req.params.name)); });
 
+        app.route(Config.api_endpoint + '/modules/:name/run')
+            .post(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.runModuleMultiAssetApi(req.params.name, req.body, req.query ? req.query['t'] : '')); });
+
         app.route(Config.api_endpoint + '/topics')
             .get(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.getTopicsApi()); })
             .post(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.addTopicApi(req.body)); });

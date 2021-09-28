@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
+import { Config } from 'src/app/config';
 import { Asset } from '../../bin/model/asset';
 import { AssetService } from '../../services/asset.service';
 import { SocketioService } from '../../services/socket-io.service';
-import { Type } from '../../bin/model/type';
-import { TypeService } from '../../services/type.service';
 import { Lv2Message } from '../../bin/proto/lv2-message';
+
 
 @Component({
   selector: 'app-asset-detail-panel',
@@ -13,59 +14,54 @@ import { Lv2Message } from '../../bin/proto/lv2-message';
   styleUrls: ['./asset-detail-panel.component.css']
 })
 export class AssetDetailPanelComponent implements OnInit {
-  types: Type[];
+  private messages$: Observable<Lv2Message>;
   asset: Asset;
   status: string;
   icon: string;
+  serverUrl: string;
+  imgPlaceholder: string;
 
-  constructor(
-    private route: ActivatedRoute,
-    private assetService: AssetService,
-    private socketioService: SocketioService,
-    private typeService: TypeService
-  ) {}
+  @Input() assetId: number;
 
-  ngOnInit() {
-    this.getData();
-
+  constructor(private assetService: AssetService,private socketioService: SocketioService) {
     this.status = '';
     this.icon = '';
+
+    this.serverUrl = Config.api_server_proto + '://' + Config.api_server_address + ':' + Config.api_server_port;
+    this.imgPlaceholder = Config.asset_image_placeholder;
+  }
+
+  ngOnInit() {
+    this.messages$ = this.socketioService.getMessages().pipe(shareReplay(1));
+
+    this.getData();
     this.getStatus();
   }
 
-  getData(): void {
-    let id : number = +this.route.snapshot.paramMap.get('id');
-
-    this.assetService.getAsset(id)
+  private getData(): void {
+    this.assetService.getAsset(+this.assetId)
       .subscribe(asset => this.asset = asset);
-
-    this.typeService.getTypes()
-      .subscribe(type => this.types = type);
   }
 
   private getStatus(): void {
-    this.socketioService
-    .getMessages()
-    .subscribe((message: Lv2Message) => {
+    this.messages$
+      .subscribe((message: Lv2Message) => {
         let messageType : string = '';
 
-        if (message.dst == 'keep_alive' && +message.src ==  this.asset.id)
-        {
+        if (message.dst == 'keep_alive' && +message.src ==  +this.assetId) {
             messageType = message.payload.type.toLowerCase();
 
             this.status = messageType == 'stdout' ? 'online' : 'offline';
             this.icon = this.status == 'online' ? 'link' : 'link_off';
         }
-        //console.log(message);
-    }); 
+      }); 
   }
 
-
-  save(): void {
+  public save(): void {
     this.assetService.updateAsset(this.asset).subscribe();
   }
 
-  refresh(): void {
+  public refresh(): void {
     this.getData();
   }
 }

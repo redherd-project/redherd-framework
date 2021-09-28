@@ -1,8 +1,3 @@
-.mat-elevation-z8 {
-    width: 95%;
-    margin: 10px auto;
-}
-
 .mat-expansion-panel {
     box-shadow: none;
     border-radius: 0;
@@ -36,6 +31,49 @@
  
 .mat-icon {
     margin: 0 10px;
+}
+
+.full-width-table {
+    width: 100%;
+}
+
+.details-panel-table {
+    height: 520px;
+}
+
+.details-cell {
+    position: relative;
+}
+
+.details-cell-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.terminal-cell {
+    position: relative;
+    width: 60%;
+}
+
+.terminal-cell-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.terminal-cell-placeholder {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.terminal-cell-placeholder-image {
+    object-fit: contain;
+    width: 100%;
 }
 
 .spacer {

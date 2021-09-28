@@ -2,7 +2,7 @@
   "name": "windows_powerview_domain_users",
   "title": "PowerView Domain Users Enumeration",
   "description": "Active Directory domain users enumeration via PowerView script",
-  "binary": "powershell",
+  "binary": "PowerView.ps1",
   "author": "b4gh33r4 & peco602",
   "topic": "windows_reconnaissance",
   "version": "1.0",

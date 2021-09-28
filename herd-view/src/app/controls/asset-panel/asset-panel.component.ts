@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
+import { AdaptiveComponent } from '../../bin/gui/display';
 import { Asset } from '../../bin/model/asset';
 import { AssetService } from '../../services/asset.service';
 
@@ -9,27 +9,53 @@ import { AssetService } from '../../services/asset.service';
   templateUrl: './asset-panel.component.html',
   styleUrls: ['./asset-panel.component.css']
 })
-export class AssetPanelComponent implements OnInit {
+export class AssetPanelComponent extends AdaptiveComponent implements OnInit {
   asset: Asset;
+  terminal: boolean;
+  moduleView: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private assetService: AssetService,
-    private location: Location
-  ) {}
+  @Input() assetId: number;
+  @Input() showTerminal: boolean;
+
+  @Output() terminalViewChanged = new EventEmitter<boolean>();
+
+  constructor(private assetService: AssetService, private location: Location) {
+    super();
+
+    this.moduleView = null;
+  }
 
   ngOnInit() {
+    this.terminal = false;
     this.getData();
   }
 
-  getData(): void {
-    let id : number = +this.route.snapshot.paramMap.get('id');
+  ngOnChanges(changes) {
+    if (changes.showTerminal) {
+      // An alternative option is to inspect the changes value
+      //this.terminal = changes.showTerminal.currentValue;
+      this.terminal = !this.terminal;
+    }
+  }
 
-    this.assetService.getAsset(id)
+  private getData(): void {
+    this.assetService.getAsset(+this.assetId)
       .subscribe(asset => this.asset = asset);
   }
 
-  back(): void {
+  public back(): void {
     this.location.back();
+  }
+
+  public resume(event): void {
+    this.moduleView = { assetId: event['assetId'], module: event['module'], session: event['session'] };
+  }
+
+  public terminalShowHide(): void {
+    this.terminalViewChanged.emit(!this.terminal);
+  }
+
+  public switchToModule(event): void {
+    this.moduleView = { assetId: event['assetId'], module: event['module'], session: null };
   }
 }

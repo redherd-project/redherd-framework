@@ -1,7 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
+import { Config } from 'src/app/config';
 import { JwtToken } from '../../bin/model/token';
-import { Config } from '../../config';
-
 
 export class RedHerdWebContext {
   protected httpOptions: { headers: HttpHeaders };

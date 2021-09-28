@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../bin/auth/auth.service';
 
@@ -9,15 +8,11 @@ import { AuthService } from '../../bin/auth/auth.service';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
+  private formSubmitAttempt: boolean;
   form: FormGroup;
   hide: boolean;
-  private formSubmitAttempt: boolean;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService
-  ) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.hide = true;
   }
 
@@ -30,20 +25,20 @@ export class LoginFormComponent implements OnInit {
     this.authService.isLoggedIn.subscribe();
   }
 
-  isFieldInvalid(field: string) {
+  public isFieldInvalid(field: string): boolean {
     return (
       (!this.form.get(field).valid && this.form.get(field).touched) ||
       (this.form.get(field).untouched && this.formSubmitAttempt)
     );
   }
 
-  onKeyDown(event) {
+  public onKeyDown(event): void {
     if (event.keyCode === 13) {
       this.onSubmit();
     }
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     if (this.form.valid) {
       this.authService.login(this.form.value);
     }

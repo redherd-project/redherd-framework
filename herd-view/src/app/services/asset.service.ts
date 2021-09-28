@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { RedHerdApi } from './base/redherd-api';
 import { RedHerdEntity, RedHerdRootEndpoint } from '../bin/model/base/redherd-common';
 import { Asset } from '../bin/model/asset';
@@ -167,7 +167,7 @@ export class AssetService extends RedHerdApi {
       );
   }
 
-    /** POST: run module (execute/interact/configure) */
+    /** POST: run module (execute/interact/pivot/configure) */
     public runModule(assetId: number, moduleName: string, object: any): Observable<ModuleInstance> {
       //const url = `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.modules}/${moduleName}/run`;
       const url = !this.context.Token.isEmpty() ? `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.modules}/${moduleName}/run?t=${this.context.Token.value}` : `${this.context.Url}/${assetId}/${RedHerdRootEndpoint.modules}/${moduleName}/run`;

@@ -2,6 +2,12 @@
 
 const Job = require('./rdhd-job-base_job');
 
+const WindowsKillMode = {
+	STOPPROCESS: "STOPPROCESS",
+	WMIC: "WMIC",
+	TASKKILL: "TASKKILL"
+}
+
 class WindowsJob
 {
     static get os() { return "WINDOWS"; }
@@ -12,26 +18,22 @@ class WindowsJob
     }
     // ******************************
 
-    static killAllWithoutPS(asset, code, binary, sync = false, whatIf = false, wsServer = 'http://127.0.0.1:3001')
-    {
-        WindowsJob.killAll(asset, code, binary, sync, whatIf, wsServer, false);
-    }
-    // ******************************
-
-    static killAll(asset, code, binary, sync = false, whatIf = false, wsServer = 'http://127.0.0.1:3001', usePS = true)
+    static killAll(asset, code, binary, sync = false, whatIf = false, wsServer = 'http://127.0.0.1:3001', killMode = WindowsKillMode.WMIC)
     {
         let task = "";
-        if (usePS)
+        switch (killMode.toUpperCase())
         {
-            // Kill a process using a PowerShell cmd-let...
-            task = "Stop-Process -Name \"" + binary + "\" -Force";
+            case WindowsKillMode.STOPPROCESS:
+                task = "Stop-Process -Name \"" + binary + "\" -Force";
+                break;
+            case WindowsKillMode.TASKKILL:
+                task = "taskkill /IM \"" + binary + "\" /F";
+                break;
+            case WindowsKillMode.WMIC:
+            default:
+                task = "wmic process where \"commandline like '%" + binary + "%'\" call terminate";
+                break;
         }
-        else
-        {
-            // ...or using a Windows cmd
-            task = "taskkill /IM \"" + binary + "\" /F";
-        }
-
         WindowsJob.do(asset, code, task, sync, whatIf, wsServer);
     }
     // ******************************

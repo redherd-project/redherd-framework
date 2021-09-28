@@ -164,6 +164,26 @@ function presentCollectionElements(collection)
     return result;
 }
 
+function changeNumericDuplicateSign(collection)
+{
+    let result = [];
+    try
+    {
+        result = (collection) ? Array.from(collection) : [];
+        let wCollection = [...new Set(result)];
+
+        for (let j = 0; j < wCollection.length; j++)
+        {
+            result = result.flatMap((e, i) => (result.indexOf(e) !== i) ? ((e === wCollection[j]) ? -e : e) : e);
+        }
+    }
+    catch
+    {
+        result = false;
+    }
+    return result;
+}
+
 module.exports = {
     getFreePort,
     getFreePortInRange,
@@ -172,5 +192,6 @@ module.exports = {
     isFunction,
     isEmpty,
     isSecuredRoute,
-    presentCollectionElements
+    presentCollectionElements,
+    changeNumericDuplicateSign
 }

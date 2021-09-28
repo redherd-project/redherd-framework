@@ -5,7 +5,7 @@ DSTRSRV_PUBLIC_ADDRESS="AAAAAAAAAA"
 PUBLIC_DSTRSRV_PORT="8443"
 USERNAME="BBBBBBBBBB"
 PASSWORD="CCCCCCCCCC"
-ASSET_NAME="Debian_BBBBBBBBBB"
+ASSET_NAME="$USERNAME"
 ASSET_TYPE="debian"
 ASSET_PORT="22"
 INSTALLATION_PATH="/etc/redherd"
@@ -18,7 +18,7 @@ HERDSRV_ADDRESS="10.10.0.3"
 HERDSRV_PORT="3000"
 FTPSRV_ADDRESS="10.10.0.4"
 ENV_FTPSRV="REDHERD_FTP"
-DATA_PATH=$INSTALLATION_PATH/data
+DATA_PATH="$INSTALLATION_PATH/data"
 ENV_DATA="REDHERD_DATA"
 
 ##### COLORS #####
@@ -89,7 +89,7 @@ function CheckAlreadyInstalled {
 
 function InstallDependencies {
         apt update
-        apt install curl psmisc openssh-server openvpn jq ca-certificates cifs-utils iptables ufw lftp -y
+        apt install curl psmisc openssh-server openvpn jq ca-certificates iptables ufw lftp -y
 }
 
 function InstallScript {

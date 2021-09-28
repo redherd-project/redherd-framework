@@ -7,7 +7,7 @@ class InputValidator
         let result = false;
         try
         {
-            if (regex.test(value))
+            if (value && regex.test(value))
             {
                 result = true;
             }
@@ -41,8 +41,7 @@ class InputValidator
 
     static validateName(value)
     {
-        // Note: a name must start with a letter
-        return InputValidator._validateField(value, /^[a-z][a-z0-9_\-]*$/i);
+        return InputValidator._validateField(value, /^[a-z0-9][a-z0-9_\-]*$/i);
     }
 
     static validateDescription(value)

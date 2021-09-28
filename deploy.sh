@@ -70,11 +70,17 @@ function DestroyInfrastructure {
         docker rm $DOCKER_DSTRSRV_NAME --force
         docker rmi $DOCKER_DSTRSRV_NAME:latest --force
 
-        docker container prune --force
+        docker system prune --force
 
         docker network rm $DOCKER_NET
 
         docker volume rm $OVPN_DATA
+
+        echo -e "$YELLOW$BOLD [*] Uninstalling Herd-CLI $RESET"
+        rm -f $HERDCLI_INSTALLATION_PATH/herd-cli
+
+        echo -e "$YELLOW$BOLD [*] Removing herd-modules alias $RESET"
+        sed -i '/^alias\ herd-modules/d' /etc/bash.bashrc
 }
 
 
@@ -322,7 +328,7 @@ if [ "$GENERATE_USERS" == "TRUE" ]; then
         rm -f $DOCKER_DSTRSRV_PATH/plain
         for i in {001..256}; 
         do
-                USERNAME="USER_$i"
+                USERNAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
                 PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
                 echo "$USERNAME:$PASSWORD" >> $DOCKER_DSTRSRV_PATH/plain 
         done
@@ -583,8 +589,15 @@ docker run --name $DOCKER_DSTRSRV_NAME \
 # HERD CLI
 
 #sed -i 's|REDHERD_PATH=.*|REDHERD_PATH="'$(pwd)'"|g' $HERDCLI_PATH
-rm -f $HERDCLI_INSTALLATION_PATH/herd-cli
 ln -s $HERDCLI_PATH $HERDCLI_INSTALLATION_PATH/herd-cli
+###########################################################
+
+###########################################################
+# MODULES FOLDER ALIAS CREATION
+echo -e "$GREEN$BOLD [*] Modules folder alias creation $RESET"
+
+echo alias herd-modules=\"cd $(pwd)/herd-server/bin/module/collection/\" >> /etc/bash.bashrc
+source /etc/bash.bashrc
 ###########################################################
 
 ###########################################################
