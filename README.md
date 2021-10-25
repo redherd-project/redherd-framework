@@ -4,9 +4,12 @@
 
 # RedHerd Framework
 [![Documentation Status](https://readthedocs.org/projects/redherd/badge/?version=latest)](https://redherd.readthedocs.io/en/latest/?badge=latest)
+[![License](https://img.shields.io/github/license/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/blob/main/LICENSE)
+[![Version](https://img.shields.io/github/v/release/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/releases)
+[![Contributors](https://img.shields.io/github/contributors/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/graphs/contributors)
+	
 [![Twitter](https://img.shields.io/twitter/follow/RedHerdProject?style=social)](https://twitter.com/RedHerdProject)
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UCYSM51oldVsryhZxGdB3hXA?style=social)](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
-[![License](https://img.shields.io/github/license/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/blob/main/LICENSE)
 	
 <br>
 <img src="https://redherd.readthedocs.io/en/latest/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
