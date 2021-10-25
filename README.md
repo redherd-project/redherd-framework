@@ -4,7 +4,8 @@
 
 # RedHerd Framework
 [![Documentation Status](https://readthedocs.org/projects/redherd/badge/?version=latest)](https://redherd.readthedocs.io/en/latest/?badge=latest)
-
+[![Twitter](https://img.shields.io/twitter/follow/RedHerdProject?style=social)](https://twitter.com/RedHerdProject)
+	
 <br>
 <img src="https://redherd.readthedocs.io/en/latest/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
 <br><br>
