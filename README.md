@@ -30,6 +30,11 @@ RedHerd is a collaborative and serverless framework for orchestrating a geograph
 Take a look at the RedHerd [documentation](https://redherd.readthedocs.io) for instructions on how to getting started with the framework.
 
 
+## Cite this work
+If you use RedHerd Framework for your research activity, cite the following paper published by MDPI (Multidisciplinary Digital Publishing Institute) 
+https://www.mdpi.com/2624-6120/2/4/38
+
+
 ## Links
 
 Hereafter, some interesting links referred to the project:
