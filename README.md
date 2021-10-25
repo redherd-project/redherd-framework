@@ -66,53 +66,6 @@ Feel free to contact us at this e-mail address:
 The provided contents and tools are for awareness and research purposes only. Our target audience is composed of those interested in learning about Ethical Hacking, Security, Penetration Testing and Red Teaming. We are not responsible for any inappropriate or illegal usage of both proposed material and discussed topics.
 
 
-## Authors
-
-<table border="0">
-<tr width="9999">
-<td align="center">
-<a href="https://github.com/b4gh33r4">
-<img src="https://avatars.githubusercontent.com/u/87416466?v=4" width="100px;" alt=""/><br />
-<sub><b>Mario D'Amico</b></sub>
-</a>
-<br /><br />
-<a href="" title="Code">💻</a> 
-<a href="" title="Content">🖋</a> 
-<a href="" title="Bug reports">🐛</a> 
-<a href="" title="Maintenance">🚧</a> 
-<a href="" title="Project Management">📆</a>
-<a href="" title="Design">🎨</a> 
-<a href="" title="Documentation">📖</a>
-</td>
-	
-<td align="center">
-<a href="https://github.com/Peco602">
-<img src="https://avatars.githubusercontent.com/u/13527424?v=4" width="100px;" alt=""/><br />
-<sub><b>Giovanni Pecoraro</b></sub>
-</a>
-<br /><br />
-<a href="" title="Code">💻</a> 
-<a href="" title="Content">🖋</a> 
-<a href="" title="Bug reports">🐛</a> 
-<a href="" title="Maintenance">🚧</a> 
-<a href="" title="Project Management">📆</a>
-<a href="" title="Design">🎨</a> 
-<a href="" title="Documentation">📖</a>
-</td>	
-
-<td align="center">
-<a href="https://github.com/spromano">
-<img src="https://avatars1.githubusercontent.com/u/4959718?v=4?s=100" width="100px;" alt=""/><br />
-<sub><b>Simon Pietro Romano</b></sub>
-</a>
-<br /><br />
-<a href="" title="Project Management">📆</a>
-<a href="" title="Design">🎨</a> 
-<a href="" title="Documentation">📖</a>
-</td>
-</tr>
-</table>
-
 ## Funding
 
 This is a non-profit project which received neither funding nor sponsorship.
