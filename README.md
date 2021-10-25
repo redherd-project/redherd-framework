@@ -115,4 +115,4 @@ The provided contents and tools are for awareness and research purposes only. Ou
 
 ## Funding
 
-This project received neither funding nor sponsorship.
+This is a non-profit project which received neither funding nor sponsorship.
