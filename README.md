@@ -29,6 +29,7 @@ Hereafter, some interesting links referred to the project:
 
 - DockerHub [repository](https://hub.docker.com/u/redherd)
 - YouTube [channel](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
+- Twitter [profile](https://twitter.com/RedHerdProject)
 
 
 ## Changelog   
