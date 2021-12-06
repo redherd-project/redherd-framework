@@ -109,6 +109,8 @@ VPN_CIDR="10.11.0.0/16"
 OVPN_DATA="ovpn-data-server"
 OVPN_CONFIG_PATH="$(pwd)/ovpn-configs"
 
+NODE_INIT_IMAGE_NAME="node:16.12.0-bullseye"
+
 DOCKER_OVPNSRV_NAME="ovpnsrv"
 DOCKER_OVPNSRV_ADDRESS="10.10.0.2"
 DOCKER_OVPNSRV_PATH="$(pwd)/ovpn-server"
@@ -433,7 +435,7 @@ if [ "$INIT_DB" == "TRUE" ]; then
                 --name "database_initializer" \
                 -v $ETC_PATH/initialize-db:/home/node/app \
                 -v /etc/localtime:/etc/localtime:ro \
-                node:latest \
+                "$NODE_INIT_IMAGE_NAME" \
                 /bin/bash -c "/home/node/app/run.sh"
         mv $ETC_PATH/initialize-db/redherd.sqlite3 $DOCKER_HERDSRV_PATH/models/data
 fi
@@ -443,7 +445,7 @@ docker run --rm \
 	 --name "node-file-manager_compiler" \
         -v $ETC_PATH/node-file-manager:/home/node/app \
         -v /etc/localtime:/etc/localtime:ro \
-        node:latest \
+        "$NODE_INIT_IMAGE_NAME" \
         /bin/bash -c "/home/node/app/run.sh"
 mv $ETC_PATH/node-file-manager/node-file-manager $DOCKER_HERDSRV_PATH/etc
 

@@ -1,7 +1,7 @@
-FROM node:latest
+FROM node:16.12.0-bullseye
 
 RUN apt update && \
-    apt install lsof -y
+    apt install iproute2 lsof -y
 
 # WeTTY installation
 RUN yarn global add wetty@2.0.2
