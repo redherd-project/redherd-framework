@@ -96,15 +96,6 @@ module.exports = (app) => {
             .put(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.updateTypeApi(req.params.param, req.body)); })
             .delete(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.removeTypeApi(req.params.param)); });
 
-        app.route(Config.api_endpoint + '/users')
-            .get(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.getUsersApi()); })
-            .post(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.addUserApi(req.body)); });
-
-        app.route(Config.api_endpoint + '/users/:param')
-            .get(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.getUserApi(req.params.param)); })
-            .put(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.updateUserApi(req.params.param, req.body)); })
-            .delete(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.removeUserApi(req.params.param)); });
-
         app.route(Config.api_endpoint + '/system')
             .get(routeAuthenticationMiddleware, (req, res) => { res.json(ApiController.getSystemApi()); });
     }

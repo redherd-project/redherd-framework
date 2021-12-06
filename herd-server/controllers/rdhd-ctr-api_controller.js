@@ -426,6 +426,188 @@ exports.getEnabledUsersApi = function getEnabledUsersApi()
     return result;
 }
 
+exports.getUsersApi = function getUsersApi()
+{
+    let result;
+    try
+    {
+        result = model.presentUsers();
+    }
+    catch (e)
+    {
+        if (Config.debug_mode)
+        {
+            console.log(e);
+        }
+        result = false;
+    }
+    return result;
+}
+
+exports.getUserApi = function getUserApi(param)
+{
+    let result;
+    try
+    {
+        let isValidUserId = Validator.validateId(param);
+        let isValidUserName = Validator.validateUser(param);
+
+        if (isValidUserId)
+        {
+            result = JSend.success({ type: model.presentUserById(param) });
+        }
+        else if (isValidUserName)
+        {
+            result = JSend.success({ type: model.presentUserByName(param) });
+        }
+        else if (!isValidTypeId)
+        {
+            result = JSend.fail({ reason: "Invalid userId provided" });
+        }
+        else
+        {
+            result = JSend.fail({ reason: "Invalid userName provided" });
+        }
+    }
+    catch (e)
+    {
+        if (Config.debug_mode)
+        {
+            console.log(e);
+        }
+        result = JSend.error(e.message);
+    }
+    return result;
+}
+
+exports.addUserApi = function addUserApi(user)
+{
+    let result;
+    try
+    {
+        let _user = Utils.cleanObject(user);
+
+        let isValidUserName = Validator.validateUser(_user.uname);
+        let isValidUserStatus = Validator.validateBinaryNumber(_user.enabled);
+
+        if (isValidUserName && isValidUserStatus)
+        {
+            // user: { uname: string, secret: string, enabled: bool }
+            let isAdded = model.addUser(_user);
+            if (isAdded)
+            {
+                result = JSend.success(null);
+            }
+            else
+            {
+                result = JSend.fail({ reason: "Operation failed" });
+            }
+        }
+        else if (!isValidUserName)
+        {
+            result = JSend.fail({ reason: "Invalid userName provided" });
+        }
+        else
+        {
+            result = JSend.fail({ reason: "Invalid userStatus provided" });
+        }
+    }
+    catch (e)
+    {
+        if (Config.debug_mode)
+        {
+            console.log(e);
+        }
+        result = JSend.error(e.message);
+    }
+    return result;
+}
+
+exports.updateUserApi = function updateUserApi(userId, fields)
+{
+    let result;
+    try
+    {
+        // This workaround is needed to avoid username modification
+        fields.uname = "";
+        let user = Utils.cleanObject(fields);
+        if (user)
+        {
+            user.id = userId;
+            let isValidUserId = Validator.validateId(user.id);
+            let isValidUserName = ((user.uname === undefined) || Validator.validateUser(user.uname));
+            let isValidUserStatus = ((user.enabled === undefined) || Validator.validateBinaryNumber(user.enabled));
+
+            if (isValidUserId && isValidUserName && isValidUserStatus)
+            {
+                let isUpdated = model.updateUser(user);
+                if (isUpdated)
+                {
+                    result = JSend.success(null);
+                }
+                else
+                {
+                    result = JSend.fail({ reason: "Operation failed" });
+                }
+            }
+            else if (!isValidUserId)
+            {
+                result = JSend.fail({ reason: "Invalid userId provided" });
+            }
+            else if (!isValidUserName)
+            {
+                result = JSend.fail({ reason: "Invalid userName provided" });
+            }
+            else
+            {
+                result = JSend.fail({ reason: "Invalid userStatus provided" });
+            }
+        }
+    }
+    catch (e)
+    {
+        if (Config.debug_mode)
+        {
+            console.log(e);
+        }
+        result = JSend.error(e.message);
+    }
+    return result;
+}
+
+exports.removeUserApi = function removeUserApi(userId)
+{
+    let result;
+    try
+    {
+        if (Validator.validateId(userId))
+        {
+            let isDeleted = model.removeUser(userId);
+            if (isDeleted)
+            {
+                result = JSend.success(null);
+            }
+            else
+            {
+                result = JSend.fail({ reason: "Operation failed" });
+            }
+        }
+        else
+        {
+            result = JSend.fail({ reason: "Invalid userId provided" });
+        }
+    }
+    catch (e)
+    {
+        if (Config.debug_mode)
+        {
+            console.log(e);
+        }
+        result = JSend.error(e.message);
+    }
+    return result;
+}
+
 // ************************************************************
 //  API functions (routed)
 // ************************************************************
@@ -1727,188 +1909,6 @@ exports.removeTypeApi = function removeTypeApi(typeId)
         else
         {
             result = JSend.fail({ reason: "Invalid typeId provided" });
-        }
-    }
-    catch (e)
-    {
-        if (Config.debug_mode)
-        {
-            console.log(e);
-        }
-        result = JSend.error(e.message);
-    }
-    return result;
-}
-
-exports.getUsersApi = function getUsersApi()
-{
-    let result;
-    try
-    {
-        result = model.presentUsers();
-    }
-    catch (e)
-    {
-        if (Config.debug_mode)
-        {
-            console.log(e);
-        }
-        result = false;
-    }
-    return result;
-}
-
-exports.getUserApi = function getUserApi(param)
-{
-    let result;
-    try
-    {
-        let isValidUserId = Validator.validateId(param);
-        let isValidUserName = Validator.validateUser(param);
-
-        if (isValidUserId)
-        {
-            result = JSend.success({ type: model.presentUserById(param) });
-        }
-        else if (isValidUserName)
-        {
-            result = JSend.success({ type: model.presentUserByName(param) });
-        }
-        else if (!isValidTypeId)
-        {
-            result = JSend.fail({ reason: "Invalid userId provided" });
-        }
-        else
-        {
-            result = JSend.fail({ reason: "Invalid userName provided" });
-        }
-    }
-    catch (e)
-    {
-        if (Config.debug_mode)
-        {
-            console.log(e);
-        }
-        result = JSend.error(e.message);
-    }
-    return result;
-}
-
-exports.addUserApi = function addUserApi(user)
-{
-    let result;
-    try
-    {
-        let _user = Utils.cleanObject(user);
-
-        let isValidUserName = Validator.validateUser(_user.uname);
-        let isValidUserStatus = Validator.validateBinaryNumber(_user.enabled);
-
-        if (isValidUserName && isValidUserStatus)
-        {
-            // user: { uname: string, secret: string, enabled: bool }
-            let isAdded = model.addUser(_user);
-            if (isAdded)
-            {
-                result = JSend.success(null);
-            }
-            else
-            {
-                result = JSend.fail({ reason: "Operation failed" });
-            }
-        }
-        else if (!isValidUserName)
-        {
-            result = JSend.fail({ reason: "Invalid userName provided" });
-        }
-        else
-        {
-            result = JSend.fail({ reason: "Invalid userStatus provided" });
-        }
-    }
-    catch (e)
-    {
-        if (Config.debug_mode)
-        {
-            console.log(e);
-        }
-        result = JSend.error(e.message);
-    }
-    return result;
-}
-
-exports.updateUserApi = function updateUserApi(userId, fields)
-{
-    let result;
-    try
-    {
-        // This workaround is needed to avoid username modification
-        fields.uname = "";
-        let user = Utils.cleanObject(fields);
-        if (user)
-        {
-            user.id = userId;
-            let isValidUserId = Validator.validateId(user.id);
-            let isValidUserName = ((user.uname === undefined) || Validator.validateUser(user.uname));
-            let isValidUserStatus = ((user.enabled === undefined) || Validator.validateBinaryNumber(user.enabled));
-
-            if (isValidUserId && isValidUserName && isValidUserStatus)
-            {
-                let isUpdated = model.updateUser(user);
-                if (isUpdated)
-                {
-                    result = JSend.success(null);
-                }
-                else
-                {
-                    result = JSend.fail({ reason: "Operation failed" });
-                }
-            }
-            else if (!isValidUserId)
-            {
-                result = JSend.fail({ reason: "Invalid userId provided" });
-            }
-            else if (!isValidUserName)
-            {
-                result = JSend.fail({ reason: "Invalid userName provided" });
-            }
-            else
-            {
-                result = JSend.fail({ reason: "Invalid userStatus provided" });
-            }
-        }
-    }
-    catch (e)
-    {
-        if (Config.debug_mode)
-        {
-            console.log(e);
-        }
-        result = JSend.error(e.message);
-    }
-    return result;
-}
-
-exports.removeUserApi = function removeUserApi(userId)
-{
-    let result;
-    try
-    {
-        if (Validator.validateId(userId))
-        {
-            let isDeleted = model.removeUser(userId);
-            if (isDeleted)
-            {
-                result = JSend.success(null);
-            }
-            else
-            {
-                result = JSend.fail({ reason: "Operation failed" });
-            }
-        }
-        else
-        {
-            result = JSend.fail({ reason: "Invalid userId provided" });
         }
     }
     catch (e)

@@ -38,7 +38,7 @@ const config = {
     api_over_ssl                    : true,
     api_server_port                 : 3000,
     api_endpoint                    : "/api",
-    api_secured_routes              : [ /^\/api\/assets\/.+\/modules\/.+\/run$/, /^\/api\/assets\/.+\/service$/, /^\/api\/modules\/.+\/run$/, /^\/api\/users.*$/ ],
+    api_secured_routes              : [ /^\/api\/assets\/.+\/modules\/.+\/run$/, /^\/api\/assets\/.+\/service$/, /^\/api\/modules\/.+\/run$/ ],
     api_ssl_key_path                : __dirname + "/ssl/key.pem",
     api_ssl_cert_path               : __dirname + "/ssl/cert.pem",
     api_ssl_ca_path                 : __dirname + "/ssl/ca.crt",

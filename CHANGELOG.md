@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.4a] - 2021-12-06
+### Added
+- The iproute2 package installation for default route setup
+
+### Removed
+- The users API endpoint
+
+### Fixed
+- The Docker image version of Herd-Server, Herd-View and OpenVPN containers to mitigate the issue [`ERR_OSSL_EVP_UNSUPPORTED`](https://github.com/redherd-project/redherd-framework/issues/9)
+
+
 ## [v0.0.4] - 2021-09-29
 ### Added
 - The backend implementation of multi-asset module execution
