@@ -3,12 +3,12 @@
 <td align="center" width="9999">
 
 # RedHerd Framework
+[![Black Hat Arsenal](https://github.com/b4gh33r4/badges/blob/master/arsenal/europe/2021.svg)](https://www.blackhat.com/eu-21/arsenal/schedule/index.html#redherd-framework-24846)
 [![Documentation Status](https://readthedocs.org/projects/redherd/badge/?version=latest)](https://redherd.readthedocs.io/en/latest/?badge=latest)
 [![License](https://img.shields.io/github/license/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/blob/main/LICENSE)
 [![Version](https://img.shields.io/github/v/release/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/releases)
 [![Contributors](https://img.shields.io/github/contributors/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/graphs/contributors)
 [![Stars](https://img.shields.io/github/stars/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/stargazers)
-
 [![Twitter](https://img.shields.io/twitter/follow/RedHerdProject?style=social)](https://twitter.com/RedHerdProject)
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UCYSM51oldVsryhZxGdB3hXA?style=social)](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
 	
@@ -41,6 +41,7 @@ Hereafter, some interesting links referred to the project:
 
 - DockerHub [repository](https://hub.docker.com/u/redherd)
 - YouTube [channel](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
+- GitHub [repository](https://github.com/redherd-project/redherd-framework)
 - Twitter [profile](https://twitter.com/RedHerdProject)
 
 
