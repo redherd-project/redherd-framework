@@ -39,6 +39,7 @@ https://www.mdpi.com/2624-6120/2/4/38
 
 Hereafter, some interesting links referred to the project:
 
+- Blackhat Europe 2021 Arsenal - [RedHerd Framework session](https://www.youtube.com/watch?v=jo20NwS3sDw)
 - DockerHub [repository](https://hub.docker.com/u/redherd)
 - YouTube [channel](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
 - GitHub [repository](https://github.com/redherd-project/redherd-framework)
@@ -53,13 +54,6 @@ Go to [CHANGELOG](CHANGELOG.md) to see all the version changes.
 ## License
 
 This project is under the **MIT license**.
-
-
-## Contact us
-
-Feel free to contact us at this e-mail address:
-
-<img src="https://redherd.readthedocs.io/en/dev/references/credits/contactus.png"  width="200px;" alt="Contact us">
 
 
 ## Disclaimer
