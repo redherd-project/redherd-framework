@@ -7,7 +7,7 @@ on:
 
 env:
   PUBLIC_IP: "127.0.0.1" 
-  ASSETS_NUMBER: 10
+  ASSETS_NUMBER: 1
 
 jobs:
   build:
