@@ -21,4 +21,4 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: echo y | sudo ./deploy.sh -s ${{env.PUBLIC_IP}} -db -ca -k -u -a ${{env.ASSETS_NUMBER}} 
+      run: echo y | sudo ./deploy.sh -s ${{env.PUBLIC_IP}} -db -ca -k -a ${{env.ASSETS_NUMBER}} 
