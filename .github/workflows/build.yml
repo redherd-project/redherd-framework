@@ -16,8 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install Docker
-      run: sudo ./utils/install_docker.sh
+    # - name: Install Docker
+    #   run: sudo ./utils/install_docker.sh
 
     - name: Build
       # Build your program with the given configuration
