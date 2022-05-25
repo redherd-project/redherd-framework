@@ -336,7 +336,6 @@ if [ "$GENERATE_USERS" == "TRUE" ]; then
 		PASSWORD=$(LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom 2>/dev/null | head -c 32)
                 echo "$USERNAME:$PASSWORD" >> $DOCKER_DSTRSRV_PATH/plain 
         done
-	cat $DOCKER_DSTRSRV_PATH/plain
 fi
 ###########################################################
 
