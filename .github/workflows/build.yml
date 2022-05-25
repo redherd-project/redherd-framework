@@ -1,9 +1,9 @@
-name: Build
+name: build
 
 on:
   push:
     branches:
-      - '*'
+      - 'main'
 
 env:
   PUBLIC_IP: "127.0.0.1" 
@@ -16,9 +16,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # - name: Install Docker
-    #   run: sudo ./utils/install_docker.sh
-
     - name: Build
-      # Build your program with the given configuration
       run: echo y | sudo ./deploy.sh -s ${{env.PUBLIC_IP}} -db -ca -k -u -a ${{env.ASSETS_NUMBER}} 
