@@ -10,7 +10,7 @@
 [![Contributors](https://img.shields.io/github/contributors/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/graphs/contributors)
 [![Stars](https://img.shields.io/github/stars/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/stargazers)
 
-[![Black Hat Arsenal](https://github.com/b4gh33r4/badges/blob/master/arsenal/europe/2021.svg)](https://www.blackhat.com/eu-21/arsenal/schedule/index.html#redherd-framework-24846)
+[![Black Hat Arsenal](https://raw.githubusercontent.com/toolswatch/badges/master/arsenal/europe/2021.svg)](https://www.blackhat.com/eu-21/arsenal/schedule/index.html#redherd-framework-24846)
 [![Mentioned in awesome-docker](https://awesome.re/mentioned-badge.svg)](https://github.com/veggiemonk/awesome-docker)
 
 [![Twitter](https://img.shields.io/twitter/follow/RedHerdProject?style=social)](https://twitter.com/RedHerdProject)
