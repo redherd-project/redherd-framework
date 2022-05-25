@@ -4,6 +4,8 @@
 
 # RedHerd Framework
 [![Documentation Status](https://readthedocs.org/projects/redherd/badge/?version=latest)](https://redherd.readthedocs.io/en/latest/?badge=latest)
+[![Build Status](https://github.com/redherd-project/redherd-framework/actions/workflows/build.yml/badge.svg)](https://github.com/redherd-project/redherd-framework/actions/workflows/build.yml)
+
 [![License](https://img.shields.io/github/license/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/blob/main/LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/graphs/contributors)
 [![Stars](https://img.shields.io/github/stars/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/stargazers)
