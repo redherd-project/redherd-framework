@@ -527,8 +527,9 @@ function revokeDistribUserCredsApi {
 }
 
 function initializeSystemContext {
-    SEED=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | md5sum | cut -f1 -d" ")
-
+    # SEED=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | md5sum | cut -f1 -d" ")
+    SEED=$(LC_ALL=C tr -dc a-f0-9 </dev/urandom 2>/dev/null | head -c 32)
+    
     echo -e "$YELLOW$BOLD [-] Attempting to initialize system context $RESET"
     RESULT=$(sqlite3 $HERDSRV_DB "INSERT INTO main.system (seed, dob) VALUES (\"${SEED}\", DateTime('now'))")
 

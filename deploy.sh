@@ -330,8 +330,10 @@ if [ "$GENERATE_USERS" == "TRUE" ]; then
         rm -f $DOCKER_DSTRSRV_PATH/plain
         for i in {001..256}; 
         do
-                USERNAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
-                PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+                #USERNAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
+		USERNAME=$(LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom 2>/dev/null | head -c 10)
+                #PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+		PASSWORD=$(LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom 2>/dev/null | head -c 32)
                 echo "$USERNAME:$PASSWORD" >> $DOCKER_DSTRSRV_PATH/plain 
         done
 fi
