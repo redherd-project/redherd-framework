@@ -374,7 +374,7 @@ do
                 --rm \
                 -it \
                 $DOCKER_OVPNSRV_NAME:latest \
-                easyrsa build-client-full $USERNAME nopass
+                easyrsa --batch build-client-full $USERNAME nopass
 
         CLIENT_CONFIG_PATH=$OVPN_CONFIG_PATH/$HASHED_USERNAME
         mkdir -p $CLIENT_CONFIG_PATH

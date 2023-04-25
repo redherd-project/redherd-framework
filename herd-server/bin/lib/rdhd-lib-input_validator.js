@@ -128,7 +128,7 @@ class InputValidator
 
     static validateWindowsPath(value)
     {
-        return InputValidator._validateField(value, /^([A-Za-z]:|[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*)((\/[A-Za-z0-9_.-]+)+)$/);
+        return InputValidator._validateField(value, /^([a-zA-Z]\:|\\\\[^\/\\:*?"<>|]+\\[^\/\\:*?"<>|]+)(\\[^\/\\:*?"<>|]+)+(\\+|\.[^\/\\:*?"<>|]+)$/);
     }
 
     static validateLinuxPath(value)

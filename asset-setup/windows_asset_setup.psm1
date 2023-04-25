@@ -176,7 +176,7 @@ function InstallDependencies {
     
     # Installing OpenVPN client
     # https://chocolatey.org/packages/openvpn
-    choco install openvpn -y --params "'/SELECT_SERVICE=0 /SELECT_LAUNCH=0'"
+    choco install openvpn --version=2.5.4 -y --params "'/SELECT_SERVICE=0 /SELECT_LAUNCH=0'"
     RefreshEnv.cmd
 
     # Installing OpenSSH Server
@@ -334,7 +334,8 @@ function RemoveEnvVars {
 
 
 function JoinAsset {
-    $ASSET_ADDR=(Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias Ethernet).IPAddress
+    $ASSET_ADDR=(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias OpenVPN*TAP-*).IPAddress
+    #$ASSET_ADDR=(Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias Ethernet).IPAddress
     $ASSET_USER=$NEW_USER_USERNAME
 
     # Get asset types

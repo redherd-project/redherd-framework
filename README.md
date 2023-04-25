@@ -7,19 +7,13 @@
 [![Build Status](https://github.com/redherd-project/redherd-framework/actions/workflows/build.yml/badge.svg)](https://github.com/redherd-project/redherd-framework/actions/workflows/build.yml)
 
 [![License](https://img.shields.io/github/license/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/blob/main/LICENSE)
-[![Contributors](https://img.shields.io/github/contributors/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/graphs/contributors)
 [![Stars](https://img.shields.io/github/stars/redherd-project/redherd-framework)](https://github.com/redherd-project/redherd-framework/stargazers)
 
 [![Black Hat Arsenal](https://raw.githubusercontent.com/toolswatch/badges/master/arsenal/europe/2021.svg)](https://www.blackhat.com/eu-21/arsenal/schedule/index.html#redherd-framework-24846)
 [![Mentioned in awesome-docker](https://awesome.re/mentioned-badge.svg)](https://github.com/veggiemonk/awesome-docker)
 
-[![Twitter](https://img.shields.io/twitter/follow/RedHerdProject?style=social)](https://twitter.com/RedHerdProject)
-[![YouTube](https://img.shields.io/youtube/channel/subscribers/UCYSM51oldVsryhZxGdB3hXA?style=social)](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
-	
-<br>
-<img src="https://redherd.readthedocs.io/en/latest/design/features/redherd-net.png" align="center" width="900px" alt="RedHerd Framework">
 <br><br>
-	
+
 <div align="left">
 RedHerd is a collaborative and serverless framework for orchestrating a geographically distributed group of assets capable of <del>conducting</del> simulating complex offensive cyberspace operations.
 </div>
@@ -45,9 +39,7 @@ Hereafter, some interesting links referred to the project:
 
 - Blackhat Europe 2021 Arsenal - [RedHerd Framework session](https://www.youtube.com/watch?v=jo20NwS3sDw)
 - DockerHub [repository](https://hub.docker.com/u/redherd)
-- YouTube [channel](https://www.youtube.com/channel/UCYSM51oldVsryhZxGdB3hXA)
 - GitHub [repository](https://github.com/redherd-project/redherd-framework)
-- Twitter [profile](https://twitter.com/RedHerdProject)
 
 
 ## Changelog   
